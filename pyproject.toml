@@ -21,7 +21,11 @@ dependencies = []
 # runs there too, on the same account and region, so the judge's own inference path is not a
 # new uncontrolled variable in a study about measurement error. It also means the credential
 # is an IAM role rather than a long-lived API key.
-judge = ["anthropic[bedrock]>=0.40"]
+#
+# Pinned to 1.2 rather than any 1.x because the 1.x line is where sampling parameters left the
+# Python SDK entirely -- `temperature` is a TypeError, not a rejected request -- and the judge's
+# reproducibility measurements only mean anything if the reader can reproduce that constraint.
+judge = ["anthropic[bedrock]>=1.2"]
 
 [dependency-groups]
 dev = ["pytest>=8.3"]

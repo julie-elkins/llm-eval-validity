@@ -233,7 +233,7 @@ dev = [
 ]
 
 [package.metadata]
-requires-dist = [{ name = "anthropic", extras = ["bedrock"], marker = "extra == 'judge'", specifier = ">=0.40" }]
+requires-dist = [{ name = "anthropic", extras = ["bedrock"], marker = "extra == 'judge'", specifier = ">=1.2" }]
 provides-extras = ["judge"]
 
 [package.metadata.requires-dev]
