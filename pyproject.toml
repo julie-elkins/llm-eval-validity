@@ -1,0 +1,28 @@
+[project]
+name = "llm-eval-validity"
+version = "0.1.0"
+description = "A validity and reliability study of an LLM evaluation harness, run the way a certification exam is validated"
+requires-python = ">=3.13"
+# The offline analysis has no dependencies at all. Every statistic this repo turns on --
+# Wilson intervals, Newcombe differences, point-biserial correlation, Cohen's kappa,
+# Krippendorff's alpha -- is implemented in `validity/` rather than imported, because a
+# study whose subject is "was this measurement trustworthy" should not ask the reader to
+# take its own measurements on faith. Each is tested against a worked example from the
+# literature with the expected value hard-coded, so the implementations are checkable
+# rather than merely conventional.
+dependencies = []
+
+[project.optional-dependencies]
+# Only the LLM-judge stage needs the network or a key. Everything else runs offline, and
+# `make analyse` deliberately does not depend on this group.
+judge = ["anthropic>=0.40"]
+
+[dependency-groups]
+dev = ["pytest>=8.3"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.setuptools.packages.find]
+include = ["validity*"]

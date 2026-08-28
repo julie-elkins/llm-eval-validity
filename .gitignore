@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Judge runs write raw API responses here. They are reproducible from a seed and a prompt
+# version, they are large, and they are the one part of this repo that costs money to
+# regenerate -- so the summarised verdicts get committed and the raw transcripts do not.
+runs/*.jsonl
