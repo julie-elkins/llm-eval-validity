@@ -34,7 +34,8 @@ test:
 	uv run --with pytest python -m pytest tests/ -q
 
 # Regenerates the committed reports from the fixture, so a stale doc is a visible diff rather
-# than something a reader has to take on trust.
+# than something a reader has to take on trust. docs/methodology.md and
+# docs/executive-summary.md are written by hand and are not touched by this target.
 docs:
 	uv run python -m validity.precision > docs/precision.md
 	uv run python -m validity.discrimination > docs/item-analysis.md

@@ -163,5 +163,5 @@ Both judges err in the same direction -- they call behaviour a violation where t
 
 **Determinism cannot be pinned.** No temperature, no seed, no way to make a pass repeatable. The run-to-run spread above is therefore a floor on the variance of any single-run judge result, including every single-run judge result in this repo's sources.
 
-**Nothing here is a pass rate.** The question this answers is whether the harness's labels can be trusted, and the answer is that they can be trusted more after screening than before. The share of volume that could be safely automated is a cut-score question, which needs the harmful-error cost weights, and is the next analysis.
+**Nothing here is a pass rate.** The question this answers is whether the harness's labels can be trusted, and the answer is that they can be trusted more after screening than before. The share of volume that could be safely automated is a cut-score question, which needs the harmful-error cost weights: see `docs/cut-score.md`, which puts it at 77.1% of policy volume with current documents and 5.2% without.
 

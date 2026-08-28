@@ -17,6 +17,11 @@ customer-service agent tested across a 24-cell factorial design (3 models x 2 pr
 document corpora x 2 retrievers). It is vendored here as a fixture, not re-run — see
 [Provenance](#provenance).
 
+**Two ways in:** [docs/executive-summary.md](docs/executive-summary.md) is the one-page
+deployment decision; [docs/methodology.md](docs/methodology.md) is the technical companion —
+which psychometric method each step borrows, where the borrowing breaks down because the examinee
+is a system rather than a person, and every design decision that would move the numbers.
+
 ## What it found
 
 Five findings, in descending order of how much they change the original conclusions.
@@ -149,6 +154,7 @@ validity/judge.py       analysis 3, the only module that spends money: runs the 
 validity/reliability.py analysis 3's report, offline over runs/*.jsonl
 validity/cutscore.py    analysis 4: the standards, the coverage claim, the cost decision
 runs/*.jsonl            2,494 recorded verdicts (gitignored; regenerate with `make judge`)
+docs/*.md               four generated reports, plus the methodology and executive write-ups
 ```
 
 Every statistic is implemented in this repository rather than imported, and each is tested
@@ -188,9 +194,7 @@ accuracy figures and raises if any has moved.
 ## Status
 
 Complete: all four analyses — precision re-analysis, item analysis, judge validation, cut score —
-and 131 tests.
-
-Not yet written: the technical methodology write-up and the one-page executive summary.
+the methodology and executive write-ups, and 131 tests.
 
 Known gap, and the most useful thing to add next: **there is no second human rater**, so the
 human–human agreement ceiling is unestimated and the judge–human kappas above cannot be

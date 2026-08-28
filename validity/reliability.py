@@ -645,7 +645,8 @@ def report(f: fixture.Fixture, rows: dict[str, list[dict]]) -> None:
         f"**Nothing here is a pass rate.** The question this answers is whether the harness's "
         f"labels can be trusted, and the answer is that they can be trusted more after screening "
         f"than before. The share of volume that could be safely automated is a cut-score "
-        f"question, which needs the harmful-error cost weights, and is the next analysis.\n"
+        f"question, which needs the harmful-error cost weights: see `docs/cut-score.md`, which "
+        f"puts it at 77.1% of policy volume with current documents and 5.2% without.\n"
     )
 
 
