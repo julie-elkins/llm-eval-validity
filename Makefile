@@ -3,9 +3,9 @@
 # be able to reproduce every number in the write-ups without an API key, and only the judge
 # validation should cost anything.
 
-.PHONY: analyse test precision discrimination reliability judge docs clean
+.PHONY: analyse test precision discrimination reliability cutscore judge docs clean
 
-analyse: precision discrimination reliability
+analyse: precision discrimination reliability cutscore
 
 precision:
 	uv run python -m validity.precision
@@ -16,6 +16,11 @@ discrimination:
 # Reads the recorded verdicts in runs/. Free and offline; says so and stops if runs/ is empty.
 reliability:
 	uv run python -m validity.reliability
+
+# Reads the fixture only. The standards it judges against are declared in the module, not
+# derived from the data, so this target is deterministic and free.
+cutscore:
+	uv run python -m validity.cutscore
 
 # The only target that costs money and needs credentials. Dry-runs by default: it prints the
 # planned call count and the estimated spend, and sends nothing until `--go`. Resumable, so an
@@ -34,6 +39,7 @@ docs:
 	uv run python -m validity.precision > docs/precision.md
 	uv run python -m validity.discrimination > docs/item-analysis.md
 	uv run python -m validity.reliability > docs/judge-validation.md
+	uv run python -m validity.cutscore > docs/cut-score.md
 
 clean:
 	rm -rf .pytest_cache **/__pycache__
