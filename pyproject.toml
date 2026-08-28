@@ -14,8 +14,8 @@ dependencies = []
 
 [project.optional-dependencies]
 # Only the LLM-judge stage needs the network. Everything else runs offline, and `make analyse`
-# deliberately does not depend on this group -- every number in the two committed reports is
-# reproducible with no credentials at all.
+# deliberately does not depend on this group -- every number in the committed reports except the
+# judge agreement figures is reproducible with no credentials at all.
 #
 # The bedrock extra rather than the plain SDK: the source project ran on Bedrock and the judge
 # runs there too, on the same account and region, so the judge's own inference path is not a

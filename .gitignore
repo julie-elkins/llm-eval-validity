@@ -3,7 +3,8 @@ __pycache__/
 *.pyc
 .pytest_cache/
 
-# Judge runs write raw API responses here. They are reproducible from a seed and a prompt
-# version, they are large, and they are the one part of this repo that costs money to
-# regenerate -- so the summarised verdicts get committed and the raw transcripts do not.
+# Judge runs write raw API responses here. They are large, they are the one part of this repo
+# that costs money to regenerate, and they are not reproducible verdict-for-verdict -- the SDK
+# offers no temperature and no seed, which is itself one of the study's findings. So the reports
+# derived from them are committed and the raw transcripts are not: `make judge` re-earns them.
 runs/*.jsonl
