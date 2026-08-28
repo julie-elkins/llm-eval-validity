@@ -13,9 +13,15 @@ requires-python = ">=3.13"
 dependencies = []
 
 [project.optional-dependencies]
-# Only the LLM-judge stage needs the network or a key. Everything else runs offline, and
-# `make analyse` deliberately does not depend on this group.
-judge = ["anthropic>=0.40"]
+# Only the LLM-judge stage needs the network. Everything else runs offline, and `make analyse`
+# deliberately does not depend on this group -- every number in the two committed reports is
+# reproducible with no credentials at all.
+#
+# The bedrock extra rather than the plain SDK: the source project ran on Bedrock and the judge
+# runs there too, on the same account and region, so the judge's own inference path is not a
+# new uncontrolled variable in a study about measurement error. It also means the credential
+# is an IAM role rather than a long-lived API key.
+judge = ["anthropic[bedrock]>=0.40"]
 
 [dependency-groups]
 dev = ["pytest>=8.3"]
