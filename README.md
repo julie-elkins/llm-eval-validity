@@ -19,9 +19,32 @@ document corpora x 2 retrievers). It is vendored here as a fixture, not re-run �
 
 ## What it found
 
-Three findings, in descending order of how much they change the original conclusions.
+Four findings, in descending order of how much they change the original conclusions.
 
-**1. The eval's own item analysis is confounded, and the confound flatters it.**
+**1. Both LLM judges agree with the human auditor more closely than the harness's own grader
+did — and a single-run comparison of the two judges would have reported a winner that does not
+exist.**
+Two judges (Sonnet 5 and Haiku 4.5) read all 192 policy replies five times each, blind to the
+configuration, the incumbent grade and the audit verdict. Against the human reference both beat
+the regex grader (kappa +0.87 and +0.90 against +0.77). But read pass 1 alone and Haiku leads
+Sonnet by 0.03 of kappa; read all five and Haiku's range (0.882–0.935) contains Sonnet's
+(0.872–0.892). **The between-model difference is no larger than the within-model, run-to-run
+difference**, and there is no temperature or seed to suppress it — sampling parameters are not
+available at all in the SDK's 1.x line. Every judge comparison this study could find reports a
+single run.
+
+Framed as what it would actually be deployed for — a screen deciding which turns a human
+should read — Haiku flags 15.6% of turns and catches all 23 of the grader's policy errors. The
+interval is the honest number: 23/23 is still consistent with a true sensitivity of 0.86, so as
+many as one grader error in seven could be missed by a screen that looked flawless here.
+
+And the coefficient itself fails on half the data. Split by corpus and the stale-corpus arm
+gives 95% raw agreement with a kappa of 0.00 — because `kappa_max` there is *also* 0.00. Both
+the judges and the human answer `abstained` almost everywhere, and a rater using one category
+pins kappa at zero however good it is. Reported alone, kappa would describe the study's
+best-behaved stratum as its worst failure. Full report: [docs/judge-validation.md](docs/judge-validation.md).
+
+**2. The eval's own item analysis is confounded, and the confound flatters it.**
 Run over all 24 configurations, all eight test questions look excellent — corrected
 item-total correlations of +0.68 to +0.90, Cronbach's alpha 0.94. That is the table an eval
 harness produces by default, and it is an artefact. Nine of the 24 configurations scored
@@ -34,14 +57,14 @@ inter-item correlation falls from +0.65 to +0.22, alpha from 0.94 to 0.76 — an
 eight questions turn out to be at ceiling (12/12), unable to rank any configuration that has
 the current documents. They are corpus regression checks, not comparison items.
 
-**2. "No measurable difference" was a statement about the design, not about prompts.**
+**3. "No measurable difference" was a statement about the design, not about prompts.**
 The original run found 42.7% vs 39.6% on the prompt axis and reported no difference. With a
 Newcombe interval that is +3.1 points [-10.6, +16.7]: the design could not have detected
 anything smaller than about 14 points, so a real 10-point prompt effect would have been
 missed. The null survives stratification (-4.2 points [-20.7, +12.6] within the current
 corpus), so it is not a floor artefact — but it remains uninformative rather than negative.
 
-**3. Two findings the original run understated, and one it overstated.**
+**4. Two findings the original run understated, and one it overstated.**
 Because every marginal pools the floor arm, the published figures *understate* the effects
 that are real: the retriever contrast is +15.6 points [+1.7, +28.7] pooled but +29.2 points
 [+12.5, +44.2] within the current corpus, and the model contrast +25.0 rather than +37.5. The
@@ -49,7 +72,7 @@ pooled retriever bound clears zero by only 1.7 points — inside the scale of th
 grader audit described below — so as published it was directionally supported rather than
 established. Stratified, it is solid.
 
-The judge-validation and cut-score stages are not yet written; see [Status](#status).
+The cut-score stage is not yet written; see [Status](#status).
 
 ## Why this data is unusually suited to the question
 
@@ -79,7 +102,9 @@ Stated here rather than at the end, because they bound every number above.
   ±0.5 near zero — wider than most gaps in the item table. It separates "clearly working" from
   "clearly not" and supports no finer ranking than that.
 - **Two topics' wrong-answer rate is a lower bound**, inherited from the source project: its
-  grader could not reliably detect negation on two policy topics.
+  grader could not reliably detect negation on two policy topics. Finding 1 quantifies this —
+  the grader agrees with the human on 54% and 58% of those two topics against ≥96% elsewhere —
+  but quantifying it does not repair the published per-topic figures.
 - **The stratified analyses halve the sample.** Every interval in them is wider than its
   pooled counterpart. Both are reported; neither is the single right answer.
 
@@ -92,6 +117,10 @@ validity/fixture.py     loader that refuses to proceed if the data drifted
 validity/intervals.py   Wilson, Newcombe, sample sizing
 validity/precision.py   analysis 1: what the published run could have detected
 validity/discrimination.py  analysis 2: which questions carry the eval
+validity/agreement.py   kappa, kappa_max, PABAK, weighted kappa, Krippendorff's alpha, bootstrap
+validity/judge.py       analysis 3, the only module that spends money: runs the judges
+validity/reliability.py analysis 3's report, offline over runs/*.jsonl
+runs/*.jsonl            2,494 recorded verdicts (gitignored; regenerate with `make judge`)
 ```
 
 Every statistic is implemented in this repository rather than imported, and each is tested
@@ -102,10 +131,22 @@ trusted should not ask the reader to take its own measurements on faith.
 ## Running it
 
 ```sh
-make analyse   # both analyses, no network, no credentials, no dependencies
-make test      # 44 tests
-make docs      # regenerate docs/ from the fixture
+make analyse   # all three analyses, no network, no credentials, no dependencies
+make test      # 113 tests
+make docs      # regenerate docs/ from the fixture and runs/
 ```
+
+The judge stage is the only part that costs anything, and it is not part of `make analyse`:
+
+```sh
+make judge JUDGE=haiku-4.5 ARGS="--runs 5"        # dry run: prints calls and estimated spend
+make judge JUDGE=haiku-4.5 ARGS="--runs 5 --go"   # sends; resumable, appends to runs/
+```
+
+It dry-runs by default and refuses to send without `--go`. The full study as reported — two
+judges, five passes each plus a swapped-order pass, 2,494 verdicts — cost **$6.95** on Bedrock
+against a $6.73 estimate. `runs/*.jsonl` is gitignored, so the committed report is reproducible
+from the transcripts but the transcripts are regenerated rather than vendored.
 
 ## Provenance
 
@@ -118,10 +159,12 @@ accuracy figures and raises if any has moved.
 
 ## Status
 
-Complete: precision re-analysis, item analysis, 44 tests.
+Complete: precision re-analysis, item analysis, judge validation, 113 tests.
 
-Not yet written: LLM-judge validation against the human-adjudicated standard (sensitivity and
-specificity with intervals, confusion matrix, Krippendorff's alpha and PABAK given the skewed
-marginals, judge test–retest and prompt-order sensitivity); cut-score analysis with
-conjunctive per-family thresholds; the technical and executive write-ups. The judge stage is
-the only part that needs network access or a key.
+Not yet written: cut-score analysis with conjunctive per-family thresholds and expected-cost
+weights; the technical and executive write-ups.
+
+Known gap, and the most useful thing to add next: **there is no second human rater**, so the
+human–human agreement ceiling is unestimated and the judge–human kappas above cannot be
+compared against one. A second independent pass over a stratified subsample of 40–60 turns
+would settle it.
