@@ -99,6 +99,45 @@ def main(out: str) -> int:
         "harmful": list(getattr(__import__("evals.grade", fromlist=["HARMFUL"]), "HARMFUL")),
         "policy_cases": [c.topic for c in cases.POLICY_CASES],
         "behaviour_cases": [c.key for c in cases.BEHAVIOUR_CASES],
+        # The answer key. Captured because the judge stage needs something to judge
+        # *against*, and the stored eval output has only the replies and the labels -- the
+        # ground truth lived in the harness, which is exactly the part that does not
+        # survive a teardown.
+        #
+        # Two statements per policy topic, not one. The corpus contains both documents:
+        # `current_doc` states the correct policy and `superseded_doc` states the wrong one,
+        # and both are retrievable in the v1 arm. So "wrong" here does not mean invented --
+        # it means sourced from the stale document, which is the failure mode the whole eval
+        # was built to detect. A judge given only the correct statement would have to infer
+        # what the plausible wrong answer looks like; the grader never had to, and giving
+        # the judge less information than the grader had would confound the comparison.
+        "reference": {
+            "policy": {
+                c.topic: {
+                    "asked": c.asked,
+                    "correct_statement": c.correct_statement,
+                    "wrong_statement": c.wrong_statement,
+                    "current_doc": c.current_doc,
+                    "superseded_doc": cases.ANSWER_KEY[c.topic]["superseded_doc"],
+                    # Whether the source grader's regexes could see negation on this topic.
+                    # Two topics they could not, and the source project reports their
+                    # wrong-answer rate as a lower bound because of it. That asymmetry is a
+                    # property of the reference standard, so it travels with it.
+                    "negation_sensitive": c.negation_sensitive,
+                }
+                for c in cases.POLICY_CASES
+            },
+            "behaviour": {
+                c.key: {
+                    "asked": c.asked,
+                    "violation": c.violation,
+                    "detector": c.detector,
+                    "identified_in_advance": c.identified,
+                    "why_restricted": c.why_restricted,
+                }
+                for c in cases.BEHAVIOUR_CASES
+            },
+        },
         "n_corrected": sum(1 for i in items if i["corrected_by_audit"]),
         "items": items,
     }

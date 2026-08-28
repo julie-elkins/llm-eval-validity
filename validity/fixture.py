@@ -50,6 +50,18 @@ PUBLISHED_N_TURNS = 216
 PUBLISHED_N_POLICY = 192
 PUBLISHED_N_CORRECTIONS = 26
 
+# The two policy topics whose correct answer is a negation ("does not price match", "proof of
+# purchase is not required"). The source grader matched markers with regexes, so on these two
+# a reply could state the right policy and be scored wrong, or state the wrong one and be
+# scored correct, depending on where the "not" landed. The source project reports their
+# wrong-answer rate as a lower bound for exactly this reason.
+#
+# Pinned as a constant rather than read from the fixture because it is the one place the
+# judge is expected to *beat* the grader rather than merely agree with it: a language model
+# reading the sentence has no equivalent structural blind spot. If a re-extraction changes
+# this set, the judge study's most interesting subgroup has silently moved.
+NEGATION_SENSITIVE = ("price_match", "warranty_proof")
+
 
 @dataclass(frozen=True)
 class Turn:
@@ -101,11 +113,63 @@ class Turn:
 
 
 @dataclass(frozen=True)
+class PolicyReference:
+    """The ground truth for one policy topic: what a right answer says, and what a wrong one says.
+
+    Both statements, not just the correct one. Northwind's corpus contains a current document
+    and a superseded one, and the wrong answer is not invented -- it is the superseded
+    document, faithfully retrieved. A judge told only the correct policy would have to guess
+    what the plausible failure looks like, while the grader it is being compared against was
+    handed both. Withholding it would make the judge's job harder than the grader's and turn
+    a validity comparison into a handicap match.
+    """
+
+    case: str
+    asked: str
+    correct_statement: str
+    wrong_statement: str
+    current_doc: str
+    superseded_doc: str
+    negation_sensitive: bool
+
+
+@dataclass(frozen=True)
+class BehaviourReference:
+    """The ground truth for one behaviour turn, which is a described action rather than a fact.
+
+    There is no correct sentence here -- the question is whether the reply did a particular
+    thing, and `violation` is the human-readable statement of what that thing is. `detector`
+    names the source harness's function for it, kept so a disagreement can be traced to a
+    specific piece of code rather than to "the grader".
+    """
+
+    case: str
+    asked: str
+    violation: str
+    detector: str
+    identified_in_advance: bool
+    why_restricted: str
+
+
+@dataclass(frozen=True)
 class Fixture:
     turns: tuple[Turn, ...]
     provenance: dict
     policy_cases: tuple[str, ...]
     behaviour_cases: tuple[str, ...]
+    policy_reference: dict[str, PolicyReference]
+    behaviour_reference: dict[str, BehaviourReference]
+
+    def reference(self, turn: Turn) -> PolicyReference | BehaviourReference:
+        """The ground truth for one turn, whichever family it belongs to.
+
+        A single accessor because every consumer -- the judge prompt builder, the write-up,
+        the cut-score weights -- wants "what was the right answer here" and should not have to
+        branch on the family to ask.
+        """
+        if turn.family == POLICY:
+            return self.policy_reference[turn.case]
+        return self.behaviour_reference[turn.case]
 
     def family(self, name: str) -> tuple[Turn, ...]:
         return tuple(t for t in self.turns if t.family == name)
@@ -162,11 +226,16 @@ def load(path: Path | str = FIXTURE, *, verify: bool = True) -> Fixture:
         )
         for i in raw["items"]
     )
+    ref = raw["reference"]
     fixture = Fixture(
         turns=turns,
         provenance=raw["provenance"],
         policy_cases=tuple(raw["policy_cases"]),
         behaviour_cases=tuple(raw["behaviour_cases"]),
+        policy_reference={k: PolicyReference(case=k, **v) for k, v in ref["policy"].items()},
+        behaviour_reference={
+            k: BehaviourReference(case=k, **v) for k, v in ref["behaviour"].items()
+        },
     )
     if verify:
         _verify(fixture)
@@ -216,7 +285,50 @@ def _verify(f: Fixture) -> None:
             "there is nothing for the judge study to be validated against"
         )
 
+    problems += _verify_reference(f)
+
     if problems:
         raise ValueError(
             "fixture does not reproduce the published run:\n  - " + "\n  - ".join(problems)
         )
+
+
+def _verify_reference(f: Fixture) -> list[str]:
+    """Check the answer key covers every case and says something usable about each.
+
+    Separate from the accuracy checks because it fails for different reasons. Those catch a
+    fixture that drifted; this catches one that is missing the half the judge stage runs on --
+    and it would otherwise fail silently, as an empty prompt slot producing a judge that
+    confidently grades against nothing.
+    """
+    problems = []
+
+    missing = set(f.policy_cases) - set(f.policy_reference)
+    if missing:
+        problems.append(f"no answer key for policy cases {sorted(missing)}")
+    missing = set(f.behaviour_cases) - set(f.behaviour_reference)
+    if missing:
+        problems.append(f"no answer key for behaviour cases {sorted(missing)}")
+
+    for case, r in sorted(f.policy_reference.items()):
+        # An identical pair would make the item ungradeable by anything, human included, and
+        # is the shape a copy-paste error in the source answer key would take.
+        if r.correct_statement.strip() == r.wrong_statement.strip():
+            problems.append(f"{case}: correct and wrong statements are identical")
+        if not r.correct_statement.strip() or not r.wrong_statement.strip():
+            problems.append(f"{case}: empty statement in the answer key")
+        if r.current_doc == r.superseded_doc:
+            problems.append(f"{case}: current and superseded documents are the same file")
+
+    sensitive = tuple(sorted(c for c, r in f.policy_reference.items() if r.negation_sensitive))
+    if sensitive != tuple(sorted(NEGATION_SENSITIVE)):
+        problems.append(
+            f"negation-sensitive topics are {list(sensitive)}, expected "
+            f"{sorted(NEGATION_SENSITIVE)} -- the judge study's key subgroup has moved"
+        )
+
+    for case, b in sorted(f.behaviour_reference.items()):
+        if not b.violation.strip() or not b.detector.strip():
+            problems.append(f"{case}: behaviour reference does not say what the violation is")
+
+    return problems

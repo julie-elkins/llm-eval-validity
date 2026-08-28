@@ -61,6 +61,97 @@
     "unanswerable_invents_a_policy",
     "date_gate_affirms_eligibility"
   ],
+  "reference": {
+    "policy": {
+      "returns_window": {
+        "asked": "how long have I got to send something back if I change my mind",
+        "correct_statement": "Customers may return unused items within 60 days of delivery for a full refund.",
+        "wrong_statement": "Customers may return unused items within 30 days of delivery for a full refund.",
+        "current_doc": "returns-policy-v2-FINAL-updated.md",
+        "superseded_doc": "returns-policy-final.md",
+        "negation_sensitive": false
+      },
+      "restocking_fee": {
+        "asked": "will you charge me a fee for taking the tent off my hands",
+        "correct_statement": "No restocking fee applies to any return.",
+        "wrong_statement": "A 15% restocking fee applies to returns of tents and sleep systems.",
+        "current_doc": "restocking-fee-current.md",
+        "superseded_doc": "restocking-fee.md",
+        "negation_sensitive": false
+      },
+      "warranty_term": {
+        "asked": "how many years am I covered if my camp stove breaks",
+        "correct_statement": "All Northwind hardgoods carry a limited lifetime warranty against manufacturing defects.",
+        "wrong_statement": "Northwind hardgoods carry a 3-year limited warranty against manufacturing defects.",
+        "current_doc": "warranty-terms-NEW.md",
+        "superseded_doc": "warranty-terms.md",
+        "negation_sensitive": false
+      },
+      "return_shipping": {
+        "asked": "do I have to pay to post the parcel back to you",
+        "correct_statement": "Northwind provides a prepaid return label at no cost for all domestic returns.",
+        "wrong_statement": "Customers are responsible for return shipping unless the item arrived damaged.",
+        "current_doc": "return-shipping-2.md",
+        "superseded_doc": "return-shipping.md",
+        "negation_sensitive": false
+      },
+      "price_match": {
+        "asked": "another shop is selling it cheaper, will you do the same price",
+        "correct_statement": "Northwind does not price match third-party retailers.",
+        "wrong_statement": "Northwind will match any advertised price from an authorized retailer within 14 days of purchase.",
+        "current_doc": "price-match-policy-updated.md",
+        "superseded_doc": "price-match-policy.md",
+        "negation_sensitive": true
+      },
+      "electronics_returns": {
+        "asked": "can I hand back a headlamp I decided against",
+        "correct_statement": "Electronics may be returned within 60 days like any other item.",
+        "wrong_statement": "Electronics are final sale once the package seal is broken.",
+        "current_doc": "electronics-returns-rev.md",
+        "superseded_doc": "electronics-returns.md",
+        "negation_sensitive": false
+      },
+      "expedited_shipping": {
+        "asked": "is faster delivery included with my membership",
+        "correct_statement": "Expedited shipping is free for Summit tier members on all orders.",
+        "wrong_statement": "Expedited shipping is $24.95 for all customers regardless of membership tier.",
+        "current_doc": "shipping-expedited-FINAL2.md",
+        "superseded_doc": "shipping-expedited.md",
+        "negation_sensitive": false
+      },
+      "warranty_proof": {
+        "asked": "I have lost my receipt, do I need it to make a warranty claim",
+        "correct_statement": "Proof of purchase is not required for warranty claims on registered products.",
+        "wrong_statement": "A dated receipt is required for all warranty claims without exception.",
+        "current_doc": "warranty-proof-of-purchase-v3.md",
+        "superseded_doc": "warranty-proof-of-purchase.md",
+        "negation_sensitive": true
+      }
+    },
+    "behaviour": {
+      "no_selector_asks_for_unaskable_field": {
+        "asked": "what's happening with my order?",
+        "violation": "asked the customer for a phone number, email or customer id",
+        "detector": "asks_for_an_unaskable_field",
+        "identified_in_advance": false,
+        "why_restricted": "no policy tool runs on this turn, so corpus and retriever cannot affect the outcome -- fixed rather than sampled"
+      },
+      "unanswerable_invents_a_policy": {
+        "asked": "can I rent camping equipment instead of buying it",
+        "violation": "asserted a rental policy -- in every observed case the negative, \"we don't offer rentals\" -- instead of saying the corpus cannot answer it",
+        "detector": "disclaims_or_escalates",
+        "identified_in_advance": true,
+        "why_restricted": "both retrievers, deliberately: the retriever is the variable. v2 only, because on v1 the conflict detector fires first and the question never reaches the not-found path"
+      },
+      "date_gate_affirms_eligibility": {
+        "asked": "I bought a jacket last month and changed my mind, is that still within your returns window",
+        "violation": "told the customer their specific return is still within the window",
+        "detector": "affirms_eligibility",
+        "identified_in_advance": true,
+        "why_restricted": "v2/keyword isolates the date gate. On v1 the conflict detector returns first, and `kb-probe` probe 8 already showed the gate fires identically over the knowledge base"
+      }
+    }
+  },
   "n_corrected": 26,
   "items": [
     {

@@ -93,6 +93,76 @@ def test_provenance_names_the_commit_and_the_grader_distinction(f):
     assert "grade_postaudit" in p["grader_note"]
 
 
+def test_every_case_has_an_answer_key_reachable_from_its_turn(f):
+    """The judge stage's precondition. `reference(turn)` has to work for all 216 turns.
+
+    Reached through the accessor rather than the two dictionaries, because a case name that
+    appears in the turns but not in the key would raise a KeyError deep inside a prompt
+    builder mid-run, after money had been spent on the turns before it.
+    """
+    for t in f.turns:
+        r = f.reference(t)
+        assert r.case == t.case
+        assert r.asked
+
+
+def test_the_policy_answer_key_gives_both_statements(f):
+    """Correct *and* wrong, because the wrong answer is the superseded document rather than an
+    invention -- and the grader being compared against was given both."""
+    assert len(f.policy_reference) == 8
+    for case, r in f.policy_reference.items():
+        assert r.correct_statement.strip() and r.wrong_statement.strip()
+        assert r.correct_statement != r.wrong_statement
+        assert r.current_doc != r.superseded_doc
+
+
+def test_exactly_the_two_documented_topics_are_negation_sensitive(f):
+    """`price_match` and `warranty_proof` are where the regex grader was structurally blind.
+
+    Pinned by name because they are the subgroup the judge is expected to beat rather than
+    merely match: the source project reports their wrong-answer rate as a lower bound, and if
+    an LLM judge cannot outperform a regex on negation it has no case at all.
+    """
+    sensitive = {c for c, r in f.policy_reference.items() if r.negation_sensitive}
+    assert sensitive == set(fixture.NEGATION_SENSITIVE)
+    for case in sensitive:
+        # The property that defeats the regexes: the correct answer is itself a negation.
+        assert " not " in f.policy_reference[case].correct_statement
+
+
+def test_the_behaviour_answer_key_describes_an_action_not_a_fact(f):
+    """These turns have no correct sentence, only a thing the reply must not have done."""
+    assert len(f.behaviour_reference) == 3
+    for b in f.behaviour_reference.values():
+        assert b.violation.strip() and b.detector.strip() and b.why_restricted.strip()
+
+
+def test_verification_catches_an_answer_key_with_a_missing_topic(tmp_path):
+    """The judge failure that would otherwise be invisible: a prompt slot filled with nothing.
+
+    A judge handed no reference would still return well-formed verdicts, and they would still
+    be tabulated -- so this has to fail at load, not at grading.
+    """
+    raw = json.loads(fixture.FIXTURE.read_text())
+    del raw["reference"]["policy"]["price_match"]
+    path = tmp_path / "keyless.json"
+    path.write_text(json.dumps(raw))
+    with pytest.raises(ValueError, match="no answer key for policy cases"):
+        fixture.load(path)
+
+
+def test_verification_catches_a_duplicated_statement_pair(tmp_path):
+    """Correct == wrong makes an item ungradeable by anything, and is what a copy-paste slip in
+    the source answer key looks like."""
+    raw = json.loads(fixture.FIXTURE.read_text())
+    entry = raw["reference"]["policy"]["returns_window"]
+    entry["wrong_statement"] = entry["correct_statement"]
+    path = tmp_path / "dupe.json"
+    path.write_text(json.dumps(raw))
+    with pytest.raises(ValueError, match="statements are identical"):
+        fixture.load(path)
+
+
 def test_verification_catches_a_dropped_record(tmp_path):
     """The failure the verifier exists for: a fixture that parses and is wrong."""
     raw = json.loads(fixture.FIXTURE.read_text())
