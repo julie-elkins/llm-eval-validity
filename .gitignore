@@ -8,3 +8,8 @@ __pycache__/
 # offers no temperature and no seed, which is itself one of the study's findings. So the reports
 # derived from them are committed and the raw transcripts are not: `make judge` re-earns them.
 runs/*.jsonl
+
+# Agent configuration. `.claude/CLAUDE.md` is this repo's project instructions, kept local
+# because it records what must not be published from a public repository. Ignored rather than
+# merely untracked: an untracked file here is one careless `git add` from being outward-facing.
+.claude/
