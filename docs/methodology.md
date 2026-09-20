@@ -231,7 +231,7 @@ The checklist, independent of this data and of this vertical:
 
 ```sh
 make analyse   # all four offline analyses: no network, no credentials, no dependencies
-make test      # 131 tests
+make test      # 135 tests
 make docs      # regenerate the four reports from the fixture and runs/
 ```
 

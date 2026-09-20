@@ -70,4 +70,4 @@ come from whoever carries the consequence of a misstated policy.
 Full analyses: [precision](precision.md) · [item analysis](item-analysis.md) ·
 [judge validation](judge-validation.md) · [cut score](cut-score.md) ·
 [methodology](methodology.md). Every figure above is regenerated from the vendored fixture by
-`make docs`, and 131 tests pin the claims.
+`make docs`, and 135 tests pin the claims.

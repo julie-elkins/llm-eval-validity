@@ -11,6 +11,8 @@ agreement is high, the kappa looks excellent, and the study has measured leakage
 """
 
 import json
+import sys
+import threading
 from types import SimpleNamespace
 
 import pytest
@@ -327,3 +329,121 @@ def test_the_cli_does_not_send_anything_without_the_go_flag(capsys, tmp_path, mo
     out = capsys.readouterr().out
     assert "dry run" in out
     assert "calls      192" in out
+
+
+# --- cache warming --------------------------------------------------------------------------
+#
+# `execute` sends one call per cacheable prefix and waits for it before opening the pool. These
+# tests are about billing, not output: a fan-out where every opening call misses the cache pays
+# the 1.25x write premium CONCURRENCY times over, and nothing in the verdicts shows it.
+
+
+def _recording_execute(monkeypatch, tmp_path):
+    """Run `execute` against a stubbed client, returning the order of calls and the fan-out.
+
+    The recorded list interleaves each judged turn with the moment the pool was opened, so
+    "these calls preceded the fan-out" is a property of the sequence rather than a timing race.
+    Asserting it by wall clock is what makes a concurrency test pass whether or not the code is
+    right, which an earlier version of this helper duly did.
+    """
+    monkeypatch.setattr(j, "RUNS", tmp_path)
+    monkeypatch.setitem(
+        sys.modules, "anthropic",
+        SimpleNamespace(AnthropicBedrock=lambda **_: SimpleNamespace()),
+    )
+
+    events: list[object] = []
+    lock = threading.Lock()
+    real_pool = j.ThreadPoolExecutor
+
+    def recording_pool(*a, **kw):
+        with lock:
+            events.append("fan-out")
+        return real_pool(*a, **kw)
+
+    def fake_judge_turn(_client, judge, turn, _reference, run, order, index):
+        with lock:
+            events.append(index)
+        return j.Verdict(turn=index, case=turn.case, family=turn.family, judge=judge,
+                         model=j.JUDGES[judge], run=run, order=order)
+
+    monkeypatch.setattr(j, "ThreadPoolExecutor", recording_pool)
+    monkeypatch.setattr(j, "judge_turn", fake_judge_turn)
+    return events
+
+
+def _plan(judge, turns):
+    return j.Plan(judge=judge, order="current-first", runs=(1,), turns=list(turns))
+
+
+def test_one_call_is_awaited_before_the_pool_opens_so_the_prefix_is_written_once(
+    f, tmp_path, monkeypatch
+):
+    """Without this, the first CONCURRENCY calls race and every one of them pays to write.
+
+    A cache entry is only readable once the request that wrote it has come back, so eight
+    simultaneous opening calls produce eight writes of the same prefix where one write and seven
+    reads would do -- billed silently, since the verdicts are identical either way.
+    """
+    turns = [(i, t) for i, t in enumerate(f.turns) if t.family == fixture.POLICY][:6]
+    events = _recording_execute(monkeypatch, tmp_path)
+
+    verdicts = j.execute(f, _plan("sonnet-5", turns), resume=False)
+
+    assert len(verdicts) == len(turns)
+    # Exactly one call, then the pool. Nothing can race the prefix into being written twice.
+    assert events[0] == turns[0][0]
+    assert events[1] == "fan-out"
+
+
+def test_each_family_gets_its_own_pilot_because_each_has_its_own_rubric(f, tmp_path, monkeypatch):
+    """`--family both` has two cacheable prefixes, not one.
+
+    `_system` returns POLICY_RUBRIC or BEHAVIOUR_RUBRIC, so warming only the first family leaves
+    the second one cold for its whole opening wave -- half the saving, and invisible.
+    """
+    policy = [(i, t) for i, t in enumerate(f.turns) if t.family == fixture.POLICY][:4]
+    behaviour = [(i, t) for i, t in enumerate(f.turns)
+                 if t.family == fixture.BEHAVIOUR and t.violation_postaudit is not None][:4]
+    turns = policy + behaviour
+    events = _recording_execute(monkeypatch, tmp_path)
+
+    j.execute(f, _plan("sonnet-5", turns), resume=False)
+
+    # One call per family ahead of the pool, and no more than that.
+    assert events[:3] == [policy[0][0], behaviour[0][0], "fan-out"]
+
+
+def test_a_judge_that_does_not_cache_is_not_made_to_wait(f, tmp_path, monkeypatch):
+    """Haiku's prefix is below its minimum, so nothing is written and there is nothing to warm.
+
+    Serialising a pilot there would buy a call of latency for no discount, on every batch.
+    """
+    turns = [(i, t) for i, t in enumerate(f.turns) if t.family == fixture.POLICY][:4]
+    events = _recording_execute(monkeypatch, tmp_path)
+
+    verdicts = j.execute(f, _plan("haiku-4.5", turns), resume=False)
+
+    assert len(verdicts) == len(turns)
+    assert events[0] == "fan-out"  # straight to the pool, nothing sent ahead of it
+
+
+def test_the_transcript_keeps_the_planned_order_whichever_calls_were_pilots(
+    f, tmp_path, monkeypatch
+):
+    """Appended per verdict so a run that dies at turn 150 leaves 149 on disk -- and in order.
+
+    The pilot completes out of turn by construction; writing results as they arrive would let
+    which calls were used for warming reorder the file.
+    """
+    policy = [(i, t) for i, t in enumerate(f.turns) if t.family == fixture.POLICY][:3]
+    behaviour = [(i, t) for i, t in enumerate(f.turns)
+                 if t.family == fixture.BEHAVIOUR and t.violation_postaudit is not None][:3]
+    turns = policy + behaviour
+    _recording_execute(monkeypatch, tmp_path)
+
+    j.execute(f, _plan("sonnet-5", turns), resume=False)
+
+    written = [json.loads(line)["turn"]
+               for line in j.transcript("sonnet-5").read_text().splitlines()]
+    assert written == [i for i, _ in turns]

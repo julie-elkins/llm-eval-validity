@@ -166,7 +166,7 @@ trusted should not ask the reader to take its own measurements on faith.
 
 ```sh
 make analyse   # all four offline analyses: no network, no credentials, no dependencies
-make test      # 131 tests
+make test      # 135 tests
 make docs      # regenerate docs/ from the fixture and runs/
 ```
 
@@ -194,7 +194,7 @@ accuracy figures and raises if any has moved.
 ## Status
 
 Complete: all four analyses — precision re-analysis, item analysis, judge validation, cut score —
-the methodology and executive write-ups, and 131 tests.
+the methodology and executive write-ups, and 135 tests.
 
 Known gap, and the most useful thing to add next: **there is no second human rater**, so the
 human–human agreement ceiling is unestimated and the judge–human kappas above cannot be

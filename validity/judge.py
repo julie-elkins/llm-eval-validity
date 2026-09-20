@@ -355,21 +355,26 @@ class Plan:
         """Billed input tokens, output tokens and dollars, from constants measured on a real run.
 
         The prefix is modelled separately from the per-turn message because caching changes its
-        price by a factor of twelve and only some of the calls get the discount. The first
-        CONCURRENCY calls go out simultaneously, so all of them miss a cache that none of them
-        has written yet and every one pays the write premium; the rest read it. Measured on the
-        six-turn smoke run, where all six raced and all six wrote.
+        price by a factor of twelve and only some of the calls get the discount. One call per
+        cacheable prefix pays the write premium and the rest read it, because `execute` warms
+        each prefix with a single serialised call before opening the pool -- so the write count
+        is the number of distinct rubrics in the plan, not the width of the fan-out.
 
-        That interaction is worth stating rather than smoothing over: raising concurrency to
-        shorten a run raises the number of cache writes, so the two levers on a 192-call pass --
-        parallelism and caching -- work against each other, and Bedrock offers no Batches API to
-        sidestep either.
+        It was the width of the fan-out until the pilot was added, and the six-turn smoke run
+        that the constants come from was measured under the old behaviour: all six raced and all
+        six wrote. That is why the measured spend on the runs already in `runs/` is higher per
+        call than this estimate now predicts, and it is not a discrepancy to reconcile.
+
+        The two levers on a 192-call pass, parallelism and caching, therefore no longer work
+        against each other -- raising CONCURRENCY no longer buys latency at the price of extra
+        cache writes. Bedrock still offers no Anthropic-style Batches API through this SDK path.
 
         Only ever an estimate. The dollars actually spent are recomputed by `spend` from the
         usage the calls reported.
         """
         if CACHES[self.judge]:
-            writes = min(self.calls, CONCURRENCY)
+            # One write per distinct rubric: _system() keys the cacheable prefix on the family.
+            writes = min(self.calls, len({t.family for _, t in self.turns}))
             reads = self.calls - writes
         else:
             writes = reads = 0
@@ -475,6 +480,9 @@ def execute(f: fixture.Fixture, p: Plan, *, resume: bool = True) -> list[Verdict
     turn 150 should have 149 verdicts on disk. Concurrency is bounded rather than absent because
     Bedrock has no Batches API -- there is no 50% discount to trade latency for, so the only
     lever on a 192-call pass is parallelism.
+
+    Parallelism fights the cache on the first wave, though, so the cacheable prefix is warmed
+    by one serialised call before the pool opens. See the comment on `pilots` below.
     """
     from anthropic import AnthropicBedrock
 
@@ -490,20 +498,55 @@ def execute(f: fixture.Fixture, p: Plan, *, resume: bool = True) -> list[Verdict
         if (p.judge, run, p.order, index) not in done
     ]
 
+    # A cache entry is only readable once the request that writes it has come back, so N
+    # parallel opening calls all miss and all pay the 1.25x write premium. At CONCURRENCY=8
+    # that is 8 writes of the ~1.2k-token prefix where 1 write and 7 reads would do. Sending
+    # one call first, then fanning out, costs one call of latency on a 192-call pass.
+    #
+    # One pilot PER FAMILY rather than one overall: _system() returns POLICY_RUBRIC or
+    # BEHAVIOUR_RUBRIC, so `--family both` has two distinct prefixes and a single pilot would
+    # leave the second one cold for its whole first wave.
+    #
+    # Skipped when CACHES says this judge does not cache. On haiku-4.5 the prefix is below the
+    # model's minimum and nothing is written at all, so serialising a pilot would buy a call of
+    # latency for no discount.
+    pilots: list[int] = []
+    if CACHES.get(p.judge) and len(work) > 1:
+        warmed: set[str] = set()
+        for i, (_run, _index, turn) in enumerate(work):
+            if turn.family not in warmed:
+                warmed.add(turn.family)
+                pilots.append(i)
+
+    # Sent before the pool is opened rather than submitted to it: a call that is waited on has
+    # no use for an executor, and running it here is what makes "exactly one call precedes the
+    # fan-out" a structural property rather than a race. A pilot that errors leaves the prefix
+    # cold and the rest simply miss -- judge_turn records failures, it does not raise.
+    warm: dict[int, Verdict] = {}
+    for i in pilots:
+        run, index, turn = work[i]
+        warm[i] = judge_turn(client, p.judge, turn, f.reference(turn), run, p.order, index)
+
     verdicts: list[Verdict] = []
     with path.open("a") as out, ThreadPoolExecutor(max_workers=CONCURRENCY) as pool:
-        futures = [
-            pool.submit(judge_turn, client, p.judge, turn, f.reference(turn), run, p.order, index)
-            for run, index, turn in work
-        ]
-        for n, fut in enumerate(futures, 1):
-            v = fut.result()
+        pending = {
+            i: pool.submit(judge_turn, client, p.judge, turn, f.reference(turn),
+                           run, p.order, index)
+            for i, (run, index, turn) in enumerate(work)
+            if i not in warm
+        }
+
+        # Emitted in the original work order, so which calls were used as pilots does not
+        # change the transcript's line order.
+        for i in range(len(work)):
+            v = warm[i] if i in warm else pending[i].result()
             out.write(json.dumps(asdict(v)) + "\n")
             out.flush()
             verdicts.append(v)
-            if n % 20 == 0 or n == len(futures):
+            n = i + 1
+            if n % 20 == 0 or n == len(work):
                 errors = sum(1 for x in verdicts if x.error)
-                print(f"  {n}/{len(futures)} verdicts, {errors} errors", file=sys.stderr)
+                print(f"  {n}/{len(work)} verdicts, {errors} errors", file=sys.stderr)
     return verdicts
 
 
