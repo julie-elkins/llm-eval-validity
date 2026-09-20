@@ -70,9 +70,18 @@ JUDGES = {
     "haiku-4.5": "us.anthropic.claude-haiku-4-5-20251001-v1:0",
 }
 
-# Dollars per million tokens, for the pre-flight estimate only. Dated 2026-08-28 and not read
-# from anywhere authoritative, so it is here to make a run's cost predictable rather than to be
-# accurate to the cent -- the actual spend is recomputed from the usage each run reports.
+# Dollars per million tokens. Dated 2026-08-28, and checked against the AWS Price List API on
+# 2026-09-20 without being confirmed: the API publishes no SKU for either judge on the path this
+# harness actually uses. Nothing for sonnet-5 anywhere, under any of the three Bedrock service
+# codes. Haiku 4.5 only as `anthropic.claude-haiku-4-5-mantle-*` at 1.10 in / 5.50 out, with no
+# us-west-2 SKU at all -- and that is the Anthropic-operated plane, not the `us.` Bedrock
+# inference profiles above. A 10% neighbour on a different plane is not a correction, so these
+# stay put and the checking is recorded instead.
+#
+# Correcting the earlier version of this comment, which said "for the pre-flight estimate only":
+# spend() prices the finished run from these same constants. What it recomputes from each call's
+# reported usage is the token COUNTS; the rates are still these two lines. So a wrong rate here
+# moves the published total, not just the dry run.
 PRICES = {
     "sonnet-5": (3.00, 15.00),
     "haiku-4.5": (1.00, 5.00),
@@ -92,7 +101,9 @@ PREFIX_TOKENS = 1219  # the cacheable prefix: rubric plus tool schema
 OUTPUT_TOKENS = 120  # a grade, a boolean and one sentence
 
 # Cache multipliers on the input rate. A write costs a quarter more than an ordinary token and a
-# read costs a tenth of one.
+# read costs a tenth of one. Confirmed against the AWS Price List API on 2026-09-20, which is more
+# than can be said for the rates they multiply: Haiku 4.5's published SKUs are 0.0011 input,
+# 0.001375 cache write and 0.00011 cache read per 1K tokens -- exactly 1.25 and 0.10.
 CACHE_WRITE_RATE = 1.25
 CACHE_READ_RATE = 0.10
 
