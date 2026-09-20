@@ -12,7 +12,7 @@ real, already-published eval run and reports what it finds, including where it c
 original write-up.
 
 The data is 216 graded agent turns from
-[northwind-connect-ai](https://github.com/JulieElkinsAWS/northwind-connect-ai): a Claude-powered
+[northwind-connect-ai](https://github.com/julie-elkins/northwind-connect-ai): a Claude-powered
 customer-service agent tested across a 24-cell factorial design (3 models x 2 prompts x 2
 document corpora x 2 retrievers). It is vendored here as a fixture, not re-run — see
 [Provenance](#provenance).

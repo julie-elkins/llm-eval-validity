@@ -1,6 +1,6 @@
 # Precision of the published findings
 
-Source: https://github.com/JulieElkinsAWS/northwind-connect-ai
+Source: https://github.com/julie-elkins/northwind-connect-ai
 Commit: adb54542   Run: 2026-08-26
 192 graded policy turns across 24 cells, 8 per cell. Post-audit labels.
 
