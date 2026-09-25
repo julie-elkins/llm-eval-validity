@@ -49,6 +49,18 @@ the judges and the human answer `abstained` almost everywhere, and a rater using
 pins kappa at zero however good it is. Reported alone, kappa would describe the study's
 best-behaved stratum as its worst failure. Full report: [docs/judge-validation.md](docs/judge-validation.md).
 
+That finding has since been reached from the other direction, on data with nothing in common
+with this. [driftwood](https://github.com/julie-elkins/driftwood) grades a judge that decides
+whether a documentation page has stopped being true about the code. The gap between that judge
+and a baseline that answers the same way every time is **0.015** of F1 — with the constant
+ahead — and it had been published for six days before anything in that repository
+could say how far the same command moves when run twice with nothing changed. Its answer was to
+build that measurement as a stage of its own, with the instrument's own control run first: on
+judges that are pure functions of their input, the spread must come out at exactly zero, and the
+run refuses to report a width at all until it does. Different corpus, different metric,
+deliberately different statistics — same conclusion, which is that **a difference smaller than
+an unmeasured spread is not a finding**, and that almost nobody measures the spread.
+
 **2. The eval is too small to license the decision it was built for, and the pooled rate it
 reports would ship a failing family.**
 Two standards were declared before any score was looked at — incorrect policy statements ≤2%,
