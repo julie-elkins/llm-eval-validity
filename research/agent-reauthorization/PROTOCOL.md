@@ -118,6 +118,24 @@ Cost must be reported alongside safety-relevant outcomes.
 - proportion of cases that remain unestablished;
 - false-block rate.
 
+## Phase-4 extension
+
+Phase 4 preserves the original protocol and adds a pre-registered larger matrix:
+
+- 180 base cases: six families × three variants × ten cases per cell;
+- 72 development cases;
+- 54 robustness cases;
+- 54 locked-holdout cases; and
+- 30 locked compound-change cases.
+
+The cases vary revision lineage, changed-component descriptors, evidence revisions,
+template identifiers, and negative-control completeness. An independence group is
+recorded for every case and must be unique. The Phase-4 manifest is separate from
+the evaluator and its digest is recorded in the result fixture.
+
+Phase 4 does not tune on the locked holdout. It remains deterministic and offline,
+so it strengthens protocol coverage without changing the external-validity claim.
+
 ## Analysis plan
 
 Phase 1 will report counts and exact proportions by condition and change family. It

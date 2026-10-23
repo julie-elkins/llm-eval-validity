@@ -98,3 +98,36 @@ outcomes.
 
 The independent reproduction requirement is complete for this phase. A later phase
 may add independent reviewers without changing the primary protocol.
+
+## Phase-4 split-aware matrix
+
+Phase 4 adds 210 new synthetic cases:
+
+- 180 base cases across six change families, three variants, and ten cases per
+  family/variant cell;
+- 72 development cases;
+- 54 robustness cases;
+- 54 locked-holdout cases; and
+- 30 locked compound-change cases.
+
+The harness source commit is `a6de7b03aaa516696978a656cbc651971cbc43bd` before
+merge. The case-set SHA-256 is
+`13c040f1d4ce779576230d4fce512ee1c6fadf3b2f8042317cc500afbfb377b5`, and the
+reference-manifest SHA-256 is
+`768babbb0442153e026783ede141d00ae8200d1befce0f1ed024cec70ec10925`.
+
+| condition | false-ready decisions | stale claims detected | correct reference decisions | relative time units |
+|---|---:|---:|---:|---:|
+| Pass/fail reporting | 150/210 | 0/150 | 60/210 | 210 |
+| Revision-aware evidence | 0/210 | 150/150 | 138/210 | 510 |
+| Revision-aware reauthorization | 0/210 | 150/150 | 210/210 | 720 |
+
+All Phase-4 integrity controls pass, including unique case identifiers, unique
+independence groups, balanced base cells, exact split counts, no overlap with
+earlier matrices, complete reference-manifest coverage, and full condition
+coverage.
+
+This phase strengthens synthetic coverage but does not establish production safety,
+live model quality, or human reviewer agreement. The Phase-4 validity fixture is
+`fixtures/reauthorization_phase4.json`; the executable case definitions remain in
+the Agent Assurance Harness.

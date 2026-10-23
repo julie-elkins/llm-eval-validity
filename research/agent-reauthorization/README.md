@@ -1,6 +1,6 @@
 # From evaluation to reauthorization
 
-This directory contains a working paper and pilot protocol for studying how teams
+This directory contains a multi-phase synthetic research paper and protocol for studying how teams
 should decide whether an AI agent may continue operating after its workflow changes.
 
 The research question is deliberately narrower than "are AI agents reliable?" It asks
@@ -9,12 +9,16 @@ support the same release or operating decision after the system changes.
 
 ## Current status
 
-**Phase 3: held-out robustness run complete.**
+**Phase 4 in progress:** the larger split-aware synthetic matrix is implemented and
+validated. The paper is being revised to report phases 1--4 without presenting
+synthetic evidence as production validation.
 
 The research question, hypotheses, study conditions, measures, related-work boundary,
-and manuscript structure are written. The first deterministic pilot and a held-out
-robustness matrix have now run. The [results](RESULTS.md) report what those runs
-establish and what they cannot establish.
+and reporting checklist are complete. The first deterministic pilot, held-out
+robustness matrix, and Phase-4 split-aware matrix have run. A clean-checkout
+reproduction of Phase 4 remains the next verification step.
+The [results](RESULTS.md) report what those runs establish and what they cannot
+establish.
 
 ## Documents
 
@@ -23,8 +27,8 @@ establish and what they cannot establish.
 - [Related work and positioning](RELATED_WORK.md)
 - [Research log](RESEARCH_LOG.md)
 - [Research reporting checklist](RESEARCH_CHECKLIST.md)
-- [Pilot results](RESULTS.md)
-- [Working paper](paper.md)
+- [Pilot and Phase-4 results](RESULTS.md)
+- [Research paper](paper.md)
 
 ## Repository boundaries
 
@@ -41,13 +45,15 @@ canonical implementation.
 
 ## What the current pilot can establish
 
-The current pilot can establish whether the proposed protocol is executable, whether the
+The current synthetic phases can establish whether the proposed protocol is executable, whether the
 conditions produce distinguishable decisions on controlled synthetic changes, and which
-measures are useful enough for a larger study.
+measures are useful enough for an empirical system or reviewer study.
 
 It cannot establish general production safety, model capability, or how every
 organization should govern agents. Those would require broader systems, populations,
-and validation.
+and validation. A future reviewer study could recruit volunteers through a public
+call, but that would be a new phase with its own consent, privacy, sampling, and
+agreement protocol.
 
 ## Running the existing study
 
@@ -61,3 +67,9 @@ make test
 The reauthorization pilot source lives in the Agent Assurance Harness. This repository
 stores compact metadata-only results and validates their shape before the results are
 used in the paper.
+
+To validate the Phase-4 fixture directly:
+
+```sh
+python -m validity.reauthorization fixtures/reauthorization_phase4.json
+```
