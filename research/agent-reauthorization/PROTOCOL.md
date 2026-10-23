@@ -172,3 +172,19 @@ The implementation must check in:
 The first executable implementation belongs in the Agent Assurance Harness. This
 repository will consume the resulting metadata and analysis rather than duplicating
 the harness protocol.
+
+## Reporting requirements
+
+The study must also report:
+
+- the exact source revision and case-set hash;
+- the runtime and whether network or provider credentials were used;
+- whether the case set is deterministic or randomized;
+- the reason inferential statistics are or are not appropriate;
+- every primary and secondary outcome, including costs;
+- the negative-control behavior;
+- the difference between observed results and claims inferred from them; and
+- the limitations that prevent a production or population-level conclusion.
+
+The project checklist in [RESEARCH_CHECKLIST.md](RESEARCH_CHECKLIST.md) tracks these
+requirements. It is part of the artifact, not a private preparation note.

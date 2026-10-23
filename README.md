@@ -32,8 +32,8 @@ change-aware AI-agent release decisions:
 
 The paper asks whether evidence tied to one workflow revision should continue to
 support a release or continued-operation decision after the workflow changes. The
-first phase is offline and synthetic. It is a research protocol, not a production
-safety certification.
+first phase is offline and synthetic. The [pilot results](research/agent-reauthorization/RESULTS.md)
+are a controlled protocol result, not a production safety certification.
 
 ### Learner objective
 

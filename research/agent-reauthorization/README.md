@@ -9,12 +9,12 @@ support the same release or operating decision after the system changes.
 
 ## Current status
 
-**Phase 1: protocol scaffold.**
+**Phase 2: deterministic pilot complete.**
 
 The research question, hypotheses, study conditions, measures, related-work boundary,
-and manuscript structure are written. No pilot results have been generated yet. That
-order matters: looking at results before fixing the protocol makes it too easy to
-quietly change the question to fit the outcome.
+and manuscript structure are written. The first deterministic pilot has now run over
+the fixed synthetic case set. The [results](RESULTS.md) report what that run establishes
+and what it cannot establish.
 
 ## Documents
 
@@ -22,6 +22,8 @@ quietly change the question to fit the outcome.
 - [Phase-1 protocol](PROTOCOL.md)
 - [Related work and positioning](RELATED_WORK.md)
 - [Research log](RESEARCH_LOG.md)
+- [Research reporting checklist](RESEARCH_CHECKLIST.md)
+- [Pilot results](RESULTS.md)
 - [Working paper](paper.md)
 
 ## Repository boundaries
@@ -56,4 +58,6 @@ make analyse
 make test
 ```
 
-The reauthorization pilot will be added only after the protocol review is complete.
+The reauthorization pilot source lives in the Agent Assurance Harness. This repository
+stores the compact metadata-only result and validates its shape before the result is
+used in the paper.

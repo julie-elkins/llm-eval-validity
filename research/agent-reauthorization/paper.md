@@ -19,7 +19,7 @@ question: whether the added evidence and decision controls reduce unsupported
 approval decisions after a defined workflow change, and what operational cost those
 controls add.
 
-**Status:** Protocol scaffold. Results are not yet available.
+**Status:** Phase-1 deterministic pilot complete; robustness work remains.
 
 ## 1. Introduction
 
@@ -52,13 +52,38 @@ that the conditions and primary outcomes are not selected after observing an out
 
 ## 5. Results
 
-**Not yet run.**
+The first deterministic pilot used 18 synthetic cases across six change families and
+three decision conditions. The [results report](RESULTS.md) records the source commit,
+case-set hash, condition counts, cost counters, and interpretation boundary.
 
-This section will contain the frozen case-set identifier, condition counts, primary
-outcomes, cost accounting, and negative-control results. No result should be added
-without the corresponding reproducible fixture and command.
+The pass/fail baseline made 12 false-ready decisions out of 18 cases. Revision-aware
+evidence made none, detected all 12 affected cases, and matched 12 of the 18 reference
+decisions. The full reauthorization condition made no false-ready decisions, matched
+all 18 reference decisions, and blocked all six negative controls.
 
-## 6. Limitations
+The full condition used 60 relative time units compared with 18 for the baseline. The
+pilot therefore exposes the expected tradeoff: stronger decision controls add work.
+These are synthetic counters, not financial estimates.
+
+## 6. Reporting and reproducibility
+
+The protocol was publicly locked before the pilot implementation: the protocol merged
+in `llm-eval-validity` commit `b1090f5068466a990fe836698177b5a0dd102278`, and the
+pilot implementation was run from Agent Assurance Harness commit
+`e75b35c41097efa550f7b23f4d6f1348af4696d9`. The result is bound to the case-set hash
+recorded in [RESULTS.md](RESULTS.md).
+
+The pilot is deterministic, so it has no random seed and no sampling-based confidence
+interval. Reporting a p-value or a confidence interval for this fixed matrix would
+create a false appearance of population inference. The correct phase-1 report is
+exact counts, control outcomes, bounded cost counters, and explicit limitations.
+
+The code, protocol, compact result, and reporting checklist are public. The run uses
+no provider API, credentials, private telemetry, or content-bearing payloads. The
+[research checklist](RESEARCH_CHECKLIST.md) records the remaining artifact and
+robustness requirements before this can be described as a completed study.
+
+## 7. Limitations
 
 The first phase is synthetic and deterministic. It can test whether the protocol is
 internally coherent and whether the conditions differ on controlled cases. It cannot
@@ -68,15 +93,14 @@ organizational practices, or measures hidden model state.
 The decision oracle is a reference for the pilot, not a universal authority. A later
 study would need independent reviewers, real change histories, or both.
 
-## 7. Reproducibility
+## 8. Reproducibility
 
 The intended final command will run offline from checked-in synthetic cases and emit
 metadata-only results. The implementation will live in the Agent Assurance Harness;
 this repository will contain the analysis and paper outputs.
 
-## 8. Future work
+## 9. Future work
 
-The next phase will implement the synthetic case generator and three-condition
-decision runner. A later robustness phase may vary case difficulty, add independent
-reviewers, and compare protocol decisions with decisions made from real but
+The next phase will vary case difficulty and add independent reviewers without changing
+the primary protocol. A later study may compare protocol decisions with real but
 sanitized change histories.
