@@ -3,6 +3,7 @@
   "report_kind": "agent-reauthorization-robustness-v1",
   "source_repository": "julie-elkins/agent-assurance-harness",
   "source_commit": "f260b3a34df7b2ca3717af1225c79f99aeba7921",
+  "artifact_merge_commit": "026e3e902c121ee334551b539879f4e835afe9b5",
   "case_count": 30,
   "condition_count": 3,
   "case_set_sha256": "bae8a87462aadb05ee1d6ade23d7e6e839be580cad5f8f29bf042d19b95740f2",

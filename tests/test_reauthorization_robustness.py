@@ -13,6 +13,9 @@ def test_robustness_fixture_records_the_held_out_matrix():
 
     assert report["report_kind"] == "agent-reauthorization-robustness-v1"
     assert report["case_count"] == 30
+    assert report["artifact_merge_commit"] == (
+        "026e3e902c121ee334551b539879f4e835afe9b5"
+    )
     assert report["case_set_sha256"] == (
         "bae8a87462aadb05ee1d6ade23d7e6e839be580cad5f8f29bf042d19b95740f2"
     )

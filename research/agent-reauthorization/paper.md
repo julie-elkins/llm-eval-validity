@@ -19,7 +19,7 @@ question: whether the added evidence and decision controls reduce unsupported
 approval decisions after a defined workflow change, and what operational cost those
 controls add.
 
-**Status:** Phase-3 held-out robustness run complete; independent reproduction remains.
+**Status:** Phase-3 held-out robustness run and clean-checkout reproduction complete; independent reviewer phase remains.
 
 ## 1. Introduction
 
@@ -80,6 +80,13 @@ pilot implementation was run from Agent Assurance Harness commit
 recorded in [RESULTS.md](RESULTS.md). That implementation is now merged into the
 harness `main` branch at `fb3e004b4bdc27db777f1b3c8d23f2e76ec3ad17`.
 
+The held-out robustness implementation is merged into harness `main` at
+`026e3e902c121ee334551b539879f4e835afe9b5`. Its compact result is recorded in the
+validity repository at `bcb83112361d22a2bcc03b4767cc7a51b04b1eeb`. A fresh-clone run
+from those revisions reproduced the case-set hash and all compact outcome fields.
+The executable's detailed case-level output is intentionally reduced to a
+metadata-only compact fixture before publication.
+
 The pilot is deterministic, so it has no random seed and no sampling-based confidence
 interval. Reporting a p-value or a confidence interval for this fixed matrix would
 create a false appearance of population inference. The correct phase-1 report is
@@ -87,8 +94,8 @@ exact counts, control outcomes, bounded cost counters, and explicit limitations.
 
 The code, protocol, compact result, and reporting checklist are public. The run uses
 no provider API, credentials, private telemetry, or content-bearing payloads. The
-[research checklist](RESEARCH_CHECKLIST.md) records the remaining artifact and
-robustness requirements before this can be described as a completed study.
+[research checklist](RESEARCH_CHECKLIST.md) records the completed artifact and
+reproduction requirements and the remaining reviewer-study work.
 
 ## 7. Limitations
 
@@ -108,7 +115,6 @@ this repository will contain the analysis and paper outputs.
 
 ## 9. Future work
 
-The next phase is an independent reproduction from a clean checkout. After that, a
-separate reviewer study may vary case difficulty and add independent reviewers without
-changing the primary protocol. A later study may compare protocol decisions with real
-but sanitized change histories.
+The next phase is a separate reviewer study that may vary case difficulty and add
+independent reviewers without changing the primary protocol. A later study may compare
+protocol decisions with real but sanitized change histories.
