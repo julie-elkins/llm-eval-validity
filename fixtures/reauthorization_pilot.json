@@ -1,0 +1,63 @@
+{
+  "report_version": 1,
+  "report_kind": "agent-reauthorization-pilot-v1",
+  "source_repository": "julie-elkins/agent-assurance-harness",
+  "source_commit": "e75b35c41097efa550f7b23f4d6f1348af4696d9",
+  "case_count": 18,
+  "condition_count": 3,
+  "case_set_sha256": "cf2a5661240cef17452bfb7217b9c91469f7590bd999490b99d648e6368c4ee3",
+  "decision": "pass",
+  "offline": true,
+  "synthetic_only": true,
+  "metadata_only": true,
+  "raw_payloads_included": false,
+  "provider_output_included": false,
+  "controls": {
+    "case_count_is_18": true,
+    "each_condition_has_full_coverage": true,
+    "each_family_has_three_variants": true,
+    "reauthorization_blocks_all_negative_controls": true,
+    "revision_condition_detects_all_affected_cases": true
+  },
+  "conditions": [
+    {
+      "condition": "pass_fail",
+      "case_count": 18,
+      "false_ready_count": 12,
+      "stale_claims_requiring_detection": 12,
+      "stale_claim_detection_count": 0,
+      "correct_escalation_count": 6,
+      "evaluation_runs_total": 18,
+      "review_steps_total": 0,
+      "synthetic_time_units_total": 18
+    },
+    {
+      "condition": "revision_aware",
+      "case_count": 18,
+      "false_ready_count": 0,
+      "stale_claims_requiring_detection": 12,
+      "stale_claim_detection_count": 12,
+      "correct_escalation_count": 12,
+      "evaluation_runs_total": 30,
+      "review_steps_total": 12,
+      "synthetic_time_units_total": 42
+    },
+    {
+      "condition": "reauthorization",
+      "case_count": 18,
+      "false_ready_count": 0,
+      "stale_claims_requiring_detection": 12,
+      "stale_claim_detection_count": 12,
+      "correct_escalation_count": 18,
+      "evaluation_runs_total": 24,
+      "review_steps_total": 24,
+      "synthetic_time_units_total": 60
+    }
+  ],
+  "limits": [
+    "The cases and outcomes are synthetic and deterministic.",
+    "The decision oracle is a pilot reference, not a universal organizational authority.",
+    "The pilot does not establish production safety, model quality, or general agent capability.",
+    "Synthetic time units and evaluation runs are relative cost proxies, not financial estimates."
+  ]
+}

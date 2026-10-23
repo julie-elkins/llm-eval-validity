@@ -48,3 +48,17 @@ This log records decisions made before results. It is part of the study record.
   freedom—the ability to change choices until the result looks favorable.
 - **Costs if wrong:** Some early implementation choices may be discarded.
 - **Decided by:** Julie Elkins, following the project recommendation.
+
+### Decision: apply computational-research reporting controls
+
+- **Decided:** Keep a public reporting checklist covering protocol order, artifact
+  availability, environment, data boundary, statistical claims, limitations, ethics,
+  and independent reproduction.
+- **Instead of:** Treating a passing synthetic run as sufficient documentation for
+  a research paper.
+- **Why:** A reproducible study needs to show how the result was produced and where
+  the result stops applying. Without that record, a clean run can be mistaken for
+  production evidence.
+- **Costs if wrong:** The paper carries a visible checklist and additional maintenance
+  work when the robustness phase begins.
+- **Decided by:** Julie Elkins, following the research-guideline review.
