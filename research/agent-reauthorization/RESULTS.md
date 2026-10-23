@@ -4,6 +4,7 @@
 
 - **Source repository:** `julie-elkins/agent-assurance-harness`
 - **Source commit:** `e75b35c41097efa550f7b23f4d6f1348af4696d9`
+- **Artifact merge commit:** `fb3e004b4bdc27db777f1b3c8d23f2e76ec3ad17`
 - **Case-set SHA-256:** `cf2a5661240cef17452bfb7217b9c91469f7590bd999490b99d648e6368c4ee3`
 - **Case count:** 18
 - **Change families:** prompt, tool, retrieval, authorization, evaluator, deployment

@@ -71,7 +71,8 @@ The protocol was publicly locked before the pilot implementation: the protocol m
 in `llm-eval-validity` commit `b1090f5068466a990fe836698177b5a0dd102278`, and the
 pilot implementation was run from Agent Assurance Harness commit
 `e75b35c41097efa550f7b23f4d6f1348af4696d9`. The result is bound to the case-set hash
-recorded in [RESULTS.md](RESULTS.md).
+recorded in [RESULTS.md](RESULTS.md). That implementation is now merged into the
+harness `main` branch at `fb3e004b4bdc27db777f1b3c8d23f2e76ec3ad17`.
 
 The pilot is deterministic, so it has no random seed and no sampling-based confidence
 interval. Reporting a p-value or a confidence interval for this fixed matrix would

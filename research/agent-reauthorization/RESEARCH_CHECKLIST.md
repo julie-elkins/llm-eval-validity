@@ -21,7 +21,7 @@ and the [Nature reporting summary](https://www.nature.com/documents/nr-reporting
 | Randomness and seeds | not applicable to phase 1 | The pilot is deterministic. A robustness phase must report seeds or explain why no randomness is used. |
 | Primary outcomes | complete | False-ready decisions and stale-claim detection are defined before the run. |
 | Statistical claims | complete for phase 1 | The pilot reports exact counts and does not use inferential statistics for synthetic cases. |
-| Artifact availability | in progress | The harness implementation is in a public pull request; the result records its source commit and case-set hash. |
+| Artifact availability | complete for phase 1 | The harness implementation is merged on `main`; the result records its source commit, merge commit, and case-set hash. |
 | Reproduction command | complete | The harness command is recorded in `RESULTS.md`. |
 | Environment | complete for phase 1 | `uv 0.11.8`, Python 3.11.15, no provider calls. |
 | Data availability | complete | Synthetic case definitions are public; no private traces or content-bearing payloads are used. |
