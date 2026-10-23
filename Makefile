@@ -3,7 +3,7 @@
 # be able to reproduce every number in the write-ups without an API key, and only the judge
 # validation should cost anything.
 
-.PHONY: analyse test precision discrimination reliability cutscore reauthorization judge docs clean
+.PHONY: analyse test precision discrimination reliability cutscore reauthorization robustness judge docs clean
 
 analyse: precision discrimination reliability cutscore reauthorization
 
@@ -25,6 +25,9 @@ cutscore:
 # Validates the checked-in metadata-only reauthorization pilot result.
 reauthorization:
 	uv run python -m validity.reauthorization
+
+robustness:
+	uv run python -m validity.reauthorization fixtures/reauthorization_robustness.json
 
 # The only target that costs money and needs credentials. Dry-runs by default: it prints the
 # planned call count and the estimated spend, and sends nothing until `--go`. Resumable, so an

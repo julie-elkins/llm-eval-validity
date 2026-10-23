@@ -8,10 +8,18 @@ from pathlib import Path
 from typing import Any
 
 EXPECTED_CONDITIONS = ("pass_fail", "revision_aware", "reauthorization")
-REQUIRED_CONTROL_KEYS = (
+PILOT_CONTROL_KEYS = (
     "case_count_is_18",
     "each_condition_has_full_coverage",
     "each_family_has_three_variants",
+    "reauthorization_blocks_all_negative_controls",
+    "revision_condition_detects_all_affected_cases",
+)
+ROBUSTNESS_CONTROL_KEYS = (
+    "case_count_is_expected",
+    "reference_manifest_is_complete",
+    "each_family_has_base_variants",
+    "each_condition_has_full_coverage",
     "reauthorization_blocks_all_negative_controls",
     "revision_condition_detects_all_affected_cases",
 )
@@ -21,16 +29,24 @@ def load_report(path: Path) -> dict[str, Any]:
     """Load and validate the compact pilot record."""
 
     report = json.loads(path.read_text(encoding="utf-8"))
-    if report.get("report_kind") != "agent-reauthorization-pilot-v1":
+    if report.get("report_kind") not in {
+        "agent-reauthorization-pilot-v1",
+        "agent-reauthorization-robustness-v1",
+    }:
         raise ValueError("Unexpected reauthorization pilot report kind.")
-    if report.get("case_count") != 18 or report.get("condition_count") != 3:
-        raise ValueError("The pilot report does not contain the fixed case matrix.")
+    if report.get("condition_count") != 3:
+        raise ValueError("The report does not contain three conditions.")
     if report.get("metadata_only") is not True:
         raise ValueError("The pilot record must declare metadata_only=true.")
     controls = report.get("controls")
     if not isinstance(controls, dict):
         raise ValueError("The pilot report is missing its control results.")
-    missing = [key for key in REQUIRED_CONTROL_KEYS if key not in controls]
+    required_controls = (
+        PILOT_CONTROL_KEYS
+        if report["report_kind"] == "agent-reauthorization-pilot-v1"
+        else ROBUSTNESS_CONTROL_KEYS
+    )
+    missing = [key for key in required_controls if key not in controls]
     if missing:
         raise ValueError(f"Missing pilot controls: {', '.join(missing)}")
     if not all(controls.values()):
@@ -47,8 +63,13 @@ def load_report(path: Path) -> dict[str, Any]:
 def render_markdown(report: dict[str, Any]) -> str:
     """Render a reviewer-facing result summary."""
 
+    heading = (
+        "# Agent reauthorization robustness results"
+        if report["report_kind"] == "agent-reauthorization-robustness-v1"
+        else "# Agent reauthorization pilot results"
+    )
     lines = [
-        "# Agent reauthorization pilot results",
+        heading,
         "",
         f"- **Source commit:** `{report['source_commit']}`",
         f"- **Case-set SHA-256:** `{report['case_set_sha256']}`",

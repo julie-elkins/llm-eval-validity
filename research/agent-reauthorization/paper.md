@@ -19,7 +19,7 @@ question: whether the added evidence and decision controls reduce unsupported
 approval decisions after a defined workflow change, and what operational cost those
 controls add.
 
-**Status:** Phase-1 deterministic pilot complete; robustness work remains.
+**Status:** Phase-3 held-out robustness run complete; independent reproduction remains.
 
 ## 1. Introduction
 
@@ -65,6 +65,12 @@ The full condition used 60 relative time units compared with 18 for the baseline
 pilot therefore exposes the expected tradeoff: stronger decision controls add work.
 These are synthetic counters, not financial estimates.
 
+The held-out robustness run added twelve compound-change cases, for 30 cases total.
+The pass/fail baseline made 24 false-ready decisions. Revision-aware evidence detected
+all 24 affected cases, and the full reauthorization condition made no false-ready
+decisions and matched all 30 reference decisions. The full condition used 108
+relative time units compared with 30 for the baseline.
+
 ## 6. Reporting and reproducibility
 
 The protocol was publicly locked before the pilot implementation: the protocol merged
@@ -102,6 +108,7 @@ this repository will contain the analysis and paper outputs.
 
 ## 9. Future work
 
-The next phase will vary case difficulty and add independent reviewers without changing
-the primary protocol. A later study may compare protocol decisions with real but
-sanitized change histories.
+The next phase is an independent reproduction from a clean checkout. After that, a
+separate reviewer study may vary case difficulty and add independent reviewers without
+changing the primary protocol. A later study may compare protocol decisions with real
+but sanitized change histories.

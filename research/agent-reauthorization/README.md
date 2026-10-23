@@ -9,12 +9,12 @@ support the same release or operating decision after the system changes.
 
 ## Current status
 
-**Phase 2: deterministic pilot complete.**
+**Phase 3: held-out robustness run complete.**
 
 The research question, hypotheses, study conditions, measures, related-work boundary,
-and manuscript structure are written. The first deterministic pilot has now run over
-the fixed synthetic case set. The [results](RESULTS.md) report what that run establishes
-and what it cannot establish.
+and manuscript structure are written. The first deterministic pilot and a held-out
+robustness matrix have now run. The [results](RESULTS.md) report what those runs
+establish and what they cannot establish.
 
 ## Documents
 
@@ -59,5 +59,5 @@ make test
 ```
 
 The reauthorization pilot source lives in the Agent Assurance Harness. This repository
-stores the compact metadata-only result and validates its shape before the result is
+stores compact metadata-only results and validates their shape before the results are
 used in the paper.
