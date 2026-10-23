@@ -18,18 +18,19 @@ and the [Nature reporting summary](https://www.nature.com/documents/nr-reporting
 | Baseline and intervention | complete | Three conditions are defined in `PROTOCOL.md`. |
 | Case construction | complete | 18 fixed cases across six change families and three variants. |
 | Decision reference | complete | The deterministic oracle is defined before condition outputs. |
-| Randomness and seeds | not applicable to phase 1 | The pilot is deterministic. A robustness phase must report seeds or explain why no randomness is used. |
+| Randomness and seeds | not applicable to phases 1--3 | The study is deterministic. A future stochastic phase must report seeds and repetitions. |
 | Primary outcomes | complete | False-ready decisions and stale-claim detection are defined before the run. |
 | Statistical claims | complete for phase 1 | The pilot reports exact counts and does not use inferential statistics for synthetic cases. |
-| Artifact availability | complete for phase 1 | The harness implementation is merged on `main`; the result records its source commit, merge commit, and case-set hash. |
+| Artifact availability | complete for phase 3 | The harness implementation and held-out reference manifest are merged on `main`; each result records its source commit and case-set hash. |
 | Reproduction command | complete | The harness command is recorded in `RESULTS.md`. |
-| Environment | complete for phase 1 | `uv 0.11.8`, Python 3.11.15, no provider calls. |
+| Environment | complete for phases 1--3 | `uv 0.11.8`, Python 3.11.15, no provider calls. |
 | Data availability | complete | Synthetic case definitions are public; no private traces or content-bearing payloads are used. |
 | Limitations | complete | The paper states what the fixed synthetic matrix cannot establish. |
-| Ethics and privacy | complete for phase 1 | No human participants, private data, or live provider interaction. |
+| Ethics and privacy | complete for phases 1--3 | No human participants, private data, or live provider interaction. |
 | Human reviewer study | not started | Requires a new protocol, consent and privacy review, reviewer sampling, and agreement analysis. |
 | Broader impacts | next paper revision | Add the risk that a checklist can create false confidence if treated as certification. |
-| Independent reproduction | next robustness phase | Re-run from a fresh checkout and compare the case-set hash and compact result. |
+| Robustness matrix | complete for phase 3 | Twelve held-out compound-change cases pass the pre-specified controls. |
+| Independent reproduction | next phase | Re-run from a fresh checkout and compare both case-set hashes and compact results. |
 
 ## Claim discipline
 

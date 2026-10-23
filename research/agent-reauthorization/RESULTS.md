@@ -1,4 +1,4 @@
-# Phase-1 pilot results
+# Agent reauthorization study results
 
 ## Run identity
 
@@ -59,6 +59,26 @@ reference oracle is universally correct, or that the controls cover every way an
 system can change. It does not measure model quality, hidden model state, or business
 impact.
 
-The next research step is a robustness phase: vary case difficulty and add independent
-reviewers without changing the primary protocol or using the pilot result to redefine
-success.
+## Held-out robustness run
+
+The robustness run added twelve compound-change cases that were not part of the
+original 18-case matrix. Expected decisions came from the separate
+`reference-decisions.json` manifest in the harness rather than from the evaluator
+logic.
+
+- **Source commit:** `f260b3a34df7b2ca3717af1225c79f99aeba7921`
+- **Case-set SHA-256:** `bae8a87462aadb05ee1d6ade23d7e6e839be580cad5f8f29bf042d19b95740f2`
+- **Case count:** 30
+
+| condition | false-ready decisions | stale claims detected | correct reference decisions | relative time units |
+|---|---:|---:|---:|---:|
+| Pass/fail reporting | 24/30 | 0/24 | 6/30 | 30 |
+| Revision-aware evidence | 0/30 | 24/24 | 18/30 | 78 |
+| Revision-aware reauthorization | 0/30 | 24/24 | 30/30 | 108 |
+
+The full condition retained zero false-ready decisions and matched all 30 reference
+decisions on the held-out matrix. This is a robustness observation, not
+population-level evidence: the cases remain synthetic and deterministic.
+
+The next research step is independent reproduction from a clean checkout. A later
+phase may add independent reviewers without changing the primary protocol.

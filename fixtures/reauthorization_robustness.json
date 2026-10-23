@@ -1,0 +1,64 @@
+{
+  "report_version": 1,
+  "report_kind": "agent-reauthorization-robustness-v1",
+  "source_repository": "julie-elkins/agent-assurance-harness",
+  "source_commit": "f260b3a34df7b2ca3717af1225c79f99aeba7921",
+  "case_count": 30,
+  "condition_count": 3,
+  "case_set_sha256": "bae8a87462aadb05ee1d6ade23d7e6e839be580cad5f8f29bf042d19b95740f2",
+  "decision": "pass",
+  "offline": true,
+  "synthetic_only": true,
+  "metadata_only": true,
+  "raw_payloads_included": false,
+  "provider_output_included": false,
+  "controls": {
+    "case_count_is_expected": true,
+    "reference_manifest_is_complete": true,
+    "each_family_has_base_variants": true,
+    "each_condition_has_full_coverage": true,
+    "revision_condition_detects_all_affected_cases": true,
+    "reauthorization_blocks_all_negative_controls": true
+  },
+  "conditions": [
+    {
+      "condition": "pass_fail",
+      "case_count": 30,
+      "false_ready_count": 24,
+      "stale_claims_requiring_detection": 24,
+      "stale_claim_detection_count": 0,
+      "correct_escalation_count": 6,
+      "evaluation_runs_total": 30,
+      "review_steps_total": 0,
+      "synthetic_time_units_total": 30
+    },
+    {
+      "condition": "revision_aware",
+      "case_count": 30,
+      "false_ready_count": 0,
+      "stale_claims_requiring_detection": 24,
+      "stale_claim_detection_count": 24,
+      "correct_escalation_count": 18,
+      "evaluation_runs_total": 54,
+      "review_steps_total": 24,
+      "synthetic_time_units_total": 78
+    },
+    {
+      "condition": "reauthorization",
+      "case_count": 30,
+      "false_ready_count": 0,
+      "stale_claims_requiring_detection": 24,
+      "stale_claim_detection_count": 24,
+      "correct_escalation_count": 30,
+      "evaluation_runs_total": 42,
+      "review_steps_total": 42,
+      "synthetic_time_units_total": 108
+    }
+  ],
+  "limits": [
+    "The cases and outcomes are synthetic and deterministic.",
+    "The reference decision manifest is public metadata, not a universal organizational authority.",
+    "The robustness run does not establish production safety, model quality, or general agent capability.",
+    "Synthetic time units and evaluation runs are relative cost proxies, not financial estimates."
+  ]
+}
