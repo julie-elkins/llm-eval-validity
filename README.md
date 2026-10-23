@@ -17,6 +17,42 @@ customer-service agent tested across a 24-cell factorial design (3 models x 2 pr
 document corpora x 2 retrievers). It is vendored here as a fixture, not re-run — see
 [Provenance](#provenance).
 
+## Part 3 of the three-part learning path
+
+This repository is the measurement step after the
+[Claude Architect Lab](https://github.com/julie-elkins/claude-architect-lab) and the
+[Agent Assurance Harness](https://github.com/julie-elkins/agent-assurance-harness).
+
+### Learner objective
+
+Learn to ask whether an evaluation is trustworthy enough to support a decision. The
+focus is not producing a larger score; it is checking sample size, confidence bounds,
+stratification, rater agreement, and repeatability before treating a result as evidence.
+
+### Learner checkpoint
+
+Run the offline analysis:
+
+```bash
+make analyse
+```
+
+Then explain:
+
+- why a point estimate can look safe while its confidence bound is not;
+- why pooled results can hide a high-consequence failure family; and
+- why an evaluation must measure its own repeatability.
+
+### Expected result
+
+The four offline analyses complete from the checked-in fixture without network access or
+credentials. The optional `make judge` stage is not required and may incur provider cost.
+
+### What this part does not prove
+
+This is a fixed historical case study with one human reference pass. It demonstrates
+evaluation reasoning; it does not establish general model quality or production safety.
+
 **Two ways in:** [docs/executive-summary.md](docs/executive-summary.md) is the one-page
 deployment decision; [docs/methodology.md](docs/methodology.md) is the technical companion —
 which psychometric method each step borrows, where the borrowing breaks down because the examinee
