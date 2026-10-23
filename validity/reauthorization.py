@@ -38,6 +38,13 @@ def load_report(path: Path) -> dict[str, Any]:
         raise ValueError("The report does not contain three conditions.")
     if report.get("metadata_only") is not True:
         raise ValueError("The pilot record must declare metadata_only=true.")
+    if (
+        report["report_kind"] == "agent-reauthorization-robustness-v1"
+        and not report.get("artifact_merge_commit")
+    ):
+        raise ValueError(
+            "The robustness record must identify the merged artifact revision."
+        )
     controls = report.get("controls")
     if not isinstance(controls, dict):
         raise ValueError("The pilot report is missing its control results.")
@@ -72,6 +79,11 @@ def render_markdown(report: dict[str, Any]) -> str:
         heading,
         "",
         f"- **Source commit:** `{report['source_commit']}`",
+        *(
+            [f"- **Artifact merge commit:** `{report['artifact_merge_commit']}`"]
+            if report.get("artifact_merge_commit")
+            else []
+        ),
         f"- **Case-set SHA-256:** `{report['case_set_sha256']}`",
         f"- **Cases:** `{report['case_count']}` synthetic cases",
         "",

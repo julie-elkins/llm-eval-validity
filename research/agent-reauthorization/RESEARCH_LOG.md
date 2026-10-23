@@ -62,3 +62,16 @@ This log records decisions made before results. It is part of the study record.
 - **Costs if wrong:** The paper carries a visible checklist and additional maintenance
   work when the robustness phase begins.
 - **Decided by:** Julie Elkins, following the research-guideline review.
+
+### Decision: bind the robustness result to merged main and reproduce from clean checkouts
+
+- **Decided:** Record the harness merge commit, reproduce the robustness run from fresh
+  clones, and compare the compact outcome fields against the checked-in fixture.
+- **Instead of:** Treating the local feature branches or a byte-for-byte comparison
+  between the detailed executable output and compact public fixture as sufficient.
+- **Why:** A clean-checkout reproduction tests that the public merged artifacts work
+  without local branch state, while the compact fixture intentionally omits
+  content-like case-level detail.
+- **Costs if wrong:** The study records two revisions and a disclosed environment
+  difference, which adds maintenance but makes the evidence easier to audit.
+- **Decided by:** Julie Elkins, following the research protocol.

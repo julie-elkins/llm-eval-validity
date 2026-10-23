@@ -67,6 +67,7 @@ original 18-case matrix. Expected decisions came from the separate
 logic.
 
 - **Source commit:** `f260b3a34df7b2ca3717af1225c79f99aeba7921`
+- **Artifact merge commit:** `026e3e902c121ee334551b539879f4e835afe9b5`
 - **Case-set SHA-256:** `bae8a87462aadb05ee1d6ade23d7e6e839be580cad5f8f29bf042d19b95740f2`
 - **Case count:** 30
 
@@ -80,5 +81,20 @@ The full condition retained zero false-ready decisions and matched all 30 refere
 decisions on the held-out matrix. This is a robustness observation, not
 population-level evidence: the cases remain synthetic and deterministic.
 
-The next research step is independent reproduction from a clean checkout. A later
-phase may add independent reviewers without changing the primary protocol.
+## Independent reproduction
+
+The robustness run was reproduced on 2026-10-23 from newly cloned repositories:
+
+- Harness `main`: `026e3e902c121ee334551b539879f4e835afe9b5`
+- Validity analysis `main`: `bcb83112361d22a2bcc03b4767cc7a51b04b1eeb`
+- Case-set hash: `bae8a87462aadb05ee1d6ade23d7e6e839be580cad5f8f29bf042d19b95740f2`
+
+The fresh run matched the checked-in compact fixture's case count, case-set hash,
+condition counts, false-ready counts, stale-claim detection counts, correct
+escalation counts, and bounded time counters. The executable also emits detailed
+case-level fields that are intentionally omitted from the public compact fixture;
+that representation difference is expected and does not change the reported
+outcomes.
+
+The independent reproduction requirement is complete for this phase. A later phase
+may add independent reviewers without changing the primary protocol.
