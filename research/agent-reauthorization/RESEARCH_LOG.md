@@ -75,3 +75,32 @@ This log records decisions made before results. It is part of the study record.
 - **Costs if wrong:** The study records two revisions and a disclosed environment
   difference, which adds maintenance but makes the evidence easier to audit.
 - **Decided by:** Julie Elkins, following the research protocol.
+
+### Decision: expand to a research-grade Phase 4 synthetic matrix
+
+- **Decided:** Add 210 new cases with independent metadata variation, frozen
+  development/robustness/locked-holdout splits, and a separate structured reference
+  manifest.
+- **Instead of:** Treating the 30-case matrix as sufficient empirical evidence or
+  counting identifier-only permutations as independent observations.
+- **Why:** A graduate-level presentation needs stronger coverage and clearer
+  separation between development evidence and final evaluation. The expansion
+  improves protocol validity while keeping the public artifact deterministic,
+  offline, and metadata-only.
+- **Costs if wrong:** The result is still synthetic, the manifest is still a study
+  oracle, and external validity remains unestablished until an LLM-backed and/or
+  human-reviewer phase is run.
+- **Decided by:** Julie Elkins, with Codex implementation support.
+
+### Decision: separate protocol validation from system validation
+
+- **Decided:** Keep Phase 4 offline and add a later LLM-backed system phase with
+  bounded tools, traces, an independent evaluator, and cost/latency controls.
+- **Instead of:** Adding live model calls to the synthetic phase and treating a
+  provider-dependent run as if it were a cleaner test of protocol mechanics.
+- **Why:** The offline phase isolates the governance logic; the later system phase
+  tests whether the logic survives model and tool behavior. Combining them would
+  make failures harder to diagnose and reproducibility weaker.
+- **Costs if wrong:** The research takes longer and requires a second protocol,
+  model/version recording, repeat runs, and variance analysis.
+- **Decided by:** Julie Elkins, with Codex implementation support.

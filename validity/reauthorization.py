@@ -23,6 +23,20 @@ ROBUSTNESS_CONTROL_KEYS = (
     "reauthorization_blocks_all_negative_controls",
     "revision_condition_detects_all_affected_cases",
 )
+PHASE4_CONTROL_KEYS = (
+    "case_count_is_expected",
+    "base_matrix_is_expected",
+    "compound_holdout_is_expected",
+    "case_ids_are_unique",
+    "independence_groups_are_unique",
+    "phase4_manifest_is_complete",
+    "split_counts_are_expected",
+    "base_family_variant_cells_are_balanced",
+    "no_overlap_with_prior_matrices",
+    "each_condition_has_full_coverage",
+    "reauthorization_blocks_all_negative_controls",
+    "revision_condition_detects_all_affected_cases",
+)
 
 
 def load_report(path: Path) -> dict[str, Any]:
@@ -32,12 +46,18 @@ def load_report(path: Path) -> dict[str, Any]:
     if report.get("report_kind") not in {
         "agent-reauthorization-pilot-v1",
         "agent-reauthorization-robustness-v1",
+        "agent-reauthorization-phase4-v1",
     }:
         raise ValueError("Unexpected reauthorization pilot report kind.")
     if report.get("condition_count") != 3:
         raise ValueError("The report does not contain three conditions.")
     if report.get("metadata_only") is not True:
         raise ValueError("The pilot record must declare metadata_only=true.")
+    if report["report_kind"] in {
+        "agent-reauthorization-robustness-v1",
+        "agent-reauthorization-phase4-v1",
+    } and not report.get("source_commit"):
+        raise ValueError("The result must identify the harness source revision.")
     if (
         report["report_kind"] == "agent-reauthorization-robustness-v1"
         and not report.get("artifact_merge_commit")
@@ -48,11 +68,11 @@ def load_report(path: Path) -> dict[str, Any]:
     controls = report.get("controls")
     if not isinstance(controls, dict):
         raise ValueError("The pilot report is missing its control results.")
-    required_controls = (
-        PILOT_CONTROL_KEYS
-        if report["report_kind"] == "agent-reauthorization-pilot-v1"
-        else ROBUSTNESS_CONTROL_KEYS
-    )
+    required_controls = {
+        "agent-reauthorization-pilot-v1": PILOT_CONTROL_KEYS,
+        "agent-reauthorization-robustness-v1": ROBUSTNESS_CONTROL_KEYS,
+        "agent-reauthorization-phase4-v1": PHASE4_CONTROL_KEYS,
+    }[report["report_kind"]]
     missing = [key for key in required_controls if key not in controls]
     if missing:
         raise ValueError(f"Missing pilot controls: {', '.join(missing)}")
@@ -71,9 +91,13 @@ def render_markdown(report: dict[str, Any]) -> str:
     """Render a reviewer-facing result summary."""
 
     heading = (
-        "# Agent reauthorization robustness results"
-        if report["report_kind"] == "agent-reauthorization-robustness-v1"
-        else "# Agent reauthorization pilot results"
+        "# Agent reauthorization Phase 4 results"
+        if report["report_kind"] == "agent-reauthorization-phase4-v1"
+        else (
+            "# Agent reauthorization robustness results"
+            if report["report_kind"] == "agent-reauthorization-robustness-v1"
+            else "# Agent reauthorization pilot results"
+        )
     )
     lines = [
         heading,

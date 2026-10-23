@@ -25,15 +25,15 @@ This repository is the measurement step after the
 
 ### Research extension: from evaluation to reauthorization
 
-The repository also contains the protocol and working paper for a pilot study of
+The repository also contains the protocol and multi-phase research paper for a study of
 change-aware AI-agent release decisions:
 
 [From Evaluation to Reauthorization](research/agent-reauthorization/README.md)
 
 The paper asks whether evidence tied to one workflow revision should continue to
 support a release or continued-operation decision after the workflow changes. The
-first phase is offline and synthetic. The [pilot results](research/agent-reauthorization/RESULTS.md)
-are a controlled protocol result, not a production safety certification.
+current phases are offline and synthetic. The [pilot and Phase-4 results](research/agent-reauthorization/RESULTS.md)
+are controlled protocol results, not a production safety certification.
 
 ### Learner objective
 
