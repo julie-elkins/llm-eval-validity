@@ -23,6 +23,18 @@ This repository is the measurement step after the
 [Claude Architect Lab](https://github.com/julie-elkins/claude-architect-lab) and the
 [Agent Assurance Harness](https://github.com/julie-elkins/agent-assurance-harness).
 
+### Research extension: from evaluation to reauthorization
+
+The repository also contains the protocol and working paper for a pilot study of
+change-aware AI-agent release decisions:
+
+[From Evaluation to Reauthorization](research/agent-reauthorization/README.md)
+
+The paper asks whether evidence tied to one workflow revision should continue to
+support a release or continued-operation decision after the workflow changes. The
+first phase is offline and synthetic. It is a research protocol, not a production
+safety certification.
+
 ### Learner objective
 
 Learn to ask whether an evaluation is trustworthy enough to support a decision. The
