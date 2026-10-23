@@ -39,9 +39,9 @@ handling, and release gates.
 The two repositories will link to each other. Neither repository will copy the other's
 canonical implementation.
 
-## What phase 1 can establish
+## What the current pilot can establish
 
-Phase 1 can establish whether the proposed protocol is executable, whether the
+The current pilot can establish whether the proposed protocol is executable, whether the
 conditions produce distinguishable decisions on controlled synthetic changes, and which
 measures are useful enough for a larger study.
 
