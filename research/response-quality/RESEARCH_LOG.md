@@ -78,3 +78,38 @@ This log records decisions made before the next result is generated.
 - **Costs if wrong:** The next study must add a broader scenario matrix or a
   second provider before making a general structured-output claim.
 - **Decided by:** Julie Elkins, with Codex implementation support.
+
+## 2026-10-24 -- cross-provider replication
+
+### Decision: add OpenAI as a separate provider arm
+
+- **Decided:** Implement an OpenAI Responses API adapter with native
+  function-call/result sequencing, then run the same 30-case local-validation
+  and provider-structured-output arms.
+- **Instead of:** Reusing the one-request OpenAI parser, pooling OpenAI with
+  Claude before checking protocol differences, or changing the scenarios after
+  observing the Claude results.
+- **Why:** OpenAI's native agent interaction requires a bounded multi-turn
+  exchange when a function call occurs. A real cross-provider replication must
+  compare equivalent tool-loop semantics, not just send the same final JSON
+  prompt to two providers. Keeping the scenario matrix and local validator
+  fixed isolates the provider/protocol boundary.
+- **Costs if wrong:** The adapter adds provider-specific code and the study
+  still may produce incomplete runs. The result will remain descriptive and
+  separate rather than being used to claim universal structured-output
+  behaviour.
+- **Decided by:** Julie Elkins, with Codex implementation support.
+
+### Decision: preregister the OpenAI model and two-arm budget
+
+- **Decided:** Use the default `gpt-5.6` identifier unless the local OpenAI
+  account requires an explicitly documented override; run 30 cases per arm
+  with a five-dollar planning ceiling per arm and no response-based reruns.
+- **Instead of:** Picking a model after inspecting the OpenAI smoke result,
+  increasing the ceiling when refusals appear, or tuning schemas between arms.
+- **Why:** Fixing the model, matrix, validator, and spending rule before the
+  live run preserves the comparison and makes refusals part of the result.
+- **Costs if wrong:** The chosen model may be unavailable to the account or
+  the two arms may be incomplete; the command supports an explicit model
+  override, but the chosen value must be recorded before execution.
+- **Decided by:** Julie Elkins, with Codex implementation support.

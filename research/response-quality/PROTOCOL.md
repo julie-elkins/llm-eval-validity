@@ -95,6 +95,26 @@ The replication is intended to test whether the observed result is specific to
 the model/provider configuration or persists across a second model. It is not
 permission to claim cross-model generality by itself.
 
+## Cross-provider replication
+
+The next pre-registered arm adds OpenAI as a second provider:
+
+- OpenAI Responses API native function-call/result loop.
+- The same ten synthetic scenarios and three replicates per scenario.
+- The same three-turn ceiling and five-dollar planning ceiling per arm.
+- The same local evidence validator and refusal policy.
+- One baseline arm using prompt instructions plus local validation.
+- One separate arm using provider-enforced JSON Schema plus local validation.
+- The model identifier is fixed before the live run and recorded in its
+  metadata-only report.
+- No prompt, tool schema, or validator changes are allowed after seeing the
+  OpenAI baseline.
+
+The purpose is to separate a Claude-family observation from a
+structured-output observation. The OpenAI result will remain separate from the
+four Claude arms; it will not be pooled into a provider ranking or treated as
+an estimate of general model quality.
+
 ## Data boundary
 
 The public study stores counts, statuses, refusal codes, stages, and cost
