@@ -35,6 +35,18 @@ support a release or continued-operation decision after the workflow changes. Th
 current phases are offline and synthetic. The [pilot and Phase-4 results](research/agent-reauthorization/RESULTS.md)
 are controlled protocol results, not a production safety certification.
 
+### Research extension: response-quality measurement
+
+The repository also contains a separate live-provider pilot studying whether
+provider-enforced structured output improves trace acceptance or evidence quality:
+
+[Response-quality measurement under provider output constraints](research/response-quality/README.md)
+
+This comparison is deliberately separate from the reauthorization paper. It
+records metadata-only results from a bounded Claude Sonnet 5.5 experiment and
+does not claim production safety, general model quality, or cross-provider
+performance.
+
 ### Learner objective
 
 Learn to ask whether an evaluation is trustworthy enough to support a decision. The
