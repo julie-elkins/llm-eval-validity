@@ -46,3 +46,19 @@ This log records decisions made before the next result is generated.
   but that is a separate engineering question from whether this frozen
   intervention improved the pilot outcome.
 - **Decided by:** Julie Elkins, with Codex implementation support.
+
+### Decision: preregister the Haiku replication
+
+- **Decided:** Run the same 30-case matrix with `claude-haiku-5-5` in two
+  separate arms: local validation and provider structured output. Set a
+  five-dollar planning ceiling per arm and a ten-dollar combined ceiling.
+- **Instead of:** Selecting a second model after seeing which Sonnet result
+  would be easiest to explain, or changing the schema between arms.
+- **Why:** A second model tests whether the Sonnet result is configuration
+  specific. Holding the matrix, adapter, schema, validator, and refusal policy
+  constant makes the replication interpretable instead of turning it into a
+  new tuning exercise.
+- **Costs if wrong:** The replication can spend up to ten dollars and may
+  produce another incomplete result. That is an expected research outcome, not
+  a reason to rerun until the output is clean.
+- **Decided by:** Julie Elkins, with Codex implementation support.

@@ -72,15 +72,20 @@ from the unequal number of accepted traces.
 
 ## Planned replication
 
-The next condition is a pre-registered second-model replication:
+The next condition is a pre-registered second-model replication using the
+adapter's approved Haiku identifier, `claude-haiku-5-5`:
 
 - use the same 30-case matrix;
 - keep the two output conditions unchanged;
-- select and record the model identifier before execution;
+- use `claude-haiku-5-5` for both arms;
 - preserve the same cost ceiling, refusal handling, and local validator;
 - report the result separately from the Sonnet pilot;
 - do not modify the schema or prompts in response to the Sonnet result before
   the replication run.
+
+The replication has a five-dollar planning ceiling per arm and a ten-dollar
+combined planning ceiling. The two arms are still reported separately; the
+combined ceiling is only a spending control.
 
 The replication is intended to test whether the observed result is specific to
 the model/provider configuration or persists across a second model. It is not
