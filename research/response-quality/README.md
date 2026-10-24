@@ -92,6 +92,7 @@ result, not a provider ranking.
 - [Frozen results and analysis](RESULTS.md)
 - [Research log](RESEARCH_LOG.md)
 - [Reporting checklist](RESEARCH_CHECKLIST.md)
+- [Independent reference review protocol](INDEPENDENT_REFERENCE_REVIEW.md)
 
 ## Relationship to the reauthorization paper
 

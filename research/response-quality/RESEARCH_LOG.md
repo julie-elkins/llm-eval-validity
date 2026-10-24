@@ -153,3 +153,21 @@ This log records decisions made before the next result is generated.
   schema, prompt, tool loop, and synthetic matrix. The result cannot support a
   general claim about structured output or model quality.
 - **Decided by:** Julie Elkins, with Codex implementation support.
+
+## 2026-10-24 -- independent reference review
+
+### Decision: recruit independent reviewers before broadening the scenario matrix
+
+- **Decided:** Prepare a synthetic-only independent reference review and
+  recruit two volunteers when possible before adding more scenarios.
+- **Instead of:** Expanding the matrix first, treating the local evidence
+  contract as ground truth, or asking reviewers to endorse the frozen result.
+- **Why:** The next research risk is construct validity: whether an
+  independently applied rubric agrees with the local evidence decision. More
+  cases would increase breadth without testing whether the measurement itself
+  is defensible.
+- **Costs if wrong:** The review requires a separate supervised local packet
+  because the frozen provider runs intentionally discarded raw responses.
+  Recruitment may take time, and the review will produce calibration evidence
+  rather than a production-quality claim.
+- **Decided by:** Julie Elkins, with Codex implementation support.
