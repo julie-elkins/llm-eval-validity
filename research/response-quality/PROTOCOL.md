@@ -115,6 +115,26 @@ structured-output observation. The OpenAI result will remain separate from the
 four Claude arms; it will not be pooled into a provider ranking or treated as
 an estimate of general model quality.
 
+### OpenAI baseline result
+
+The OpenAI prompt-plus-local-validation arm used the preregistered `gpt-5.6`
+identifier, the same 30-case matrix, the same three-turn ceiling, and the same
+five-dollar planning ceiling:
+
+- attempted: 30;
+- accepted: 26;
+- refused: 4;
+- protocol acceptance: 86.7%;
+- accepted traces satisfying the evidence contract: 15/26 (57.7%);
+- evidence-contract satisfaction over all attempted cases: 15/30 (50.0%);
+- planning estimate: $3.30 of $5.00.
+
+All four refusals occurred after the provider response. The
+`http-200-empty-context-retry` scenario refused in all three replicates, and
+one `ambiguous-side-effect-retry` replicate also refused. The arm is frozen as
+an incomplete but interpretable provider result. The OpenAI structured-output
+arm remains a separate, not-yet-run condition.
+
 ## Data boundary
 
 The public study stores counts, statuses, refusal codes, stages, and cost

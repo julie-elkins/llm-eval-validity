@@ -113,3 +113,25 @@ This log records decisions made before the next result is generated.
   the two arms may be incomplete; the command supports an explicit model
   override, but the chosen value must be recorded before execution.
 - **Decided by:** Julie Elkins, with Codex implementation support.
+
+## 2026-10-24 -- OpenAI baseline result
+
+### Decision: freeze the incomplete OpenAI local-validation arm
+
+- **Decided:** Freeze the OpenAI prompt-plus-local-validation pilot as an
+  incomplete but interpretable cross-provider arm: 26 accepted traces, 4
+  after-response refusals, 15 accepted traces satisfying the evidence
+  contract, 11 accepted traces failing it, and a $3.30 planning estimate
+  against the $5 ceiling.
+- **Instead of:** Raising the three-turn ceiling, adding retries, retuning the
+  prompt after seeing the refusal pattern, or rerunning only the refused
+  cases.
+- **Why:** The arm completed all 30 planned attempts under the preregistered
+  interaction contract. The refusal pattern is part of protocol acceptance,
+  and changing the ceiling or retry policy after the result would make this
+  arm incomparable with the frozen Claude conditions.
+- **Costs if wrong:** The `http-200-empty-context-retry` scenario refused in
+  all three replicates, and one `ambiguous-side-effect-retry` replicate also
+  refused. The result may therefore reflect provider/adapter compatibility
+  as well as model behavior; the limitation must remain explicit.
+- **Decided by:** Julie Elkins, with Codex implementation support.

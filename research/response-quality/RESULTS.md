@@ -97,6 +97,35 @@ The model effect is also visible: Haiku accepted fewer traces than Sonnet under
 both output conditions. Because the arms were not designed as a model benchmark,
 this is a descriptive observation, not a ranking or a claim about capability.
 
+## OpenAI cross-provider baseline
+
+The OpenAI prompt-plus-local-validation arm was run against the same fixed
+30-case matrix using the preregistered `gpt-5.6` identifier and the same
+three-turn ceiling.
+
+| measure | OpenAI baseline |
+|---|---:|
+| attempted | 30 |
+| accepted | 26 |
+| refused | 4 |
+| acceptance rate | 86.7% |
+| refusal rate | 13.3% |
+| accepted and contract-satisfying | 15 |
+| contract satisfaction among accepted | 57.7% |
+| contract satisfaction over all attempted | 50.0% |
+| planning estimate | $3.30 |
+| planning ceiling | $5.00 |
+
+All four refusals occurred after the provider response. The
+`http-200-empty-context-retry` scenario refused in all three replicates, and
+one `ambiguous-side-effect-retry` replicate also refused. The refusal codes
+describe the frozen adapter boundary; they do not establish why the provider
+failed to produce an acceptable final event.
+
+This is a cross-provider baseline, not a provider ranking. The corresponding
+OpenAI structured-output condition has not been run, so no OpenAI
+structured-output comparison is reported here.
+
 ## Interpretation
 
 The pilot supports three restrained conclusions:
@@ -109,6 +138,9 @@ The pilot supports three restrained conclusions:
    cases because it produced more refusals.
 4. The direction of the acceptance loss replicated across Sonnet and Haiku,
    while the magnitude and accepted-trace contract rate varied by model.
+5. The OpenAI baseline completed 26 of 30 attempts and exposed a repeated
+   refusal pattern on the retry scenario; this is evidence of provider/adapter
+   compatibility behavior, not evidence of general OpenAI model quality.
 
 The pilot does not support these stronger claims:
 
@@ -120,9 +152,9 @@ The pilot does not support these stronger claims:
 
 ## Limitations
 
-- **One provider family.** The replication uses Claude Sonnet 5.5 and Claude
-  Haiku 5.5. A second provider is needed to separate provider-family effects
-  from general structured-output behavior.
+- **OpenAI comparison is incomplete.** The OpenAI local-validation baseline is
+  frozen, but its structured-output counterpart has not yet been run, so the
+  cross-provider comparison is not complete.
 - **Small fixed matrix.** Thirty cases are enough to expose protocol behavior,
   not enough to estimate a production failure rate precisely.
 - **Synthetic scenarios.** The cases exercise bounded assurance patterns rather
@@ -138,7 +170,7 @@ The pilot does not support these stronger claims:
 
 ## Next test
 
-Design a broader scenario matrix or an independent reviewer/reference phase.
-The next phase should be selected for a measurement reason, not to replace the
-inconvenient refusal result. A cross-provider replication is also warranted
-before making a general claim about provider-enforced structured output.
+Run the preregistered OpenAI structured-output arm as a separate condition,
+then compare it with the frozen OpenAI baseline without changing the matrix,
+turn ceiling, schema, or refusal policy. A broader scenario matrix or an
+independent reviewer/reference phase should follow that comparison.

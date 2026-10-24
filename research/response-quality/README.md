@@ -17,14 +17,19 @@ Provider-valid structure is not allowed to override that local contract.
 
 ## Current status
 
-**Pilot comparison frozen.** The study contains four 30-case conditions across
-two approved Claude model identifiers, using the same synthetic case matrix,
-bounded tool loop, cost ceiling, and local validator:
+**Claude pilot comparison frozen; OpenAI baseline added.** The study contains
+four frozen 30-case conditions across two approved Claude model identifiers and
+one frozen OpenAI local-validation baseline, using the same synthetic case
+matrix, bounded tool loop, cost ceiling, and local validator:
 
 - Sonnet Condition A: prompt plus local validation.
 - Sonnet Condition B: provider-enforced structured output plus local validation.
 - Haiku Condition A: prompt plus local validation.
 - Haiku Condition B: provider-enforced structured output plus local validation.
+- OpenAI baseline: prompt plus local validation.
+
+The OpenAI structured-output condition remains to be run as a separate
+comparison arm.
 
 The results are metadata-only. Prompts, model responses, tool arguments, and
 credentials are not part of the public artifact.
@@ -57,6 +62,19 @@ larger; the result is still limited to these two model configurations.
 | accepted traces satisfying the evidence contract | 9/18 (50.0%) | 3/9 (33.3%) | -16.7 pp |
 | all attempted cases satisfying the evidence contract | 9/30 (30.0%) | 3/30 (10.0%) | -20.0 pp |
 
+### OpenAI baseline
+
+| measure | OpenAI baseline |
+|---|---:|
+| attempted cases | 30 |
+| accepted traces | 26 (86.7%) |
+| provider refusals | 4 (13.3%) |
+| accepted traces satisfying the evidence contract | 15/26 (57.7%) |
+| all attempted cases satisfying the evidence contract | 15/30 (50.0%) |
+
+The OpenAI arm is a frozen cross-provider baseline, not a provider ranking.
+Its structured-output counterpart has not yet been run.
+
 ## Documents
 
 - [Protocol and planned replication](PROTOCOL.md)
@@ -75,13 +93,15 @@ the live-provider result to the offline governance protocol.
 
 ## What this pilot can and cannot establish
 
-It can establish the observed differences between the four frozen conditions on
-the fixed 30-case matrix, including the refusal and evidence-contract counts.
+It can establish the observed differences between the five frozen baseline or
+comparison conditions on the fixed 30-case matrix, including the refusal and
+evidence-contract counts. The OpenAI baseline is descriptive until its
+structured-output counterpart is run.
 
 It cannot establish general model quality, production safety, causal superiority
 of structured output, user-facing response quality, or performance across other
-providers, schemas, prompts, tools, or model versions. A second provider
-replication, a wider scenario matrix, and an independent quality reference are
+providers, schemas, prompts, tools, or model versions. The OpenAI structured-
+output arm, a wider scenario matrix, and an independent quality reference are
 required before making those claims.
 
 ## Reproduction boundary
