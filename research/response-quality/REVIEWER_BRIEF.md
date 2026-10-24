@@ -52,6 +52,23 @@ screenshots or case contents publicly.
 3. Join an optional debrief after independent reviews are submitted.
 4. Identify any rubric wording that was ambiguous or difficult to apply.
 
+## Communication and return process
+
+1. Respond to the public LinkedIn post without sharing an email address or
+   review details publicly.
+2. Move the conversation to LinkedIn direct message to confirm interest,
+   relevant experience, and the reviewer's preferred email address.
+3. Receive the review packet, rubric, and return instructions by email after
+   confirming participation.
+4. Return the completed form by replying to that email, not through a public
+   comment or LinkedIn message.
+5. Do not forward the packet, upload it to another AI service, or share
+   screenshots of case contents.
+
+The packet is synthetic, but the review process is still private so reviewers
+can work independently and their judgments are not influenced by public
+discussion.
+
 ## What the reviewer will judge
 
 For each case, the reviewer will mark:
