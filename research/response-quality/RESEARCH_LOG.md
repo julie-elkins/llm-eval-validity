@@ -62,3 +62,19 @@ This log records decisions made before the next result is generated.
   produce another incomplete result. That is an expected research outcome, not
   a reason to rerun until the output is clean.
 - **Decided by:** Julie Elkins, with Codex implementation support.
+
+## 2026-10-24 -- replication result
+
+### Decision: treat the repeated acceptance loss as a replicated boundary result
+
+- **Decided:** Record the Haiku result as a completed within-provider
+  replication. Structured output lowered acceptance in both model
+  configurations: 20.0 percentage points for Sonnet and 30.0 for Haiku.
+- **Instead of:** Pooling the four arms, declaring structured output generally
+  harmful, or rerunning until the refusal rate improved.
+- **Why:** The repeated direction supports a narrower claim about this adapter
+  and treatment, while the different magnitudes show why the study cannot
+  claim provider-independent generality from two Claude models.
+- **Costs if wrong:** The next study must add a broader scenario matrix or a
+  second provider before making a general structured-output claim.
+- **Decided by:** Julie Elkins, with Codex implementation support.

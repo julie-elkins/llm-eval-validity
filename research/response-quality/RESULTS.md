@@ -2,14 +2,16 @@
 
 ## Decision
 
-**Condition B did not improve the measured evidence contract in this
-configuration.** It lowered protocol acceptance from 93.3% to 73.3%. Among
-traces that were accepted, evidence-contract satisfaction was effectively
-unchanged: 53.6% in Condition A versus 54.5% in Condition B.
+**Condition B did not improve the measured evidence contract in either
+replicated model configuration.** In Sonnet 5.5 it lowered protocol acceptance
+from 93.3% to 73.3%. In Haiku 5.5 it lowered acceptance from 60.0% to 30.0%.
+Among accepted traces, evidence-contract satisfaction was effectively unchanged
+for Sonnet and lower for Haiku.
 
 This is a boundary result. It shows that provider-valid structured output is
-not equivalent to usable assurance evidence. It does not show that structured
-output is generally harmful or that the model is generally unreliable.
+not equivalent to usable assurance evidence in these runs. It does not show
+that structured output is generally harmful or that either model is generally
+unreliable.
 
 ## Results
 
@@ -38,6 +40,32 @@ structured condition completed fewer provider interactions successfully, so
 comparing its estimate as a standalone cost result would confound cost with
 refusal behavior.
 
+### Haiku 5.5 replication
+
+| measure | Condition A: local validation | Condition B: provider structured output |
+|---|---:|---:|
+| attempted | 30 | 30 |
+| accepted | 18 | 9 |
+| refused | 12 | 21 |
+| acceptance rate | 60.0% | 30.0% |
+| refusal rate | 40.0% | 70.0% |
+| accepted and contract-satisfying | 9 | 3 |
+| contract satisfaction among accepted | 50.0% | 33.3% |
+| contract satisfaction over all attempted | 30.0% | 10.0% |
+| planning estimate | $2.35 | $1.50 |
+| planning ceiling | $5.00 | $5.00 |
+
+Percentage-point changes are calculated as Condition B minus Condition A:
+
+- acceptance: **-30.0 points**;
+- refusal: **+30.0 points**;
+- contract satisfaction among accepted traces: **-16.7 points**;
+- contract satisfaction over all attempted cases: **-20.0 points**.
+
+The lower structured-output planning estimate is again not a cost finding. It
+reflects fewer successful provider interactions, not proof that the treatment
+uses fewer resources for equivalent work.
+
 ## Refusal pattern
 
 Condition A recorded two after-response provider refusals. Condition B recorded
@@ -51,6 +79,24 @@ The refusal pattern matters because the intervention was intended to improve
 output reliability. In this run, the intervention changed the failure surface
 more than it changed the evidence quality of accepted traces.
 
+## Cross-model interpretation
+
+| model | condition | accepted | refused | contract-satisfying | contract among accepted | contract over all |
+|---|---|---:|---:|---:|---:|---:|
+| Sonnet 5.5 | local validation | 28/30 | 2/30 | 15 | 53.6% | 50.0% |
+| Sonnet 5.5 | structured output | 22/30 | 8/30 | 12 | 54.5% | 40.0% |
+| Haiku 5.5 | local validation | 18/30 | 12/30 | 9 | 50.0% | 30.0% |
+| Haiku 5.5 | structured output | 9/30 | 21/30 | 3 | 33.3% | 10.0% |
+
+The structured-output arm lowered acceptance in both model configurations:
+20.0 percentage points for Sonnet and 30.0 for Haiku. That repeated direction
+is stronger evidence than the original one-model result, but it remains a
+within-provider replication, not a cross-provider finding.
+
+The model effect is also visible: Haiku accepted fewer traces than Sonnet under
+both output conditions. Because the arms were not designed as a model benchmark,
+this is a descriptive observation, not a ranking or a claim about capability.
+
 ## Interpretation
 
 The pilot supports three restrained conclusions:
@@ -58,9 +104,11 @@ The pilot supports three restrained conclusions:
 1. The local evidence contract catches failures that provider-enforced output
    structure does not eliminate.
 2. Adding the provider schema did not increase the proportion of accepted traces
-   that satisfied the local contract.
+   that satisfied the local contract in either model configuration.
 3. The structured condition had lower usable-evidence yield over all attempted
    cases because it produced more refusals.
+4. The direction of the acceptance loss replicated across Sonnet and Haiku,
+   while the magnitude and accepted-trace contract rate varied by model.
 
 The pilot does not support these stronger claims:
 
@@ -72,9 +120,9 @@ The pilot does not support these stronger claims:
 
 ## Limitations
 
-- **One model configuration.** The pilot uses one Claude Sonnet 5.5
-  configuration. A second model replication is needed to separate provider/schema
-  effects from model-specific behavior.
+- **One provider family.** The replication uses Claude Sonnet 5.5 and Claude
+  Haiku 5.5. A second provider is needed to separate provider-family effects
+  from general structured-output behavior.
 - **Small fixed matrix.** Thirty cases are enough to expose protocol behavior,
   not enough to estimate a production failure rate precisely.
 - **Synthetic scenarios.** The cases exercise bounded assurance patterns rather
@@ -90,7 +138,7 @@ The pilot does not support these stronger claims:
 
 ## Next test
 
-Run the pre-registered second-model replication in
-[PROTOCOL.md](PROTOCOL.md) without changing the frozen Sonnet conditions.
-After that replication, the study can justify a larger matrix or a human-reviewer
-phase. It should not add either phase merely to replace an inconvenient result.
+Design a broader scenario matrix or an independent reviewer/reference phase.
+The next phase should be selected for a measurement reason, not to replace the
+inconvenient refusal result. A cross-provider replication is also warranted
+before making a general claim about provider-enforced structured output.

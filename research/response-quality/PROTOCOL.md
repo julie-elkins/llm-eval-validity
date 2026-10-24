@@ -70,10 +70,10 @@ The run is a paired design at the scenario/replicate level, but the pilot is
 descriptive. It does not claim inferential significance from 30 observations or
 from the unequal number of accepted traces.
 
-## Planned replication
+## Replication result
 
-The next condition is a pre-registered second-model replication using the
-adapter's approved Haiku identifier, `claude-haiku-5-5`:
+The pre-registered second-model replication used the adapter's approved Haiku
+identifier, `claude-haiku-5-5`:
 
 - use the same 30-case matrix;
 - keep the two output conditions unchanged;
@@ -86,6 +86,10 @@ adapter's approved Haiku identifier, `claude-haiku-5-5`:
 The replication has a five-dollar planning ceiling per arm and a ten-dollar
 combined planning ceiling. The two arms are still reported separately; the
 combined ceiling is only a spending control.
+
+Both arms completed without exceeding their planning ceilings. The next
+research phase is not another prompt or schema retuning pass; it is a broader
+scenario or independent-review design chosen after this result is documented.
 
 The replication is intended to test whether the observed result is specific to
 the model/provider configuration or persists across a second model. It is not

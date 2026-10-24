@@ -17,17 +17,21 @@ Provider-valid structure is not allowed to override that local contract.
 
 ## Current status
 
-**Pilot comparison frozen.** The study contains two 30-case Claude Sonnet 5.5
-conditions using the same synthetic case matrix, bounded tool loop, cost ceiling,
-and local validator:
+**Pilot comparison frozen.** The study contains four 30-case conditions across
+two approved Claude model identifiers, using the same synthetic case matrix,
+bounded tool loop, cost ceiling, and local validator:
 
-- Condition A: prompt plus local validation.
-- Condition B: provider-enforced structured output plus local validation.
+- Sonnet Condition A: prompt plus local validation.
+- Sonnet Condition B: provider-enforced structured output plus local validation.
+- Haiku Condition A: prompt plus local validation.
+- Haiku Condition B: provider-enforced structured output plus local validation.
 
 The results are metadata-only. Prompts, model responses, tool arguments, and
 credentials are not part of the public artifact.
 
 ## Result at a glance
+
+### Sonnet 5.5
 
 | measure | Condition A | Condition B | change |
 |---|---:|---:|---:|
@@ -40,7 +44,18 @@ credentials are not part of the public artifact.
 The result does **not** establish that structured output is generally worse.
 It establishes that this provider/schema configuration did not improve the
 measured evidence contract and produced more protocol refusals in this pilot.
-The comparison is therefore useful as a boundary result, not as a model ranking.
+The same direction appeared in the Haiku replication, but the magnitude was
+larger; the result is still limited to these two model configurations.
+
+### Haiku 5.5 replication
+
+| measure | Condition A | Condition B | change |
+|---|---:|---:|---:|
+| attempted cases | 30 | 30 | -- |
+| accepted traces | 18 (60.0%) | 9 (30.0%) | -30.0 pp |
+| provider refusals | 12 (40.0%) | 21 (70.0%) | +30.0 pp |
+| accepted traces satisfying the evidence contract | 9/18 (50.0%) | 3/9 (33.3%) | -16.7 pp |
+| all attempted cases satisfying the evidence contract | 9/30 (30.0%) | 3/30 (10.0%) | -20.0 pp |
 
 ## Documents
 
@@ -60,13 +75,14 @@ the live-provider result to the offline governance protocol.
 
 ## What this pilot can and cannot establish
 
-It can establish the observed difference between these two frozen conditions on
+It can establish the observed differences between the four frozen conditions on
 the fixed 30-case matrix, including the refusal and evidence-contract counts.
 
 It cannot establish general model quality, production safety, causal superiority
 of structured output, user-facing response quality, or performance across other
-providers, schemas, prompts, tools, or model versions. A second-model replication
-and a wider scenario matrix are required before making those claims.
+providers, schemas, prompts, tools, or model versions. A second provider
+replication, a wider scenario matrix, and an independent quality reference are
+required before making those claims.
 
 ## Reproduction boundary
 
