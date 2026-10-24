@@ -135,3 +135,21 @@ This log records decisions made before the next result is generated.
   refused. The result may therefore reflect provider/adapter compatibility
   as well as model behavior; the limitation must remain explicit.
 - **Decided by:** Julie Elkins, with Codex implementation support.
+
+### Decision: freeze the OpenAI two-arm comparison
+
+- **Decided:** Freeze the OpenAI comparison with the baseline and
+  provider-structured-output arms reported separately. The structured arm
+  accepted 27/30 traces, with 14/27 accepted traces satisfying the evidence
+  contract and 14/30 satisfying it over all attempts.
+- **Instead of:** Raising the three-turn ceiling, rerunning the retry
+  scenario, or claiming that the small acceptance increase proves structured
+  output is better.
+- **Why:** Provider-enforced structure improved OpenAI protocol acceptance
+  from 86.7% to 90.0%, but reduced evidence-contract satisfaction among
+  accepted traces from 57.7% to 51.9% and over all attempts from 50.0% to
+  46.7%. The end-to-end usable-evidence outcome did not improve.
+- **Costs if wrong:** The OpenAI comparison remains specific to this model,
+  schema, prompt, tool loop, and synthetic matrix. The result cannot support a
+  general claim about structured output or model quality.
+- **Decided by:** Julie Elkins, with Codex implementation support.

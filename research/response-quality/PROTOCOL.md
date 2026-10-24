@@ -135,6 +135,27 @@ one `ambiguous-side-effect-retry` replicate also refused. The arm is frozen as
 an incomplete but interpretable provider result. The OpenAI structured-output
 arm remains a separate, not-yet-run condition.
 
+### OpenAI structured-output result
+
+The OpenAI provider-structured-output arm used the same preregistered
+`gpt-5.6` identifier, 30-case matrix, three-turn ceiling, five-dollar
+planning ceiling, and local evidence validator:
+
+- attempted: 30;
+- accepted: 27;
+- refused: 3;
+- protocol acceptance: 90.0%;
+- accepted traces satisfying the evidence contract: 14/27 (51.9%);
+- evidence-contract satisfaction over all attempted cases: 14/30 (46.7%);
+- planning estimate: $3.25 of $5.00.
+
+All three refusals were `tool_loop_turn_limit_exceeded` stop refusals for the
+`http-200-empty-context-retry` scenario. Compared with the OpenAI baseline,
+structured output increased protocol acceptance by 3.3 percentage points, but
+decreased evidence-contract satisfaction among accepted traces by 5.8 points
+and over all attempted cases by 3.3 points. This is a descriptive,
+configuration-specific comparison, not a provider ranking or a general claim.
+
 ## Data boundary
 
 The public study stores counts, statuses, refusal codes, stages, and cost

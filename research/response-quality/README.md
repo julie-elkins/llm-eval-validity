@@ -28,8 +28,8 @@ matrix, bounded tool loop, cost ceiling, and local validator:
 - Haiku Condition B: provider-enforced structured output plus local validation.
 - OpenAI baseline: prompt plus local validation.
 
-The OpenAI structured-output condition remains to be run as a separate
-comparison arm.
+The OpenAI comparison is complete as a separate pair of arms and remains
+separate from the Claude results.
 
 The results are metadata-only. Prompts, model responses, tool arguments, and
 credentials are not part of the public artifact.
@@ -73,7 +73,18 @@ larger; the result is still limited to these two model configurations.
 | all attempted cases satisfying the evidence contract | 15/30 (50.0%) |
 
 The OpenAI arm is a frozen cross-provider baseline, not a provider ranking.
-Its structured-output counterpart has not yet been run.
+Its structured-output comparison is reported below.
+
+| measure | OpenAI baseline | OpenAI structured output | change |
+|---|---:|---:|---:|
+| accepted traces | 26 (86.7%) | 27 (90.0%) | +3.3 pp |
+| provider refusals | 4 (13.3%) | 3 (10.0%) | -3.3 pp |
+| accepted traces satisfying the evidence contract | 15/26 (57.7%) | 14/27 (51.9%) | -5.8 pp |
+| all attempted cases satisfying the evidence contract | 15/30 (50.0%) | 14/30 (46.7%) | -3.3 pp |
+
+The OpenAI structured-output arm slightly improved protocol acceptance but
+reduced evidence-contract satisfaction. This is a configuration-specific
+result, not a provider ranking.
 
 ## Documents
 
@@ -93,16 +104,15 @@ the live-provider result to the offline governance protocol.
 
 ## What this pilot can and cannot establish
 
-It can establish the observed differences between the five frozen baseline or
+It can establish the observed differences between the six frozen baseline or
 comparison conditions on the fixed 30-case matrix, including the refusal and
-evidence-contract counts. The OpenAI baseline is descriptive until its
-structured-output counterpart is run.
+evidence-contract counts.
 
 It cannot establish general model quality, production safety, causal superiority
-of structured output, user-facing response quality, or performance across other
-providers, schemas, prompts, tools, or model versions. The OpenAI structured-
-output arm, a wider scenario matrix, and an independent quality reference are
-required before making those claims.
+of structured output, user-facing response quality, or performance across
+other providers, schemas, prompts, tools, or model versions. A wider scenario
+matrix and an independent quality reference are required before making those
+claims.
 
 ## Reproduction boundary
 

@@ -126,6 +126,26 @@ This is a cross-provider baseline, not a provider ranking. The corresponding
 OpenAI structured-output condition has not been run, so no OpenAI
 structured-output comparison is reported here.
 
+### OpenAI structured-output comparison
+
+| measure | OpenAI baseline | OpenAI structured output | change |
+|---|---:|---:|---:|
+| attempted | 30 | 30 | -- |
+| accepted | 26 | 27 | +1 |
+| refused | 4 | 3 | -1 |
+| acceptance rate | 86.7% | 90.0% | +3.3 pp |
+| accepted and contract-satisfying | 15 | 14 | -1 |
+| contract satisfaction among accepted | 57.7% | 51.9% | -5.8 pp |
+| contract satisfaction over all attempted | 50.0% | 46.7% | -3.3 pp |
+| planning estimate | $3.30 | $3.25 | -- |
+| planning ceiling | $5.00 | $5.00 | -- |
+
+Structured output slightly improved OpenAI protocol acceptance, but it did
+not improve end-to-end usable evidence. The three structured-arm refusals were
+all bounded `tool_loop_turn_limit_exceeded` stops for the
+`http-200-empty-context-retry` scenario. The planning estimates are not a cost
+finding because they are affected by refusal and turn behavior.
+
 ## Interpretation
 
 The pilot supports three restrained conclusions:
@@ -138,9 +158,9 @@ The pilot supports three restrained conclusions:
    cases because it produced more refusals.
 4. The direction of the acceptance loss replicated across Sonnet and Haiku,
    while the magnitude and accepted-trace contract rate varied by model.
-5. The OpenAI baseline completed 26 of 30 attempts and exposed a repeated
-   refusal pattern on the retry scenario; this is evidence of provider/adapter
-   compatibility behavior, not evidence of general OpenAI model quality.
+5. The OpenAI baseline and structured-output arms show that a small increase
+   in protocol acceptance can coexist with lower evidence-contract
+   satisfaction; formatting acceptance is not the same as usable evidence.
 
 The pilot does not support these stronger claims:
 
@@ -152,9 +172,9 @@ The pilot does not support these stronger claims:
 
 ## Limitations
 
-- **OpenAI comparison is incomplete.** The OpenAI local-validation baseline is
-  frozen, but its structured-output counterpart has not yet been run, so the
-  cross-provider comparison is not complete.
+- **Provider-specific configurations.** The OpenAI comparison is complete for
+  this fixed model, schema, prompt, tool loop, and synthetic matrix, but it
+  cannot establish a general provider or model effect.
 - **Small fixed matrix.** Thirty cases are enough to expose protocol behavior,
   not enough to estimate a production failure rate precisely.
 - **Synthetic scenarios.** The cases exercise bounded assurance patterns rather
@@ -170,7 +190,6 @@ The pilot does not support these stronger claims:
 
 ## Next test
 
-Run the preregistered OpenAI structured-output arm as a separate condition,
-then compare it with the frozen OpenAI baseline without changing the matrix,
-turn ceiling, schema, or refusal policy. A broader scenario matrix or an
-independent reviewer/reference phase should follow that comparison.
+Design a broader scenario matrix or an independent reviewer/reference phase.
+The next phase should be selected for a measurement reason, not to replace the
+inconvenient refusal result or retune the completed OpenAI comparison.
