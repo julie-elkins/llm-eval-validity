@@ -93,6 +93,7 @@ result, not a provider ranking.
 - [Research log](RESEARCH_LOG.md)
 - [Reporting checklist](RESEARCH_CHECKLIST.md)
 - [Independent reference review protocol](INDEPENDENT_REFERENCE_REVIEW.md)
+- [Volunteer reviewer brief](REVIEWER_BRIEF.md)
 
 ## Relationship to the reauthorization paper
 
