@@ -188,8 +188,23 @@ The pilot does not support these stronger claims:
 - **Schema implementation is one treatment.** A different schema, prompt,
   native-tool arrangement, or provider feature could produce a different result.
 
+## Independent reviewer calibration
+
+The v1 independent reference-review round is complete with three reviewers
+using ten synthetic cases. It supports a rubric-design conclusion, not a model
+quality conclusion: the top-level classification question was more
+interpretable than the generic bounded-workflow field and the identifier
+scope.
+
+Version 2 separates those concepts and remains open for additional independent
+feedback. Until that round is complete, the study should not describe the v2
+rubric as independently validated. Reviewer identities, completed forms, raw
+responses, and the private answer key remain outside the public repository.
+
 ## Next test
 
-Design a broader scenario matrix or an independent reviewer/reference phase.
-The next phase should be selected for a measurement reason, not to replace the
-inconvenient refusal result or retune the completed OpenAI comparison.
+Complete the version-2 independent calibration round, then decide whether the
+rubric is clear enough to freeze or needs another version. Only after that
+decision should the study select a broader scenario matrix. The next phase
+should be selected for a measurement reason, not to replace the inconvenient
+refusal result or retune the completed provider comparisons.

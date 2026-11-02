@@ -86,6 +86,25 @@ The OpenAI structured-output arm slightly improved protocol acceptance but
 reduced evidence-contract satisfaction. This is a configuration-specific
 result, not a provider ranking.
 
+## Independent reviewer calibration status
+
+The first independent reference-review round is complete. Three reviewers
+reviewed the ten synthetic version-1 cases. The round did not validate the
+version-1 rubric: reviewers could apply the top-level classification field
+consistently, but the generic bounded-workflow field and the scope of required
+identifiers were not sufficiently clear.
+
+That finding led to a separately versioned version-2 rubric. Version 2
+separates required evidence, agent decision, broader workflow objective,
+case-required identifiers, applicable controls, and safe handling behavior.
+The version-2 calibration round remains open while additional independent
+feedback is collected. The public repository does not publish reviewer
+identities, completed forms, raw responses, or the private answer key.
+
+This is calibration evidence—the study of whether people can apply the
+measurement consistently—not evidence that the provider conditions are safe,
+accurate, or production-ready.
+
 ## Documents
 
 - [Protocol and planned replication](PROTOCOL.md)

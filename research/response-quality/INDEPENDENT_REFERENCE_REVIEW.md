@@ -2,8 +2,15 @@
 
 ## Status
 
-Planned next phase. This protocol does not change the six frozen provider
-conditions.
+Version 1 calibration is complete. Three independent reviewers reviewed the
+ten synthetic v1 cases. The v1 round exposed ambiguity in the generic
+bounded-workflow field and in the scope of required identifiers; it did not
+validate the v1 rubric.
+
+Version 2 is a separately versioned calibration round with case-scoped
+controls, a distinct broader-objective field, and explicit handling for
+`not applicable`. Additional independent v2 feedback is still being collected.
+This protocol does not change the frozen provider conditions.
 
 ## Purpose
 
@@ -94,6 +101,14 @@ second agreement signal; they do not create ground truth automatically.
 Do not use the review to retune the six frozen provider conditions. Any rubric
 change becomes a new version and requires a new, separately labelled review
 phase.
+
+## Version boundary
+
+The v1 and v2 reviewer packets are separate research instruments. A judgment
+from v1 must not be pooled with v2 as if the reviewers answered the same
+questions. The public record reports the calibration phase and its limitations
+without publishing completed forms, reviewer identities, or the private answer
+key.
 
 ## Completion criteria
 

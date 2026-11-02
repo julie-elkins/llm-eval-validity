@@ -171,3 +171,24 @@ This log records decisions made before the next result is generated.
   Recruitment may take time, and the review will produce calibration evidence
   rather than a production-quality claim.
 - **Decided by:** Julie Elkins, with Codex implementation support.
+
+## 2026-11-02 -- close v1 calibration and keep v2 open
+
+### Decision: use the completed v1 reviews to justify the v2 rubric, not to validate v1
+
+- **Decided:** Close the v1 calibration phase after three independent
+  reviewer forms and continue the separately versioned v2 calibration round.
+- **Instead of:** Pooling v1 and v2 judgments, publishing reviewer identities
+  or completed forms, treating the AI-assisted form as independent evidence,
+  or changing the frozen provider conditions.
+- **Why:** The v1 reviews consistently showed that the top-level
+  classification question was easier to apply than the generic
+  bounded-workflow field. They also exposed unclear scope around required
+  identifiers and the need for explicit `not applicable` handling.
+- **Costs if wrong:** Keeping v2 open delays finalization, but freezing it
+  after one provisional v2 form would overstate the strength of the
+  calibration evidence.
+- **Public boundary:** The repository records aggregate calibration status and
+  limitations only. Reviewer identities, completed forms, raw responses, and
+  the private answer key remain local.
+- **Decided by:** Julie Elkins, with Codex implementation support.
