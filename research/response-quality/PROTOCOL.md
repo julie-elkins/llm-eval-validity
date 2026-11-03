@@ -97,7 +97,7 @@ permission to claim cross-model generality by itself.
 
 ## Cross-provider replication
 
-The next pre-registered arm adds OpenAI as a second provider:
+The pre-registered cross-provider arm added OpenAI as a second provider:
 
 - OpenAI Responses API native function-call/result loop.
 - The same ten synthetic scenarios and three replicates per scenario.
@@ -110,10 +110,10 @@ The next pre-registered arm adds OpenAI as a second provider:
 - No prompt, tool schema, or validator changes are allowed after seeing the
   OpenAI baseline.
 
-The purpose is to separate a Claude-family observation from a
-structured-output observation. The OpenAI result will remain separate from the
-four Claude arms; it will not be pooled into a provider ranking or treated as
-an estimate of general model quality.
+The purpose was to separate a Claude-family observation from a
+structured-output observation. The OpenAI results remain separate from the four
+Claude arms; they are not pooled into a provider ranking or treated as an
+estimate of general model quality.
 
 ### OpenAI baseline result
 
@@ -132,8 +132,8 @@ five-dollar planning ceiling:
 All four refusals occurred after the provider response. The
 `http-200-empty-context-retry` scenario refused in all three replicates, and
 one `ambiguous-side-effect-retry` replicate also refused. The arm is frozen as
-an incomplete but interpretable provider result. The OpenAI structured-output
-arm remains a separate, not-yet-run condition.
+an incomplete but interpretable provider result. The companion
+structured-output arm is reported below as a separate frozen condition.
 
 ### OpenAI structured-output result
 

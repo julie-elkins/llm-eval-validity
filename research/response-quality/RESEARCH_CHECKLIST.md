@@ -12,7 +12,7 @@ validation.
 | Denominator policy | complete | Accepted-trace and all-attempt results are both reported. |
 | Cost ceiling | complete | Each run had a five-dollar planning ceiling. |
 | Data boundary | complete | Public artifact is metadata-only. |
-| Frozen results | complete | Both Sonnet and both Haiku conditions are recorded in `RESULTS.md`. |
+| Frozen results | complete | Both Claude conditions for Sonnet and Haiku, plus both OpenAI conditions, are recorded in `RESULTS.md`. |
 | Statistical inference | intentionally absent | The pilot is descriptive; no significance claim is made. |
 | Second-model replication | complete | Haiku used the same matrix and frozen conditions; results remain within-provider. |
 | Larger scenario matrix | not started | Select the next matrix for coverage, not for a cleaner result. |
@@ -22,9 +22,9 @@ validation.
 
 ## Claim boundary
 
-**Observed:** four frozen conditions across Sonnet 5.5 and Haiku 5.5 produced
-the reported acceptance, refusal, and evidence-contract counts on the fixed
-matrix.
+**Observed:** six frozen conditions across Claude Sonnet 5.5, Claude Haiku 5.5,
+and OpenAI `gpt-5.6` produced the reported acceptance, refusal, and
+evidence-contract counts on the fixed matrix.
 
 **Inferred within scope:** provider-enforced structure did not improve usable
 evidence yield in either tested Claude configuration and changed the refusal
