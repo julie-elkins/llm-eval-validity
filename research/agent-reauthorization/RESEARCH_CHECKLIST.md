@@ -21,7 +21,7 @@ and the [Nature reporting summary](https://www.nature.com/documents/nr-reporting
 | Randomness and seeds | not applicable to phases 1--4 | The study is deterministic. A future stochastic or LLM-backed phase must report seeds, model revisions, repetitions, and variance. |
 | Primary outcomes | complete | False-ready decisions and stale-claim detection are defined before the run. |
 | Statistical claims | complete for phases 1--4 | All synthetic phases report exact counts and do not use inferential statistics for synthetic cases. |
-| Artifact availability | Phase 4 source committed; merge/reproduction pending | The Phase-4 harness implementation and structured reference manifest are committed on the feature branch; the validity fixture records the source commit and both case-set and manifest hashes. |
+| Artifact availability | complete for phases 1--4 | The Phase-4 harness implementation and structured reference manifest are merged on `main`; the validity fixture records the source commit and both case-set and manifest hashes. |
 | Reproduction command | complete | The harness command is recorded in `RESULTS.md`. |
 | Environment | complete for phases 1--4 locally | Historical runs used `uv 0.11.8` and Python 3.11.15; Phase 4 currently runs in the repository virtual environment with no provider calls. |
 | Data availability | complete | Synthetic case definitions are public; no private traces or content-bearing payloads are used. |
@@ -30,7 +30,7 @@ and the [Nature reporting summary](https://www.nature.com/documents/nr-reporting
 | Human reviewer study | not started | Requires a new protocol, consent and privacy review, reviewer sampling, and agreement analysis. |
 | Broader impacts | complete for pilot paper | The paper addresses false confidence, over-blocking, release delay, and responsibility-shifting risks. |
 | Robustness matrix | complete for phases 1--3; Phase 4 complete locally | Earlier held-out cases and the Phase-4 split-aware matrix pass their pre-specified controls. |
-| Independent reproduction | complete for phases 1--3; pending for Phase 4 | Fresh clones reproduced the earlier matrices. Phase 4 requires a clean-checkout run after the harness change is merged. |
+| Independent reproduction | complete for phases 1--4 | Fresh clones reproduced the earlier matrices and the Phase-4 run from the merged harness `main` revision. |
 | LLM-backed system validation | not started | Requires a bounded agent, model or deterministic model substitute, tools, traces, independent evaluator, cost/latency ceilings, and a locked scenario set. |
 
 ## Claim discipline
