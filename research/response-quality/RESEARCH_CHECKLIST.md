@@ -18,7 +18,7 @@ validation.
 | Second-model replication | complete | Haiku used the same matrix and frozen conditions; results remain within-provider. |
 | Larger scenario matrix | not started | Select the next matrix for coverage, not for a cleaner result. |
 | Cross-provider replication | complete | OpenAI baseline and structured-output arms are frozen and reported separately; the result remains configuration-specific. |
-| Human reviewer study | v1 complete; v2 in progress | Three v1 calibration reviews support the v2 rubric revision; additional independent v2 feedback is still required before v2 is frozen. |
+| Human reviewer study | v1 complete; v2 in progress | Three v1 calibration reviews support the v2 rubric revision; one additional v2 review has been returned with self-reported no-AI assistance, but its provenance must be reconciled privately before it contributes to aggregate agreement results. |
 | Production validation | not established | No production traces, user outcomes, or live business decision are measured. |
 
 ## Claim boundary

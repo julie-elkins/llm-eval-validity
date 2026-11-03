@@ -94,6 +94,14 @@ reference judgment. It reports:
 - disagreement reasons;
 - reviewer agreement when two reviewers are available.
 
+The private review record should also retain reviewer provenance: the
+return-email date used as the completion date and any reviewer statement about
+AI assistance. These are provenance fields—the record of how and when a review
+was produced—not proof of independent behavior. If the communication, form
+metadata, or packet record conflicts, keep the review unresolved and exclude
+it from aggregate independent-review results until the discrepancy is
+reconciled.
+
 One reviewer is sufficient for a calibration pilot, but not for a strong claim
 that the rubric has been independently validated. Two reviewers provide a
 second agreement signal; they do not create ground truth automatically.

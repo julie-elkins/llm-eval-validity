@@ -201,6 +201,13 @@ feedback. Until that round is complete, the study should not describe the v2
 rubric as independently validated. Reviewer identities, completed forms, raw
 responses, and the private answer key remain outside the public repository.
 
+One additional v2 review has been returned. The reviewer reported completing it
+without AI assistance, and the return-email date is treated as the completion
+date. This is reviewer-reported provenance, not an independently verified fact.
+The v2 aggregate remains open until the review artifact is reconciled with the
+private packet record and compared with the answer key; no new agreement or
+validation claim is made here.
+
 ## Next test
 
 Complete the version-2 independent calibration round, then decide whether the

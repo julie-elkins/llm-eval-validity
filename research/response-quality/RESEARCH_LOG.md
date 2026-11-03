@@ -220,3 +220,26 @@ This log records decisions made before the next result is generated.
   confirmed independent V2 forms arrive, compare them with the private key and
   update only the aggregate public calibration status.
 - **Decided by:** Julie Elkins, with Codex implementation support.
+
+## 2026-11-03 -- record Matthew review provenance conservatively
+
+### Decision: record the reviewer report without changing aggregate results
+
+- **Decided:** Record that one additional V2 review was returned, that the
+  reviewer reported completing it without AI assistance, and that the
+  return-email date is treated as the completion date. Keep the V2 round open
+  until the private artifact and packet record are reconciled.
+- **Instead of:** Treating the self-report as independently verified,
+  publishing the reviewer identity or completed form, or adding the review to
+  agreement statistics before comparing it with the private answer key.
+- **Why:** Reviewer provenance—the record of when and under what stated
+  conditions a review was produced—supports transparent methods, but it does
+  not establish independent behavior by itself. The paper must separate
+  received feedback from analyzed calibration evidence.
+- **Costs if wrong:** The public paper temporarily reports an open calibration
+  phase even though a review has arrived. That is less convenient, but it
+  avoids overstating validation if the private packet metadata and reviewer
+  communication do not match.
+- **Public boundary:** No reviewer name, completed form, raw case content, or
+  answer key is published.
+- **Decided by:** Julie Elkins, with Codex implementation support.
