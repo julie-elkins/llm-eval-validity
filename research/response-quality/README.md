@@ -101,6 +101,12 @@ The version-2 calibration round remains open while additional independent
 feedback is collected. The public repository does not publish reviewer
 identities, completed forms, raw responses, or the private answer key.
 
+One additional v2 review has been returned. The reviewer reported completing it
+without AI assistance, and the return-email date is treated as the completion
+date. This is self-reported provenance, not independently verified evidence.
+The review is not added to an aggregate agreement result until its private
+packet record is reconciled and compared with the answer key.
+
 This is calibration evidence—the study of whether people can apply the
 measurement consistently—not evidence that the provider conditions are safe,
 accurate, or production-ready.
