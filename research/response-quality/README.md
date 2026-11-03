@@ -17,16 +17,16 @@ Provider-valid structure is not allowed to override that local contract.
 
 ## Current status
 
-**Claude pilot comparison frozen; OpenAI baseline added.** The study contains
-four frozen 30-case conditions across two approved Claude model identifiers and
-one frozen OpenAI local-validation baseline, using the same synthetic case
-matrix, bounded tool loop, cost ceiling, and local validator:
+**Six conditions frozen.** The study contains six 30-case conditions across
+Claude Sonnet 5.5, Claude Haiku 5.5, and OpenAI `gpt-5.6`, using the same
+synthetic case matrix, bounded tool loop, cost ceiling, and local validator:
 
 - Sonnet Condition A: prompt plus local validation.
 - Sonnet Condition B: provider-enforced structured output plus local validation.
 - Haiku Condition A: prompt plus local validation.
 - Haiku Condition B: provider-enforced structured output plus local validation.
-- OpenAI baseline: prompt plus local validation.
+- OpenAI Condition A: prompt plus local validation.
+- OpenAI Condition B: provider-enforced structured output plus local validation.
 
 The OpenAI comparison is complete as a separate pair of arms and remains
 separate from the Claude results.
@@ -125,9 +125,8 @@ the live-provider result to the offline governance protocol.
 
 ## What this pilot can and cannot establish
 
-It can establish the observed differences between the six frozen baseline or
-comparison conditions on the fixed 30-case matrix, including the refusal and
-evidence-contract counts.
+It can establish the observed differences between the six frozen conditions on
+the fixed 30-case matrix, including the refusal and evidence-contract counts.
 
 It cannot establish general model quality, production safety, causal superiority
 of structured output, user-facing response quality, or performance across

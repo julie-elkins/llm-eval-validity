@@ -43,15 +43,28 @@ provider-enforced structured output improves trace acceptance or evidence qualit
 [Response-quality measurement under provider output constraints](research/response-quality/README.md)
 
 This comparison is deliberately separate from the reauthorization paper. It
-records metadata-only results from a bounded Claude Sonnet 5.5 experiment and
-does not claim production safety, general model quality, or cross-provider
-performance.
+records metadata-only results from six bounded conditions across Claude Sonnet
+5.5, Claude Haiku 5.5, and OpenAI `gpt-5.6`. It does not claim production
+safety, general model quality, or provider-wide performance.
 
 ### Learner objective
 
 Learn to ask whether an evaluation is trustworthy enough to support a decision. The
 focus is not producing a larger score; it is checking sample size, confidence bounds,
 stratification, rater agreement, and repeatability before treating a result as evidence.
+
+### Why this study is designed this way
+
+The study records its design reasoning in
+[DESIGN_DECISIONS.md](DESIGN_DECISIONS.md). Each record connects the problem being
+solved to the alternative rejected, the implementation, the verification step, the
+production consequence, and the limit of what the result can establish. The
+[methodology](docs/methodology.md) remains the detailed statistical source of truth;
+the decision map is the learner-facing explanation of why those methods are present.
+
+This makes the path inspectable: a reader can move from an evaluation question to a
+design choice, run the relevant analysis, and see why a green-looking number may still
+be insufficient for release.
 
 ### Learner checkpoint
 

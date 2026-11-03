@@ -192,3 +192,31 @@ This log records decisions made before the next result is generated.
   limitations only. Reviewer identities, completed forms, raw responses, and
   the private answer key remain local.
 - **Decided by:** Julie Elkins, with Codex implementation support.
+
+## 2026-11-03 -- paper-readiness consistency pass
+
+### Decision: correct settled documentation drift without changing study results
+
+- **Decided:** Align the public README, protocol, reporting checklist, and
+  research record with the six already-frozen provider conditions and the
+  current V2 reviewer status.
+- **Instead of:** Starting another provider run, expanding the scenario matrix,
+  or treating pending reviewer responses as completed evidence.
+- **Why:** The numerical results were already frozen and reproducible, but
+  several descriptions still said that only four Claude conditions or an
+  OpenAI baseline existed, and the protocol still described the OpenAI
+  structured-output arm as not yet run. A reader could therefore misunderstand
+  both the scope of the study and what remains open.
+- **Costs if wrong:** Documentation-only corrections do not add experimental
+  evidence; a future paper revision must still incorporate confirmed V2
+  calibration results before describing the revised rubric as independently
+  validated.
+- **Verification:** Offline analyses, the full test suite, and whitespace checks
+  pass before and after the documentation changes.
+- **Current state:** Six provider conditions are frozen. V1 human calibration
+  is closed. V2 calibration remains open while additional independent feedback
+  is collected.
+- **Next action:** Continue reviewer reminders outside the repository. When
+  confirmed independent V2 forms arrive, compare them with the private key and
+  update only the aggregate public calibration status.
+- **Decided by:** Julie Elkins, with Codex implementation support.
