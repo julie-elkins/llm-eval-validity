@@ -111,6 +111,7 @@ accurate, or production-ready.
 - [Frozen results and analysis](RESULTS.md)
 - [Research log](RESEARCH_LOG.md)
 - [Reporting checklist](RESEARCH_CHECKLIST.md)
+- [Related work and positioning](RELATED_WORK.md)
 - [Independent reference review protocol](INDEPENDENT_REFERENCE_REVIEW.md)
 - [Volunteer reviewer brief](REVIEWER_BRIEF.md)
 

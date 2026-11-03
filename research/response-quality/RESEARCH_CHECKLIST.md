@@ -8,6 +8,7 @@ validation.
 | Research question | complete | `PROTOCOL.md` states the comparison. |
 | Conditions | complete | Local validation and provider structured output are defined. |
 | Fixed case matrix | complete | 30 cases, ten scenarios, three replicates per scenario. |
+| Related-work positioning | complete | `RELATED_WORK.md` maps validity, benchmark, judge, variance, and tool-environment literature to this study's narrower claims. |
 | Primary outcomes | complete | Acceptance, refusal, and evidence-contract satisfaction are defined. |
 | Denominator policy | complete | Accepted-trace and all-attempt results are both reported. |
 | Cost ceiling | complete | Each run had a five-dollar planning ceiling. |
