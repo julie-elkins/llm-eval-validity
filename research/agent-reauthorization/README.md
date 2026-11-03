@@ -9,14 +9,14 @@ support the same release or operating decision after the system changes.
 
 ## Current status
 
-**Phase 4 in progress:** the larger split-aware synthetic matrix is implemented and
-validated. The paper is being revised to report phases 1--4 without presenting
-synthetic evidence as production validation.
+**Phase 4 synthetic study complete:** the larger split-aware matrix is implemented,
+validated, and reproduced from a clean checkout. The paper reports phases 1--4
+without presenting synthetic evidence as production validation.
 
 The research question, hypotheses, study conditions, measures, related-work boundary,
 and reporting checklist are complete. The first deterministic pilot, held-out
-robustness matrix, and Phase-4 split-aware matrix have run. A clean-checkout
-reproduction of Phase 4 remains the next verification step.
+robustness matrix, and Phase-4 split-aware matrix have run. The Phase-4 result
+was reproduced from a clean checkout of the merged harness.
 The [results](RESULTS.md) report what those runs establish and what they cannot
 establish.
 

@@ -1,8 +1,8 @@
 # From Evaluation to Reauthorization: Change-Aware Governance for AI Agent Releases
 
 **Author:** Julie Elkins
-**Artifact status:** Phase-4 synthetic research manuscript in progress; clean-checkout
-reproduction and external-validity phases remain future work.
+**Artifact status:** Phase-4 synthetic research manuscript complete; system-level
+validation and external-validity phases remain future work.
 **Repository:** [LLM Eval Validity](https://github.com/julie-elkins/llm-eval-validity)
 
 ## Abstract

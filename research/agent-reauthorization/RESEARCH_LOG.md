@@ -104,3 +104,23 @@ This log records decisions made before results. It is part of the study record.
 - **Costs if wrong:** The research takes longer and requires a second protocol,
   model/version recording, repeat runs, and variance analysis.
 - **Decided by:** Julie Elkins, with Codex implementation support.
+
+## 2026-11-03
+
+### Decision: freeze the Phase-4 paper as a completed synthetic study
+
+- **Decided:** Mark the Phase-4 synthetic paper complete after reproducing the
+  210-case result from a clean checkout of the merged harness `main` revision.
+- **Instead of:** Adding live provider calls to Phase 4, treating the local
+  feature branch as sufficient reproduction evidence, or delaying the paper
+  for a system-level validation study.
+- **Why:** The clean run reproduced the expected case-set hash and all reported
+  condition counts. This closes the reproducibility requirement for the
+  synthetic paper while keeping protocol validation separate from later system
+  validation.
+- **Costs if wrong:** The paper remains limited to deterministic synthetic
+  behavior and cannot support claims about production safety, model quality, or
+  human reviewer usability.
+- **Next action:** Treat LLM-backed system validation and the separately
+  versioned v2 reviewer calibration as future studies with their own protocols.
+- **Decided by:** Julie Elkins, with Codex implementation support.

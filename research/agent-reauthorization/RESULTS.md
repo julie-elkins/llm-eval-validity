@@ -131,3 +131,23 @@ This phase strengthens synthetic coverage but does not establish production safe
 live model quality, or human reviewer agreement. The Phase-4 validity fixture is
 `fixtures/reauthorization_phase4.json`; the executable case definitions remain in
 the Agent Assurance Harness.
+
+## Phase-4 clean-checkout reproduction
+
+On 2026-11-03, the Phase-4 command was rerun from a newly cloned `main` checkout
+of the Agent Assurance Harness:
+
+```bash
+uv run python tools/reauthorization_pilot.py \
+  --phase4 \
+  --output /tmp/agent-reauthorization-phase4-clean.json \
+  --markdown \
+  --fail-on-findings
+```
+
+The clean checkout used harness commit
+`4bb9439392416e3c758e77cfac312c1a24b8dcfa`. It produced the expected 210
+synthetic cases, the expected case-set SHA-256
+`13c040f1d4ce779576230d4fce512ee1c6fadf3b2f8042317cc500afbfb377b5`, and the
+same false-ready, stale-detection, correct-escalation, evaluation-run,
+review-step, and time-unit counts recorded above. The reproduction passed.
