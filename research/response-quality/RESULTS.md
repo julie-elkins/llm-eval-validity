@@ -123,8 +123,8 @@ describe the frozen adapter boundary; they do not establish why the provider
 failed to produce an acceptable final event.
 
 This is a cross-provider baseline, not a provider ranking. The corresponding
-OpenAI structured-output condition has not been run, so no OpenAI
-structured-output comparison is reported here.
+OpenAI structured-output comparison is reported below as a separate frozen
+condition.
 
 ### OpenAI structured-output comparison
 
