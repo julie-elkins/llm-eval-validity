@@ -47,6 +47,13 @@ records metadata-only results from six bounded conditions across Claude Sonnet
 5.5, Claude Haiku 5.5, and OpenAI `gpt-5.6`. It does not claim production
 safety, general model quality, or provider-wide performance.
 
+The executable companion is the public
+[Agent Assurance Harness](https://github.com/julie-elkins/agent-assurance-harness).
+The harness demonstrates related evidence contracts, evaluator layers, negative
+controls, and bounded cost and latency checks. It is an implementation and
+teaching companion, not the source of the frozen provider results in this
+repository.
+
 ### Learner objective
 
 Learn to ask whether an evaluation is trustworthy enough to support a decision. The
