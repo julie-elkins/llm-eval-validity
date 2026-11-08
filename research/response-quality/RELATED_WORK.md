@@ -56,3 +56,26 @@ should remain separate from the frozen provider comparison:
 | Professional-task quality | Whether expert reviewers consider an output good enough for real work. | Out of scope for this paper. |
 | Research synthesis quality | Whether retrieved sources are relevant and whether citations support claims. | Out of scope for this paper; a possible separate lab. |
 | User outcomes | Whether real users achieve better results with the system. | Not measured; synthetic cases and independent reviewers are not user-outcome evidence. |
+
+## Adjacent future directions from self-improving-agent research
+
+The [Stanford CS329A Part 9 lecture on future research areas](https://www.youtube.com/watch?v=AyO6wyu4DEg&list=PLangBM27OtEA&index=9)
+identifies several useful extensions without changing this paper's research
+question:
+
+- **Diversity:** measure whether generated reasoning or candidate trajectories
+  remain meaningfully diverse rather than repeating one failure mode.
+- **Verifier validity:** test whether a verifier catches real errors and whether
+  a meta-verifier can detect fabricated or unsupported verifier findings.
+- **Synthetic curriculum quality:** record task difficulty, validity,
+  deduplication, held-out separation, and reward-hacking controls when an agent
+  proposes its own evaluation tasks.
+- **Resource-normalized evaluation:** keep quality, safety, latency, cost,
+  energy, and privacy separate when comparing local, cloud, or hybrid execution.
+- **Continual-learning boundaries:** distinguish memory retrieval, in-context
+  learning, and weight updates, then test stale, contradictory, and unsafe
+  carry-forward state.
+
+These directions belong in a future study or teaching extension. They should
+not be folded into the frozen provider comparison, because doing so would
+change the construct being measured.

@@ -121,6 +121,20 @@ accurate, or production-ready.
 - [Independent reference review protocol](INDEPENDENT_REFERENCE_REVIEW.md)
 - [Volunteer reviewer brief](REVIEWER_BRIEF.md)
 
+## Executable companion and future-work boundary
+
+The public
+[Agent Assurance Harness](https://github.com/julie-elkins/agent-assurance-harness)
+is the executable companion for related evidence-contract, evaluator-layer,
+negative-control, and bounded efficiency patterns. It does not generate or
+replace the frozen provider results reported here.
+
+The next broader research direction could examine self-improvement loops:
+generator diversity, task-curriculum validity, verifier correctness,
+meta-verification (checking whether an evaluator's finding is itself correct),
+reward-hacking controls, and resource-normalized quality. Those are future
+measurement surfaces, not additional claims about this study.
+
 ## Relationship to the reauthorization paper
 
 This is a separate study from
