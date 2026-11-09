@@ -69,6 +69,14 @@ production consequence, and the limit of what the result can establish. The
 [methodology](docs/methodology.md) remains the detailed statistical source of truth;
 the decision map is the learner-facing explanation of why those methods are present.
 
+This repository occupies the research-measurement layer. Use the
+[evaluation-layer guide](https://github.com/julie-elkins/agent-systems-design-guide/blob/main/EVALUATION_LAYERS.md)
+to distinguish its validity and reliability claims from application evaluation,
+production assurance, and monitoring evidence. The companion
+[Agent Assurance Harness](https://github.com/julie-elkins/agent-assurance-harness)
+demonstrates those operational controls; it does not turn this study into a
+production safety certification.
+
 This makes the path inspectable: a reader can move from an evaluation question to a
 design choice, run the relevant analysis, and see why a green-looking number may still
 be insufficient for release.
