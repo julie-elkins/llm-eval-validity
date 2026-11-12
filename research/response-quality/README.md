@@ -111,6 +111,13 @@ This is calibration evidence—the study of whether people can apply the
 measurement consistently—not evidence that the provider conditions are safe,
 accurate, or production-ready.
 
+The version-2 review process is governed by a separate
+[analysis and adjudication plan](ADJUDICATION_PLAN.md) and a
+[private tracker template](REVIEWER_TRACKER_TEMPLATE.md). The tracker is a
+blank public template only; completed reviewer records remain local. A v2 form
+is not counted in an aggregate result until its packet version, form
+completeness, and provenance record pass the private intake gate.
+
 ## Documents
 
 - [Protocol and planned replication](PROTOCOL.md)
@@ -119,6 +126,8 @@ accurate, or production-ready.
 - [Reporting checklist](RESEARCH_CHECKLIST.md)
 - [Related work and positioning](RELATED_WORK.md)
 - [Independent reference review protocol](INDEPENDENT_REFERENCE_REVIEW.md)
+- [Version-2 review analysis and adjudication plan](ADJUDICATION_PLAN.md)
+- [Private reviewer tracker template](REVIEWER_TRACKER_TEMPLATE.md)
 - [Volunteer reviewer brief](REVIEWER_BRIEF.md)
 
 ## Executable companion and future-work boundary
@@ -154,6 +163,11 @@ of structured output, user-facing response quality, or performance across
 other providers, schemas, prompts, tools, or model versions. A wider scenario
 matrix and an independent quality reference are required before making those
 claims.
+
+The independent-review work is a separate calibration layer. It can clarify
+whether the rubric is consistently applied; it cannot repair the limitations of
+the frozen provider experiment or turn synthetic evidence into production
+validation.
 
 ## Reproduction boundary
 

@@ -19,6 +19,29 @@ This log records decisions made before the next result is generated.
   needs explicit navigation between the studies.
 - **Decided by:** Julie Elkins, with Codex implementation support.
 
+## 2026-11-12 -- prepare the waiting-period analysis path
+
+### Decision: prepare review reconciliation without changing the frozen study
+
+- **Decided:** Add a public-safe version-2 review analysis and adjudication
+  plan, a blank private-tracker template, and explicit paper/checklist
+  language for the intake and completion gates.
+- **Instead of:** Rerunning provider arms, changing the v2 rubric while
+  volunteers are reviewing, publishing reviewer forms, or treating a received
+  form as analyzed evidence immediately.
+- **Why:** The next risk is operational ambiguity: without a defined intake
+  gate, reviewer-to-reviewer comparison can mix packet versions, incomplete
+  forms, or unverified provenance. Preparing the analysis path now lets the
+  study remain frozen while making the later comparison reproducible.
+- **Costs if wrong:** The public repository gains process documentation before
+  the final v2 sample is known, and the review phase may still end as a
+  one-reviewer calibration pilot if a second eligible reviewer does not
+  complete the same cases.
+- **Verification:** The six provider conditions and their reported counts are
+  unchanged; the public files contain no reviewer identities, completed forms,
+  raw case content, private traces, or answer key.
+- **Decided by:** Julie Elkins, with Codex implementation support.
+
 ### Decision: report both accepted-trace and all-attempt denominators
 
 - **Decided:** Report evidence-contract satisfaction among accepted traces and
