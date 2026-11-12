@@ -208,6 +208,14 @@ The v2 aggregate remains open until the review artifact is reconciled with the
 private packet record and compared with the answer key; no new agreement or
 validation claim is made here.
 
+The v2 review process now has an explicit analysis and adjudication plan. A
+returned form is not an analyzed review until its packet version, form
+completeness, and private provenance record pass the intake gate. If two
+eligible reviewers assess the same cases, reviewer-to-reviewer agreement will
+be reported separately from local-contract agreement. If fewer than two
+reviewers share the cases, the result will be labelled a one-reviewer
+calibration pilot rather than independent validation.
+
 ## Next test
 
 Complete the version-2 independent calibration round, then decide whether the

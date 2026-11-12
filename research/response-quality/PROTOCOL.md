@@ -162,3 +162,20 @@ The public study stores counts, statuses, refusal codes, stages, and cost
 estimates only. It does not store model prompts, model responses, tool
 arguments, private traces, or credentials. The detailed live-provider reports
 remain local to the executable experiment repository.
+
+## Independent-review analysis boundary
+
+Version-2 human review is a calibration phase for the evidence rubric, not a
+new provider condition. The review process is specified in the
+[independent reference review protocol](INDEPENDENT_REFERENCE_REVIEW.md) and
+the [analysis and adjudication plan](ADJUDICATION_PLAN.md).
+
+The six provider conditions remain frozen while reviewers work. Returned forms
+are counted only after private packet reconciliation. A reviewer-to-reviewer
+comparison requires at least two eligible reviewers judging the same cases;
+otherwise the result is reported as a one-reviewer calibration pilot or remains
+open.
+
+The public result may include aggregate counts and reason codes, but never
+reviewer identities, contact information, completed forms, raw case content,
+private traces, or the answer key.

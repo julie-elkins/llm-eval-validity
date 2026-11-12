@@ -18,7 +18,9 @@ validation.
 | Second-model replication | complete | Haiku used the same matrix and frozen conditions; results remain within-provider. |
 | Larger scenario matrix | not started | Select the next matrix for coverage, not for a cleaner result. |
 | Cross-provider replication | complete | OpenAI baseline and structured-output arms are frozen and reported separately; the result remains configuration-specific. |
-| Human reviewer study | v1 complete; v2 in progress | Three v1 calibration reviews support the v2 rubric revision; one additional v2 review has been returned with self-reported no-AI assistance, but its provenance must be reconciled privately before it contributes to aggregate agreement results. |
+| Human reviewer study | v1 complete; v2 recruitment and reconciliation in progress | Three v1 calibration reviews support the v2 rubric revision. V2 uses a private intake tracker and a public-safe adjudication plan; returned forms remain outside the aggregate result until packet version, completeness, and provenance are reconciled. |
+| Reviewer comparison analysis | prepared, not run | The analysis plan defines reviewer-to-reviewer agreement, local-contract comparison, `unclear` handling, disagreement reasons, and the two completion gates. |
+| Public/private boundary | complete for the planned review phase | The public repository contains only blank process templates and aggregate-safe documentation; identities, forms, raw case content, traces, and the answer key remain local. |
 | Production validation | not established | No production traces, user outcomes, or live business decision are measured. |
 
 ## Claim boundary
@@ -34,3 +36,7 @@ surface in the same direction.
 **Not established:** general model quality, production safety, cross-provider
 generalization, user-perceived quality, or causal superiority of either
 implementation pattern.
+
+The version-2 reviewer round can strengthen calibration evidence, but it cannot
+remove the small synthetic matrix, provider-specific configuration, or
+metadata-only public-data limitations.
