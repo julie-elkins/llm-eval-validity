@@ -35,6 +35,18 @@ support a release or continued-operation decision after the workflow changes. Th
 current phases are offline and synthetic. The [pilot and Phase-4 results](research/agent-reauthorization/RESULTS.md)
 are controlled protocol results, not a production safety certification.
 
+### Research extension: synthetic coding-agent repeatability
+
+The repository also records a small metadata-only repeatability pilot using
+the public harness's six developer-workflow scenario packs:
+
+[Synthetic coding-agent repeatability pilot](research/coding-agent-repeatability-pilot.md)
+
+The pilot repeats the guarded synthetic adapter five times per scenario and
+reports Pass@1, Pass@5, Pass^5, flip rate, and the degraded negative control.
+It demonstrates repeatability of the checked evidence path, not live coding-agent
+reliability, model quality, or real repository changes.
+
 ### Research extension: response-quality measurement
 
 The repository also contains a separate live-provider pilot studying whether
