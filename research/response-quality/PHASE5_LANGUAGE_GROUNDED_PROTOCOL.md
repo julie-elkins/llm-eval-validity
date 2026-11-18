@@ -14,6 +14,12 @@ task. A language-grounded task requires the agent to produce a natural-language
 answer that is supported by declared evidence and appropriate to the task
 outcome.
 
+The public matrix is defined in
+[PHASE5_TASK_MANIFEST.json](PHASE5_TASK_MANIFEST.json). It contains task-family
+metadata and case identifiers only. The actual task wording, reference answers,
+and model outputs are intentionally local because publishing them would make the
+public artifact a copy of the evaluation set rather than an auditable protocol.
+
 The phase is intended to test ARR scope and strengthen the response-quality
 paper. It is not a production evaluation or a provider benchmark.
 
@@ -56,6 +62,23 @@ results.
 The pilot should use 30 unique language tasks, with three replicates for each
 of ten task families or scenarios. At least one-third of the tasks should be
 held out before any prompt, schema, or rubric interpretation is changed.
+
+The checked-in metadata manifest expands to ten families × three replicates:
+
+- 20 development cases;
+- 10 holdout cases, using replicate 3;
+- one stable evaluator revision;
+- one stable response-schema revision.
+
+Validate the public matrix before preparing any local task-content packet:
+
+```text
+python tools/validate_phase5_manifest.py
+```
+
+The validator checks the case count, family uniqueness, replicate split, and
+public-data boundary. It does not validate the private task wording or run a
+provider.
 
 The pilot is descriptive. It is not large enough to support a population-level
 claim by itself.

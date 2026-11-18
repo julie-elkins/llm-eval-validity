@@ -130,6 +130,8 @@ completeness, and provenance record pass the private intake gate.
 - [Human-grounded judge calibration study](CALIBRATION_STUDY.md)
 - [Private reviewer tracker template](REVIEWER_TRACKER_TEMPLATE.md)
 - [Volunteer reviewer brief](REVIEWER_BRIEF.md)
+- [Phase 5 language-grounded protocol](PHASE5_LANGUAGE_GROUNDED_PROTOCOL.md)
+- [Phase 5 metadata-only task manifest](PHASE5_TASK_MANIFEST.json)
 
 ## Executable companion and future-work boundary
 
