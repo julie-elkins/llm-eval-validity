@@ -126,3 +126,25 @@ The repository is the measurement step after the
 [Agent Assurance Harness](https://github.com/julie-elkins/agent-assurance-harness).
 The sequence teaches a production habit: build a workflow, check its evidence boundary,
 then check whether the measurement itself can support the release decision.
+
+## 7. Make interview statistics executable
+
+- **Problem:** Explaining evaluation statistics only in prose does not show whether the
+  assumptions and units of analysis were understood.
+- **Decision:** Add a dependency-free interview lab with synthetic fixtures and executable
+  tests for paired bootstrap, McNemar's test, cluster bootstrap, multiple comparisons,
+  ranking metrics, pass@k, pass^k, and cost per solved task.
+- **Instead of:** Adding a provider-backed benchmark or copying a statistics library into
+  the repository.
+- **Why:** The learning objective is reasoning about evaluation design, not spending money
+  to rank a model. Keeping the examples offline makes the calculations reproducible and
+  lets tests expose the unit and dependence assumptions.
+- **Implementation:** `validity/interview_stats.py`,
+  `examples/eval_statistics_interview_lab.py`, and
+  `docs/eval-statistics-interview-lab.md`.
+- **Verification:** `tests/test_interview_stats.py` checks each estimator and the example
+  runs without credentials.
+- **Costs if wrong:** A learner could repeat a convenient metric without noticing that
+  pairing, clustering, rarity, or multiple testing invalidates the decision.
+- **What this does not prove:** Synthetic examples do not establish live model quality,
+  benchmark rankings, or a universal sample-size rule.

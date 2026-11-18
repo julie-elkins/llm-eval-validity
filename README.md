@@ -107,6 +107,14 @@ Then explain:
 - why pooled results can hide a high-consequence failure family; and
 - why an evaluation must measure its own repeatability.
 
+### Interview extension: evaluation statistics
+
+The [Eval Statistics Interview Lab](docs/eval-statistics-interview-lab.md) is an
+offline companion for practicing paired bootstrap, McNemar's test, cluster bootstrap,
+multiple-comparison correction, ranking metrics, pass@k, pass^k, and cost per solved
+task. It uses synthetic data and the repository's existing interval utilities, so it is
+safe to run without credentials.
+
 ### Expected result
 
 The four offline analyses complete from the checked-in fixture without network access or
