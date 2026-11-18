@@ -72,6 +72,21 @@ Learn to ask whether an evaluation is trustworthy enough to support a decision. 
 focus is not producing a larger score; it is checking sample size, confidence bounds,
 stratification, rater agreement, and repeatability before treating a result as evidence.
 
+### Integrated evaluation-engineer capstone
+
+The [Agent Evaluation Learning Path](https://github.com/julie-elkins/agent-evaluation-learning-path)
+connects this repository's statistics and judge-calibration work to retrieval,
+recovery, and evidence-contract checks in the companion projects. Its
+[capstone](https://github.com/julie-elkins/agent-evaluation-learning-path/blob/main/CAPSTONE.md)
+asks learners to make a bounded release decision instead of collecting scores.
+
+The learning path also includes a
+[public-evidence capstone example](https://github.com/julie-elkins/agent-evaluation-learning-path/blob/main/examples/public-evidence-capstone.md).
+That example uses this repository's published validity findings alongside the
+Harbor study, while keeping ESAC-Bench and the RAG lab labeled as synthetic
+controls. It does not create a composite score or change the study's frozen
+results.
+
 ### Why this study is designed this way
 
 The study records its design reasoning in
