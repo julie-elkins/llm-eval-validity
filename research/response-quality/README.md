@@ -127,6 +127,7 @@ completeness, and provenance record pass the private intake gate.
 - [Related work and positioning](RELATED_WORK.md)
 - [Independent reference review protocol](INDEPENDENT_REFERENCE_REVIEW.md)
 - [Version-2 review analysis and adjudication plan](ADJUDICATION_PLAN.md)
+- [Human-grounded judge calibration study](CALIBRATION_STUDY.md)
 - [Private reviewer tracker template](REVIEWER_TRACKER_TEMPLATE.md)
 - [Volunteer reviewer brief](REVIEWER_BRIEF.md)
 

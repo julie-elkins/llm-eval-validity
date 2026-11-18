@@ -179,3 +179,8 @@ open.
 The public result may include aggregate counts and reason codes, but never
 reviewer identities, contact information, completed forms, raw case content,
 private traces, or the answer key.
+
+The complete calibration decision contract is documented in
+[CALIBRATION_STUDY.md](CALIBRATION_STUDY.md). It keeps the human-human ceiling,
+judge-human agreement, repeatability, bias probes, abstention, screening, and
+release decisions separate.
