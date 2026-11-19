@@ -2,8 +2,9 @@
 
 ## Evaluating Provider-Constrained Agent Workflows
 
-**Status:** research manuscript draft. The study is descriptive, synthetic, and
-not yet formatted for a venue submission.
+**Status:** research manuscript draft. The study is descriptive and synthetic.
+An anonymized ACL-formatted submission artifact exists separately; this
+Markdown file is the source record for the protocol, analysis, and claims.
 
 ## Abstract
 
@@ -172,7 +173,10 @@ remain part of the observed protocol behavior.
 The pilot is descriptive. Thirty attempts per condition are sufficient to
 expose protocol behavior in this fixture but are not sufficient to estimate a
 production failure rate precisely or support population-level significance
-claims.
+claims. We report 95% Wilson score intervals, meaning bounded descriptive
+uncertainty ranges for the observed proportions. Because the three replicates
+within each scenario are related, a matched comparison must resample complete
+scenarios rather than treat all 30 rows as independent.
 
 ### 4.4 Outcomes
 
@@ -255,7 +259,26 @@ The result shows why protocol acceptance and usable evidence must be reported
 separately. It is specific to the fixed model, schema, prompt, tool loop, and
 synthetic matrix.
 
-### 5.4 Human calibration result
+### 5.4 Descriptive uncertainty
+
+The frozen aggregate counts are accompanied by 95% Wilson score intervals in
+the statistical supplement. For example, Sonnet prompt-plus-local-validation
+acceptance was 28/30, or 93.3% [78.7%, 98.2%], while structured-output
+acceptance was 22/30, or 73.3% [55.6%, 85.8%]. Haiku
+evidence-contract satisfaction over all attempts was 9/30, or 30.0%
+[16.7%, 47.9%], compared with 3/30, or 10.0% [3.5%, 25.6%], under structured
+output.
+
+These intervals describe uncertainty in this fixed synthetic fixture. They do
+not estimate a production rate or establish a population-level effect.
+
+The study design is paired at the scenario/replicate level, but the public
+artifact contains aggregate counts rather than the private case-level outcomes.
+The paper therefore does not infer paired wins, losses, or ties from totals.
+The required private-input contract is documented in
+`PAIRED_ANALYSIS_SPEC.md`.
+
+### 5.5 Human calibration result
 
 | Field | Exact reviewer agreement |
 |---|---:|
@@ -309,6 +332,12 @@ production failure rates precisely, and it cannot establish how the results
 transfer to live users, proprietary tools, or different providers, models,
 schemas, prompts, or turn limits.
 
+The public aggregate artifact does not support a paired effect estimate because
+it omits the private case-level outcome for each scenario and replicate.
+Aggregate totals cannot identify which matched cases changed between
+conditions. The paired analysis is specified separately and must be run only
+if the private metadata is recovered.
+
 The accepted-trace denominator is subject to selection: a condition may look
 stable among the traces it accepts while producing less usable evidence over
 all attempts. We report both denominators to make that tradeoff visible.
@@ -350,6 +379,8 @@ The public repository contains:
 - the metadata-only task manifest;
 - protocol and design decisions;
 - frozen aggregate results;
+- descriptive uncertainty analysis and the guarded paired-analysis contract;
+- the [reproducibility appendix](REPRODUCIBILITY_APPENDIX.md);
 - validation and analysis code that does not emit private content;
 - reviewer process templates; and
 - this manuscript draft.

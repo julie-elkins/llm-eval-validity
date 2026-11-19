@@ -16,7 +16,7 @@ validation.
 | Data boundary | complete | Public artifact is metadata-only. |
 | Frozen results | complete | Both Claude conditions for Sonnet and Haiku, plus both OpenAI conditions, are recorded in `RESULTS.md`. |
 | Paper manuscript | draft complete | `paper.md` integrates the protocol, six frozen provider conditions, Phase 5 human calibration, limitations, ethics, and public/private artifact boundary. Venue formatting and submission-readiness review remain. |
-| Statistical inference | intentionally absent | The pilot is descriptive; no significance claim is made. |
+| Statistical reporting | descriptive uncertainty added; paired comparison guarded | `FROZEN_AGGREGATES.json` and `STATISTICAL_SUMMARY.md` report 95% Wilson intervals. A paired comparison requires private case-level outcomes and is specified but not reconstructed from aggregate counts. |
 | Second-model replication | complete | Haiku used the same matrix and frozen conditions; results remain within-provider. |
 | Larger scenario matrix | not started | Select the next matrix for coverage, not for a cleaner result. |
 | Cross-provider replication | complete | OpenAI baseline and structured-output arms are frozen and reported separately; the result remains configuration-specific. |

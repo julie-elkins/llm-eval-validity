@@ -59,6 +59,19 @@ records metadata-only results from six bounded conditions across Claude Sonnet
 5.5, Claude Haiku 5.5, and OpenAI `gpt-5.6`. It does not claim production
 safety, general model quality, or provider-wide performance.
 
+### Research extension: AI-assisted assessment and learning evidence
+
+The next companion study applies the repository's evidence-contract and
+human-calibration methods to a different question: whether AI-assisted
+assessment can distinguish fluent task performance from evidence of independent
+learning.
+
+[From Correct Answers to Learning Evidence](research/ai-assessment-learning/README.md)
+
+The study uses public synthetic tasks and, if the applicable ethics boundary is
+approved, a small adult volunteer pilot. It keeps independent transfer separate
+from AI-assisted performance and does not use private certification content.
+
 The executable companion is the public
 [Agent Assurance Harness](https://github.com/julie-elkins/agent-assurance-harness).
 The harness demonstrates related evidence contracts, evaluator layers, negative

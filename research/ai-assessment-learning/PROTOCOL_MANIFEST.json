@@ -1,0 +1,59 @@
+{
+  "study_id": "ai-assessment-learning",
+  "protocol_version": "0.2-synthetic",
+  "status": "synthetic_only",
+  "execution_mode": "offline_metadata_only",
+  "human_validation": "deferred_pending_ethics_determination",
+  "task_forms_public": false,
+  "task_forms_storage": "private_study_packet_until_pilot_completion",
+  "primary_question": "Can an AI-assisted assessment workflow distinguish fluent task performance from evidence of independent learning?",
+  "primary_outcome": "detection of planted unsupported-learning inferences",
+  "operational_learning_criterion": "matched transfer task completed without AI assistance",
+  "evaluation_views": [
+    "final_answer_only",
+    "evidence_aware"
+  ],
+  "participant_boundary": {
+    "population": "adult volunteers",
+    "minors": false,
+    "protected_educational_records": false,
+    "private_certification_content": false,
+    "production_or_customer_data": false
+  },
+  "required_controls": [
+    "evidence_complete",
+    "fluent_but_unsupported",
+    "correct_answer_wrong_justification",
+    "stale_or_contradictory_evidence",
+    "ambiguous_requires_uncertainty",
+    "useful_assistance_without_transfer_completion",
+    "polished_negative_control"
+  ],
+  "retained_public_fields": [
+    "task_id",
+    "task_family",
+    "condition",
+    "protocol_revision",
+    "evidence_identifiers",
+    "status_codes",
+    "bounded_counts",
+    "timings",
+    "refusal_states",
+    "artifact_hashes"
+  ],
+  "excluded_public_fields": [
+    "participant_answers",
+    "answer_keys",
+    "reviewer_identities",
+    "raw_provider_traces",
+    "private_prompts",
+    "credentials"
+  ],
+  "gates": [
+    "ethics_boundary_reviewed",
+    "consent_materials_reviewed",
+    "task_forms_frozen",
+    "transfer_forms_frozen",
+    "primary_analysis_locked"
+  ]
+}

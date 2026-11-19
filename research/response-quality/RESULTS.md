@@ -170,6 +170,27 @@ The pilot does not support these stronger claims:
 - that the evidence contract measures user-perceived answer quality;
 - that the observed differences are statistically significant.
 
+## Descriptive uncertainty
+
+The frozen aggregate counts are reported with 95% Wilson score intervals in
+[`STATISTICAL_SUMMARY.md`](STATISTICAL_SUMMARY.md). A Wilson score interval is a
+bounded uncertainty range for a proportion. It is descriptive here and does
+not convert the fixed synthetic matrix into a production estimate.
+
+Examples:
+
+- Sonnet prompt-plus-local-validation acceptance: 28/30, 93.3% [78.7%, 98.2%].
+- Sonnet provider-structured acceptance: 22/30, 73.3% [55.6%, 85.8%].
+- Haiku prompt-plus-local-validation evidence satisfaction over all attempts:
+  9/30, 30.0% [16.7%, 47.9%].
+- Haiku provider-structured evidence satisfaction over all attempts: 3/30,
+  10.0% [3.5%, 25.6%].
+
+The conditions are matched by scenario and replicate, but the public artifact
+contains aggregate counts only. The paired comparison is therefore specified
+but not reconstructed from totals. See
+[`PAIRED_ANALYSIS_SPEC.md`](PAIRED_ANALYSIS_SPEC.md).
+
 ## Limitations
 
 - **Provider-specific configurations.** The OpenAI comparison is complete for

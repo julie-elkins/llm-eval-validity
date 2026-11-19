@@ -3,7 +3,7 @@
 # be able to reproduce every number in the write-ups without an API key, and only the judge
 # validation should cost anything.
 
-.PHONY: analyse test precision discrimination reliability cutscore reauthorization robustness judge docs clean
+.PHONY: analyse test precision discrimination reliability cutscore reauthorization robustness judge docs validate-assessment-tasks response-quality-stats run-synthetic-assessment clean
 
 analyse: precision discrimination reliability cutscore reauthorization
 
@@ -39,6 +39,15 @@ judge:
 
 test:
 	uv run --with pytest python -m pytest tests/ -q
+
+validate-assessment-tasks:
+	uv run python tools/validate_ai_assessment_tasks.py
+
+response-quality-stats:
+	uv run python tools/analyze_response_quality_stats.py
+
+run-synthetic-assessment:
+	uv run python tools/run_synthetic_assessment_phase.py
 
 # Regenerates the committed reports from the fixture, so a stale doc is a visible diff rather
 # than something a reader has to take on trust. docs/methodology.md and

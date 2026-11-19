@@ -13,3 +13,8 @@ runs/*.jsonl
 # because it records what must not be published from a public repository. Ignored rather than
 # merely untracked: an untracked file here is one careless `git add` from being outward-facing.
 .claude/
+
+# Independent reference-review packets and completed forms are private local
+# research artifacts. The public repository may contain only the blank process
+# templates and aggregate-safe documentation.
+private-review/
