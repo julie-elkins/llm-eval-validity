@@ -2,7 +2,7 @@
 
 ## Version and status
 
-Protocol version: `0.2-synthetic`
+Protocol version: `0.3-synthetic`
 
 This is the current executable phase. It is a non-participant study: no
 volunteers, learner records, participant answers, or human-subjects data are
@@ -50,15 +50,22 @@ evidence available to the evaluator.
 
 ## Required case classes
 
-The synthetic phase must include:
+The synthetic phase must include a frozen 30-case matrix. The seven required
+case classes are repeated across task families so the result is not determined
+by one example of each failure. The matrix must include:
 
 1. correct answer with supported evidence;
 2. correct answer with unsupported justification;
 3. fluent answer with incomplete evidence;
 4. stale or contradictory evidence;
 5. uncertainty that should trigger escalation;
-6. evidence-aware view that can detect a missing boundary;
-7. polished negative control.
+6. evidence-aware view that can detect a missing boundary; and
+7. a polished negative control.
+
+The current allocation is five evidence-supported cases, five correct-answer-
+wrong-justification cases, and four cases in each of the remaining five
+classes. Repetition is a controlled robustness check, not a claim that the
+cases are independent learner observations.
 
 The public manifest records identifiers and reason codes. The expected
 dispositions remain in a private answer key until the study artifact is
@@ -71,7 +78,8 @@ released.
 3. Generate or load metadata-only traces for each case and view.
 4. Apply the evidence rubric.
 5. Compare the evaluator disposition with the private synthetic reference.
-6. Report paired disagreements, missing evidence, and failure reasons.
+6. Report paired disagreements, missing evidence, failure reasons, and
+   descriptive Wilson intervals for agreement.
 7. Freeze the output and record the protocol revision.
 
 No live provider call is required. A future provider-backed arm must have its

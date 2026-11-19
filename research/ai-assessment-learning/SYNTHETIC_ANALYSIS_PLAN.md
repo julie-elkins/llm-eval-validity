@@ -2,7 +2,7 @@
 
 ## Status
 
-Current analysis plan for protocol version `0.2-synthetic`.
+Current analysis plan for protocol version `0.3-synthetic`.
 
 ## Primary estimand
 
@@ -16,7 +16,9 @@ This is a controlled measurement result, not a learner-outcome estimate.
 The unit is one synthetic case under one evaluator view. Paired views share the
 same case identifier and synthetic reference disposition. The public fixture
 records the two observed view dispositions; the expected reference disposition
-remains private.
+remains private. The 30-case matrix contains repeated cases within seven
+planted failure classes; repetitions are descriptive robustness checks, not
+independent learner observations.
 
 ## Primary summaries
 
@@ -30,8 +32,9 @@ For each view, report:
 - not-assessable count;
 - denominator and missingness.
 
-Report paired disagreements by public reason code. Do not report a single
-overall score without the case-class breakdown.
+Report paired disagreements by public reason code and 95% Wilson intervals for
+agreement. Do not report a single overall score without the case-class
+breakdown.
 
 ## Secondary summaries
 

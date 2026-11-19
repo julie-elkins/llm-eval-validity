@@ -2,8 +2,8 @@
 
 ## Study status
 
-Phase 1 synthetic-only protocol. The human-participant validation phase is
-deferred pending an ethics determination.
+Phase 1 synthetic-only protocol, expanded to a frozen 30-case matrix. The
+human-participant validation phase is deferred pending an ethics determination.
 
 ## Research question
 
@@ -39,7 +39,7 @@ answer keys, reviewer identities, or internal data to this public study.
 4. Compare both views with the synthetic reference disposition.
 5. Report failure detection, disagreement, and missing evidence.
 
-The current seven-case metadata-only fixture is executable offline:
+The current 30-case metadata-only fixture is executable offline:
 
 ```bash
 make run-synthetic-assessment
@@ -47,8 +47,8 @@ make run-synthetic-assessment
 
 The runner reads a private reference disposition and writes its summary to the
 private workspace. The public case file contains only synthetic evaluator
-dispositions and reason codes; it contains no learner answers, answer key, or
-participant data.
+dispositions, replicate metadata, and reason codes; it contains no learner
+answers, answer key, or participant data.
 
 ### Future human-validation phase
 
@@ -90,10 +90,15 @@ prove that AI improves learning.
   boundary.
 - [tasks/manifest.json](tasks/manifest.json) — public metadata-only task
   definitions.
-- [synthetic_cases.json](synthetic_cases.json) — seven-case metadata-only
+- [synthetic_cases.json](synthetic_cases.json) — 30-case metadata-only
   synthetic execution fixture.
-- [SYNTHETIC_RESULTS.md](SYNTHETIC_RESULTS.md) — aggregate synthetic result
-  and claim boundary.
+- [SYNTHETIC_RESULTS.md](SYNTHETIC_RESULTS.md) — aggregate 30-case synthetic
+  result and claim boundary.
+- [ABSTRACT_SUBMISSION.md](ABSTRACT_SUBMISSION.md) — draft abstract for the
+  Springer special collection.
+- [paper.md](paper.md) — full research manuscript draft.
+- [SUBMISSION_CHECKLIST.md](SUBMISSION_CHECKLIST.md) — deadline and release
+  gates.
 - `make run-synthetic-assessment` — offline synthetic comparison; the summary
   remains private.
 - [SYNTHETIC_TASK_SPEC.md](SYNTHETIC_TASK_SPEC.md) — public task requirements.
@@ -112,7 +117,8 @@ prove that AI improves learning.
 ## Current gate
 
 No participant recruitment or live provider run should begin. The current phase
-is offline and synthetic.
+is offline and synthetic. The 30-case expansion is a controlled repetition of
+seven failure classes, not a sample of 30 learners.
 
 The future human-validation phase must not begin until:
 

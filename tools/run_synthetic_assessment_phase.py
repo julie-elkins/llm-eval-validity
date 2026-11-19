@@ -8,8 +8,13 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from pathlib import Path
 from typing import Any
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
+from validity.intervals import wilson
 
 
 ROOT = Path(__file__).parents[1]
@@ -100,6 +105,7 @@ def _view_summary(
             counts["disagreement"] += 1
             disagreements.append(case_id)
 
+    agreement_interval = wilson(counts["agreement"], len(cases))
     return {
         "view": view,
         "case_count": len(cases),
@@ -108,8 +114,49 @@ def _view_summary(
         },
         "agreement_count": counts["agreement"],
         "disagreement_count": counts["disagreement"],
+        "agreement_rate": round(counts["agreement"] / len(cases), 6),
+        "agreement_interval_95": {
+            "low": round(agreement_interval.low, 6),
+            "high": round(agreement_interval.high, 6),
+        },
         "disagreement_case_ids": disagreements,
     }
+
+
+def _case_class_summary(
+    cases: list[dict[str, Any]],
+    references: dict[str, str],
+    view: str,
+) -> list[dict[str, Any]]:
+    """Summarize agreement by planted case class without exposing the key."""
+
+    by_class: dict[str, list[dict[str, Any]]] = {}
+    for case in cases:
+        case_class = case.get("case_class")
+        if not isinstance(case_class, str) or not case_class:
+            raise SyntheticPhaseError(
+                f"public case {case['case_id']} is missing case_class"
+            )
+        by_class.setdefault(case_class, []).append(case)
+
+    summaries: list[dict[str, Any]] = []
+    for case_class, class_cases in sorted(by_class.items()):
+        agreement_count = sum(
+            case[view] == references[case["case_id"]] for case in class_cases
+        )
+        interval = wilson(agreement_count, len(class_cases))
+        summaries.append(
+            {
+                "case_class": case_class,
+                "case_count": len(class_cases),
+                "agreement_count": agreement_count,
+                "agreement_interval_95": {
+                    "low": round(interval.low, 6),
+                    "high": round(interval.high, 6),
+                },
+            }
+        )
+    return summaries
 
 
 def run_phase(
@@ -124,14 +171,18 @@ def run_phase(
     summaries = {
         view: _view_summary(public_cases, references, view) for view in VIEWS
     }
+    class_summaries = {
+        view: _case_class_summary(public_cases, references, view) for view in VIEWS
+    }
     return {
-        "schema_version": "0.2-synthetic-summary",
-        "protocol_version": "0.2-synthetic",
+        "schema_version": "0.3-synthetic-summary",
+        "protocol_version": "0.3-synthetic",
         "decision": "complete",
         "execution_mode": "offline_metadata_only",
         "learner_outcome_observed": False,
         "case_count": len(public_cases),
         "views": summaries,
+        "case_class_summaries": class_summaries,
         "limitations": [
             "Synthetic reference dispositions are not learner outcomes.",
             "The run does not establish that AI assistance improves learning.",

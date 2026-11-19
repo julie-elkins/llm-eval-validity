@@ -1,6 +1,6 @@
 {
   "study_id": "ai-assessment-learning",
-  "protocol_version": "0.2-synthetic",
+  "protocol_version": "0.3-synthetic",
   "status": "synthetic_only",
   "execution_mode": "offline_metadata_only",
   "human_validation": "deferred_pending_ethics_determination",
@@ -8,6 +8,8 @@
   "task_forms_storage": "private_study_packet_until_pilot_completion",
   "primary_question": "Can an AI-assisted assessment workflow distinguish fluent task performance from evidence of independent learning?",
   "primary_outcome": "detection of planted unsupported-learning inferences",
+  "synthetic_case_count": 30,
+  "synthetic_case_classes": 7,
   "operational_learning_criterion": "matched transfer task completed without AI assistance",
   "evaluation_views": [
     "final_answer_only",
