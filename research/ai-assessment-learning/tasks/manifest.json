@@ -1,0 +1,177 @@
+{
+  "manifest_version": "0.1",
+  "study_id": "ai-assessment-learning",
+  "protocol_version": "0.1",
+  "answer_keys_included": false,
+  "participant_content_included": false,
+  "tasks": [
+    {
+      "task_id": "concept-application-01",
+      "task_family": "concept_application",
+      "target_skill": "apply_a_principle_to_a_new_situation",
+      "learning_objective": "Select and justify an application of a stated principle in an unfamiliar context.",
+      "allowed_evidence": "public_principle_card_and_case_facts",
+      "assistance_boundary": "explain_the_principle_and_point_to_evidence_without_submitting_the_answer",
+      "forms": {
+        "baseline": "concept-application-01-baseline",
+        "assisted": "concept-application-01-assisted",
+        "transfer": "concept-application-01-transfer"
+      },
+      "rubric_dimensions": [
+        "task_correctness",
+        "valid_application",
+        "evidence_alignment",
+        "independent_transfer"
+      ],
+      "expected_failure_modes": [
+        "fluent_but_unsupported",
+        "correct_answer_wrong_justification"
+      ],
+      "public_reason_code": "application_evidence_mismatch"
+    },
+    {
+      "task_id": "concept-application-02",
+      "task_family": "concept_application",
+      "target_skill": "distinguish_a_rule_from_a_plausible_but_invalid_exception",
+      "learning_objective": "Apply a rule while identifying the boundary that limits its use.",
+      "allowed_evidence": "public_rule_card_and_boundary_examples",
+      "assistance_boundary": "ask_guiding_questions_and_reference_declared_evidence_only",
+      "forms": {
+        "baseline": "concept-application-02-baseline",
+        "assisted": "concept-application-02-assisted",
+        "transfer": "concept-application-02-transfer"
+      },
+      "rubric_dimensions": [
+        "task_correctness",
+        "evidence_alignment",
+        "verification_behavior",
+        "independent_transfer"
+      ],
+      "expected_failure_modes": [
+        "polished_negative_control",
+        "unsupported_generalization"
+      ],
+      "public_reason_code": "boundary_condition_missed"
+    },
+    {
+      "task_id": "evidence-interpretation-01",
+      "task_family": "evidence_interpretation",
+      "target_skill": "draw_a_bounded_conclusion_from_evidence",
+      "learning_objective": "State only the conclusion supported by a bounded evidence set.",
+      "allowed_evidence": "public_evidence_table_with_known_gaps",
+      "assistance_boundary": "summarize_available_evidence_and_identify_missing_fields",
+      "forms": {
+        "baseline": "evidence-interpretation-01-baseline",
+        "assisted": "evidence-interpretation-01-assisted",
+        "transfer": "evidence-interpretation-01-transfer"
+      },
+      "rubric_dimensions": [
+        "task_correctness",
+        "evidence_alignment",
+        "verification_behavior",
+        "independent_transfer"
+      ],
+      "expected_failure_modes": [
+        "confident_conclusion_with_incomplete_evidence",
+        "unsupported_or_irrelevant_explanation"
+      ],
+      "public_reason_code": "claim_exceeds_evidence"
+    },
+    {
+      "task_id": "evidence-interpretation-02",
+      "task_family": "evidence_interpretation",
+      "target_skill": "identify_contradictory_or_stale_evidence",
+      "learning_objective": "Detect when a source cannot support the requested conclusion because it is stale or contradictory.",
+      "allowed_evidence": "public_source_set_with_declared_revision_metadata",
+      "assistance_boundary": "surface_source_metadata_without_resolving_the_judgment",
+      "forms": {
+        "baseline": "evidence-interpretation-02-baseline",
+        "assisted": "evidence-interpretation-02-assisted",
+        "transfer": "evidence-interpretation-02-transfer"
+      },
+      "rubric_dimensions": [
+        "task_correctness",
+        "evidence_alignment",
+        "uncertainty_handling",
+        "independent_transfer"
+      ],
+      "expected_failure_modes": [
+        "stale_or_contradictory_evidence",
+        "citation_does_not_support_claim"
+      ],
+      "public_reason_code": "source_validity_failure"
+    },
+    {
+      "task_id": "procedure-troubleshooting-01",
+      "task_family": "procedure_or_troubleshooting",
+      "target_skill": "choose_the_next_valid_step_under_constraints",
+      "learning_objective": "Select the next diagnostic step without exceeding the declared constraints.",
+      "allowed_evidence": "public_runbook_excerpt_and_constraint_card",
+      "assistance_boundary": "explain_options_and_constraints_without_executing_a_step",
+      "forms": {
+        "baseline": "procedure-troubleshooting-01-baseline",
+        "assisted": "procedure-troubleshooting-01-assisted",
+        "transfer": "procedure-troubleshooting-01-transfer"
+      },
+      "rubric_dimensions": [
+        "task_correctness",
+        "evidence_alignment",
+        "verification_behavior",
+        "independent_transfer"
+      ],
+      "expected_failure_modes": [
+        "constraint_ignored",
+        "fluent_but_unsupported"
+      ],
+      "public_reason_code": "constraint_violation"
+    },
+    {
+      "task_id": "procedure-troubleshooting-02",
+      "task_family": "procedure_or_troubleshooting",
+      "target_skill": "escalate_when_the_available_evidence_is_insufficient",
+      "learning_objective": "Recognize when safe escalation is preferable to an unsupported action.",
+      "allowed_evidence": "public_status_snapshot_and_escalation_policy",
+      "assistance_boundary": "identify_missing_evidence_and_escalation_path_without_taking_action",
+      "forms": {
+        "baseline": "procedure-troubleshooting-02-baseline",
+        "assisted": "procedure-troubleshooting-02-assisted",
+        "transfer": "procedure-troubleshooting-02-transfer"
+      },
+      "rubric_dimensions": [
+        "task_correctness",
+        "uncertainty_handling",
+        "evidence_alignment",
+        "independent_transfer"
+      ],
+      "expected_failure_modes": [
+        "ambiguous_requires_uncertainty",
+        "unsupported_action"
+      ],
+      "public_reason_code": "escalation_boundary_missed"
+    },
+    {
+      "task_id": "negative-control-01",
+      "task_family": "concept_application",
+      "target_skill": "reject_a_polished_but_unsupported_conclusion",
+      "learning_objective": "Separate rhetorical quality from evidence-supported reasoning.",
+      "allowed_evidence": "public_case_facts_with_one_deliberate_gap",
+      "assistance_boundary": "ask_for_missing_evidence_and_refuse_to_fill_the_gap",
+      "forms": {
+        "baseline": "negative-control-01-baseline",
+        "assisted": "negative-control-01-assisted",
+        "transfer": "negative-control-01-transfer"
+      },
+      "rubric_dimensions": [
+        "task_correctness",
+        "evidence_alignment",
+        "uncertainty_handling",
+        "independent_transfer"
+      ],
+      "expected_failure_modes": [
+        "polished_negative_control",
+        "confident_conclusion_with_incomplete_evidence"
+      ],
+      "public_reason_code": "polish_without_support"
+    }
+  ]
+}

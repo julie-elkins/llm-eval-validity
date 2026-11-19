@@ -1,0 +1,56 @@
+{
+  "schema_version": "response-quality-frozen-aggregates-v1",
+  "study_status": "frozen",
+  "confidence_level": 0.95,
+  "source_boundary": "metadata-only aggregate counts; no raw prompts, responses, or private traces",
+  "conditions": [
+    {
+      "condition_id": "sonnet_prompt",
+      "model": "claude-sonnet-5-5",
+      "output_condition": "prompt_plus_local_validation",
+      "attempted": 30,
+      "accepted": 28,
+      "evidence_satisfying_accepted": 15
+    },
+    {
+      "condition_id": "sonnet_structured",
+      "model": "claude-sonnet-5-5",
+      "output_condition": "provider_structured_output_plus_local_validation",
+      "attempted": 30,
+      "accepted": 22,
+      "evidence_satisfying_accepted": 12
+    },
+    {
+      "condition_id": "haiku_prompt",
+      "model": "claude-haiku-5-5",
+      "output_condition": "prompt_plus_local_validation",
+      "attempted": 30,
+      "accepted": 18,
+      "evidence_satisfying_accepted": 9
+    },
+    {
+      "condition_id": "haiku_structured",
+      "model": "claude-haiku-5-5",
+      "output_condition": "provider_structured_output_plus_local_validation",
+      "attempted": 30,
+      "accepted": 9,
+      "evidence_satisfying_accepted": 3
+    },
+    {
+      "condition_id": "openai_prompt",
+      "model": "gpt-5.6",
+      "output_condition": "prompt_plus_local_validation",
+      "attempted": 30,
+      "accepted": 26,
+      "evidence_satisfying_accepted": 15
+    },
+    {
+      "condition_id": "openai_structured",
+      "model": "gpt-5.6",
+      "output_condition": "provider_structured_output_plus_local_validation",
+      "attempted": 30,
+      "accepted": 27,
+      "evidence_satisfying_accepted": 14
+    }
+  ]
+}

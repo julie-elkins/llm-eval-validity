@@ -65,6 +65,34 @@ Each packet item should contain:
 5. a confidence field;
 6. a disagreement reason field.
 
+The repository includes a local-only packet generator and an aggregate-safe
+intake analyzer. Generate the packet outside the Git checkout:
+
+```bash
+review_dir="$(mktemp -d)"
+uv run python tools/create_reference_review_packet.py \
+  --output-dir "$review_dir"
+```
+
+Send reviewers only a copy of `review-form-template.json` together with the
+private packet through an approved channel. Keep `answer-key.json`, completed
+forms, reviewer identities, and raw case material outside the repository. The
+generator refuses to write inside this checkout.
+
+After the private intake gate confirms packet version, completeness, and
+provenance, compare eligible forms with:
+
+```bash
+uv run python tools/analyze_reference_review.py \
+  --packet "$review_dir/packet.json" \
+  --form "$review_dir/reviewer-01.json" \
+  --form "$review_dir/reviewer-02.json"
+```
+
+The analyzer emits aggregate-safe counts only. It does not calculate a
+production-quality score, expose reviewer IDs or case IDs, or replace private
+adjudication against the answer key.
+
 The packet generator must record a packet identifier and schema version, but
 must not retain credentials or send the packet to a public service.
 

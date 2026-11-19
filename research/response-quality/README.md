@@ -73,6 +73,20 @@ larger; the result is still limited to these two model configurations.
 | all attempted cases satisfying the evidence contract | 15/30 (50.0%) |
 
 The OpenAI arm is a frozen cross-provider baseline, not a provider ranking.
+
+## Statistical reporting
+
+The frozen aggregate counts now have descriptive 95% Wilson score intervals in
+[`STATISTICAL_SUMMARY.md`](STATISTICAL_SUMMARY.md). A Wilson score interval is a
+bounded uncertainty range for a proportion; it does not turn this fixed
+synthetic pilot into a population estimate.
+
+The conditions share scenario and replicate identifiers, so a paired comparison
+would be preferable to treating the arms as unrelated samples. The public
+artifact does not contain the private case-level outcomes needed to compute that
+comparison. The required input and analysis boundary are documented in
+[`PAIRED_ANALYSIS_SPEC.md`](PAIRED_ANALYSIS_SPEC.md); no pairings are inferred
+from aggregate totals.
 Its structured-output comparison is reported below.
 
 | measure | OpenAI baseline | OpenAI structured output | change |
