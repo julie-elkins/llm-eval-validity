@@ -110,3 +110,25 @@ whether people actually learn. That limitation is preferable to making a
 human-learning claim from constructed cases.
 
 **Decided by:** Julie Elkins, with Codex implementation support.
+
+## 2026-11-19 — Expand the synthetic pilot before abstract submission
+
+**Decided:** Expand the executable synthetic phase from seven examples to a
+frozen 30-case metadata-only matrix before preparing the Springer abstract.
+
+**Instead of:** Submitting the seven-case demonstration as if it were a
+standalone learner study or recruiting participants before an ethics
+determination.
+
+**Why:** The collection requests empirical or conceptually grounded work on
+assessment evidence, durable learning, and transfer. Repeating the seven
+failure classes makes the measurement behavior easier to inspect while
+preserving the distinction between a controlled feasibility result and a
+learner outcome.
+
+**Costs if wrong:** The repeated cases can make descriptive intervals look more
+precise than the constructed design warrants. The paper therefore labels the
+repetitions as controlled robustness checks and does not treat them as
+independent learners.
+
+**Decided by:** Julie Elkins, with Codex implementation support.

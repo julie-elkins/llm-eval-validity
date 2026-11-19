@@ -9,7 +9,7 @@ Independent Transfer
 
 State the problem, the distinction between assisted performance and independent
 learning evidence, the matched evaluator views, the transfer criterion, the
-seven-case synthetic pilot, and the limits of the result.
+30-case synthetic pilot, and the limits of the result.
 
 ## 1. Introduction
 
@@ -70,7 +70,7 @@ seven-case synthetic pilot, and the limits of the result.
 
 ## 8. Limitations and ethics
 
-- exploratory sample;
+- controlled synthetic sample and repeated failure classes;
 - task-family and transfer-form limits;
 - no claim of durable learning unless delayed transfer is measured;
 - participant and privacy boundary;

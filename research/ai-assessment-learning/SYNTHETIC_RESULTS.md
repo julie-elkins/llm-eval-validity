@@ -2,36 +2,44 @@
 
 ## Status
 
-The seven-case synthetic phase completed offline under protocol version
-`0.2-synthetic`.
+The 30-case synthetic phase completed offline under protocol version
+`0.3-synthetic`.
 
 No participants, learner records, live provider calls, or certification
 content were used. The private reference disposition is a controlled
-ground-truth-like label for the constructed case, not a learner outcome.
+ground-truth-like label for each constructed case, not a learner outcome.
 
-## Summary
+The 30 cases repeat seven planted failure classes. Repetition is a controlled
+robustness check; it is not a sample of 30 learners and does not justify a
+population claim.
 
-| Evaluator view | Cases | Agreement with synthetic reference | Disagreement |
+## Overall summary
+
+| Evaluator view | Cases | Agreement with synthetic reference | 95% Wilson interval |
 |---|---:|---:|---:|
-| Final-answer-only | 7 | 1/7 (14.3%) | 6/7 (85.7%) |
-| Evidence-aware | 7 | 7/7 (100.0%) | 0/7 (0.0%) |
+| Final-answer-only | 30 | 5/30 (16.7%) | [7.3%, 33.6%] |
+| Evidence-aware | 30 | 30/30 (100.0%) | [88.6%, 100.0%] |
 
-The final-answer-only view marked six cases as supported or otherwise
-acceptable even though the constructed reference did not support an inference
-of independent learning. The evidence-aware view rejected those planted
-unsupported-learning inferences in all six failure cases.
+The final-answer-only view marked 26 cases as supported and four as unclear.
+The evidence-aware view marked five cases as supported and 25 as not
+supported. The evidence-aware view rejected all 25 planted cases where the
+constructed reference did not support an independent-learning inference.
+
+Wilson intervals are bounded descriptive uncertainty ranges for these
+constructed proportions. They do not estimate learner performance or a
+population effect.
 
 ## Case-class breakdown
 
-| Case class | Final-answer-only | Evidence-aware | Reference implication |
-|---|---|---|---|
-| Evidence supported | Supported | Supported | Independent-learning inference supported in the constructed case |
-| Correct answer, wrong justification | Supported | Not supported | Correctness alone is insufficient |
-| Fluent but unsupported | Supported | Not supported | Fluency does not supply missing evidence |
-| Stale or contradictory evidence | Unclear | Not supported | Conflicting evidence blocks support |
-| Ambiguous; requires uncertainty | Supported | Not supported | Confidence without sufficient evidence is unsafe |
-| Missing required boundary | Supported | Not supported | A correct answer can still violate the evidence contract |
-| Polished negative control | Supported | Not supported | Presentation quality is not evidence of learning |
+| Case class | Cases | Final-answer-only agreement | Evidence-aware agreement |
+|---|---:|---:|---:|
+| Evidence supported | 5 | 5/5 | 5/5 |
+| Correct answer, wrong justification | 5 | 0/5 | 5/5 |
+| Fluent but unsupported | 4 | 0/4 | 4/4 |
+| Stale or contradictory evidence | 4 | 0/4 | 4/4 |
+| Ambiguous; requires uncertainty | 4 | 0/4 | 4/4 |
+| Missing required boundary | 4 | 0/4 | 4/4 |
+| Polished negative control | 4 | 0/4 | 4/4 |
 
 ## Interpretation
 
@@ -43,10 +51,10 @@ It does not establish:
 
 - that real learners learned or failed to learn;
 - that AI assistance improves learning;
+- that synthetic transfer dispositions equal human learner outcomes;
 - that the rubric is valid for a student population;
-- that a transfer disposition equals a human learner outcome;
 - that one AI system or evaluator is better in education; or
-- that the result generalizes beyond these seven constructed cases.
+- that the result generalizes beyond these constructed cases.
 
-The next research phase is human validation only after an appropriate ethics
+The next scientific phase is human validation only after an appropriate ethics
 determination, task freeze, analysis lock, and consent review.

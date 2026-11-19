@@ -17,6 +17,7 @@ def test_synthetic_phase_reports_metadata_only(tmp_path):
         "cases": [
             {
                 "case_id": "case-01",
+                "case_class": "synthetic_control",
                 "final_answer_only": "supported",
                 "evidence_aware": "not_supported",
             }
@@ -41,6 +42,8 @@ def test_synthetic_phase_reports_metadata_only(tmp_path):
     assert summary["views"]["final_answer_only"]["disagreement_count"] == 1
     assert summary["views"]["evidence_aware"]["agreement_count"] == 1
     assert "case-01" in summary["views"]["final_answer_only"]["disagreement_case_ids"]
+    assert summary["views"]["evidence_aware"]["agreement_interval_95"]["high"] == 1.0
+    assert summary["case_class_summaries"]["evidence_aware"][0]["case_count"] == 1
 
 
 def test_synthetic_phase_rejects_mismatched_reference(tmp_path):
