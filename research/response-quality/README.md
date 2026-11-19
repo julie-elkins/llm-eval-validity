@@ -118,6 +118,12 @@ blank public template only; completed reviewer records remain local. A v2 form
 is not counted in an aggregate result until its packet version, form
 completeness, and provenance record pass the private intake gate.
 
+The repository also includes a local-only packet generator and an
+aggregate-safe intake analyzer. They make the next review step reproducible
+without publishing packet contents, reviewer identities, completed forms, or
+the answer key. The v2 human-reference result remains **not established** until
+eligible forms are privately reconciled and analyzed.
+
 ## Documents
 
 - [Protocol and planned replication](PROTOCOL.md)
@@ -130,6 +136,8 @@ completeness, and provenance record pass the private intake gate.
 - [Human-grounded judge calibration study](CALIBRATION_STUDY.md)
 - [Private reviewer tracker template](REVIEWER_TRACKER_TEMPLATE.md)
 - [Volunteer reviewer brief](REVIEWER_BRIEF.md)
+- [Phase 5 language-grounded protocol](PHASE5_LANGUAGE_GROUNDED_PROTOCOL.md)
+- [Phase 5 metadata-only task manifest](PHASE5_TASK_MANIFEST.json)
 
 ## Executable companion and future-work boundary
 
@@ -160,10 +168,17 @@ It can establish the observed differences between the six frozen conditions on
 the fixed 30-case matrix, including the refusal and evidence-contract counts.
 
 It cannot establish general model quality, production safety, causal superiority
-of structured output, user-facing response quality, or performance across
-other providers, schemas, prompts, tools, or model versions. A wider scenario
-matrix and an independent quality reference are required before making those
-claims.
+of structured output, user-facing response quality, positive alignment, human
+flourishing, real-user autonomy, or performance across other providers,
+schemas, prompts, tools, or model versions. A wider scenario matrix and an
+independent quality reference are required before making those claims.
+
+The related-work review also identifies a future alignment-focused extension:
+evaluate uncertainty and clarification, preservation of human decision
+authority, value conflict, pluralism, and correction as separate constructs.
+Those dimensions are not retrofitted into the frozen provider comparison,
+because doing so would change the study's research question after data
+collection.
 
 The independent-review work is a separate calibration layer. It can clarify
 whether the rubric is consistently applied; it cannot repair the limitations of

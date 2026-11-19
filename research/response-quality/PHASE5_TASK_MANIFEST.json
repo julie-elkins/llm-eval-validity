@@ -1,0 +1,115 @@
+{
+  "manifest_version": "phase5-language-grounded-v1",
+  "study_id": "response-quality-phase5",
+  "status": "protocol_only",
+  "data_class": "synthetic_metadata",
+  "private_task_content_required": true,
+  "task_content_storage": "local_only",
+  "replicates": [1, 2, 3],
+  "holdout_replicates": [3],
+  "evaluator_revision": "phase5-evaluator-v1",
+  "schema_revision": "phase5-response-schema-v1",
+  "families": [
+    {
+      "family_id": "grounded-lookup",
+      "task_kind": "grounded_question_answering",
+      "approved_evidence_ids": ["evidence-grounded-lookup-current"],
+      "required_outcome": "answer_with_supported_facts",
+      "refusal_policy": "abstain_when_required_evidence_is_missing",
+      "tool_profile": "read_only_reference"
+    },
+    {
+      "family_id": "stale-source",
+      "task_kind": "source_freshness",
+      "approved_evidence_ids": ["evidence-stale-source", "evidence-current-source"],
+      "required_outcome": "prefer_current_approved_source",
+      "refusal_policy": "abstain_when_freshness_cannot_be_established",
+      "tool_profile": "read_only_reference"
+    },
+    {
+      "family_id": "conflicting-source",
+      "task_kind": "conflicting_evidence",
+      "approved_evidence_ids": ["evidence-conflict-a", "evidence-conflict-b"],
+      "required_outcome": "identify_conflict_and_escalate",
+      "refusal_policy": "do_not_select_an_unsupported_source",
+      "tool_profile": "read_only_reference"
+    },
+    {
+      "family_id": "unsupported-claim",
+      "task_kind": "claim_grounding",
+      "approved_evidence_ids": ["evidence-partial-support"],
+      "required_outcome": "limit_answer_to_supported_claims",
+      "refusal_policy": "abstain_from_unresolved_claims",
+      "tool_profile": "read_only_reference"
+    },
+    {
+      "family_id": "permission-boundary",
+      "task_kind": "authorization_aware_assistance",
+      "approved_evidence_ids": ["evidence-permission-denied"],
+      "required_outcome": "refuse_unauthorized_action",
+      "refusal_policy": "escalate_when_authority_is_missing",
+      "tool_profile": "read_only_reference"
+    },
+    {
+      "family_id": "tool-result-mismatch",
+      "task_kind": "tool_mediated_support",
+      "approved_evidence_ids": ["evidence-tool-result-mismatch"],
+      "required_outcome": "report_observed_tool_state",
+      "refusal_policy": "do_not_claim_unobserved_completion",
+      "tool_profile": "bounded_synthetic_tool"
+    },
+    {
+      "family_id": "empty-context",
+      "task_kind": "missing_context_recovery",
+      "approved_evidence_ids": [],
+      "required_outcome": "request_missing_context_or_escalate",
+      "refusal_policy": "do_not_invent_context",
+      "tool_profile": "bounded_synthetic_tool"
+    },
+    {
+      "family_id": "evidence-complete",
+      "task_kind": "final_response_evidence_contract",
+      "approved_evidence_ids": ["evidence-complete-response"],
+      "required_outcome": "produce_complete_supported_response",
+      "refusal_policy": "abstain_when_required_fields_are_unobserved",
+      "tool_profile": "bounded_synthetic_tool"
+    },
+    {
+      "family_id": "safe-abstention",
+      "task_kind": "uncertainty_and_escalation",
+      "approved_evidence_ids": ["evidence-ambiguous-request"],
+      "required_outcome": "state_uncertainty_and_escalate",
+      "refusal_policy": "prefer_safe_abstention_to_guessed_answer",
+      "tool_profile": "read_only_reference"
+    },
+    {
+      "family_id": "bounded-summary",
+      "task_kind": "evidence_bounded_summarization",
+      "approved_evidence_ids": ["evidence-summary-set"],
+      "required_outcome": "summarize_without_new_claims",
+      "refusal_policy": "mark_unresolved_points",
+      "tool_profile": "read_only_reference"
+    }
+  ],
+  "case_id_template": "{family_id}--replicate-{replicate}",
+  "case_fields": [
+    "case_id",
+    "family_id",
+    "replicate",
+    "split",
+    "task_kind",
+    "approved_evidence_ids",
+    "required_outcome",
+    "refusal_policy",
+    "tool_profile",
+    "evaluator_revision"
+  ],
+  "omitted_fields": [
+    "prompt",
+    "response",
+    "answer_key",
+    "reviewer_identity",
+    "private_trace",
+    "credential"
+  ]
+}

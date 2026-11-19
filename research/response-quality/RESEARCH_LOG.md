@@ -2,6 +2,26 @@
 
 This log records decisions made before the next result is generated.
 
+## 2026-11-19 -- positive-alignment claim boundary
+
+### Decision: separate positive alignment from the frozen response-quality study
+
+- **Decided:** Add the Positive Alignment paper to related work, state the
+  alignment boundary in the protocol and scope memo, and add future-study
+  questions for uncertainty, human authority, value conflict, pluralism, and
+  correction.
+- **Instead of:** Adding those value-sensitive cases to the frozen pilot or
+  describing evidence grounding and refusal behavior as proof of human
+  flourishing or complete alignment.
+- **Why:** The current study measures evidence-grounded response quality under
+  two output conditions. Making the broader boundary explicit strengthens the
+  paper's validity claim and prevents readers from treating a narrow synthetic
+  result as evidence about real users or social values.
+- **Costs if wrong:** A future alignment-focused study will require a separate
+  task matrix and reviewer rubric, and the current paper will make a narrower
+  contribution than a broad alignment claim.
+- **Decided by:** Julie Elkins, with Codex implementation support.
+
 ## 2026-10-24
 
 ### Decision: preserve the live-provider comparison as a separate study
@@ -265,4 +285,30 @@ This log records decisions made before the next result is generated.
   communication do not match.
 - **Public boundary:** No reviewer name, completed form, raw case content, or
   answer key is published.
+- **Decided by:** Julie Elkins, with Codex implementation support.
+
+## 2026-11-18 -- make the v2 review handoff executable
+
+### Decision: add a deterministic private packet workflow without changing the frozen study
+
+- **Decided:** Add a local-only packet generator, packet/form validation, and
+  aggregate-safe reviewer comparison for the v2 independent-reference round.
+- **Instead of:** Re-running provider measurements, publishing raw response
+  text, sending the answer key to reviewers, or treating the received v2 form
+  as analyzed evidence before private reconciliation.
+- **Why:** The protocol and tracker defined the review process, but the handoff
+  still depended on manually assembling a packet. Selecting one deterministic
+  fixture turn per source case makes the planned 10–15-case packet
+  reproducible while keeping private review artifacts outside the repository.
+- **Costs if wrong:** The generator's case selection is a modelling
+  assumption, not a new measurement. If the rubric or case mix changes, the
+  packet version must change and the review must not be pooled with another
+  instrument.
+- **Verification:** Offline tests validate packet blinding, digest binding,
+  form shape, duplicate reviewer rejection, and metadata-only agreement.
+- **Current state:** The workflow is executable, but no new aggregate v2
+  calibration result is established.
+- **Next action:** Generate a private packet, recruit or confirm two
+  independent reviewers, reconcile the returned forms against the packet and
+  answer key, then publish only aggregate calibration metadata.
 - **Decided by:** Julie Elkins, with Codex implementation support.
