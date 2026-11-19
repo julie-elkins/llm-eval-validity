@@ -312,3 +312,28 @@ This log records decisions made before the next result is generated.
   independent reviewers, reconcile the returned forms against the packet and
   answer key, then publish only aggregate calibration metadata.
 - **Decided by:** Julie Elkins, with Codex implementation support.
+
+## 2026-11-19 -- close Phase 5 human grounding calibration
+
+### Decision: publish aggregate calibration evidence after private intake
+
+- **Decided:** Close the Phase 5 language-grounded review for two eligible
+  human reviewers and publish aggregate agreement and adjudication counts.
+- **Instead of:** Counting the AI-generated diagnostic as an independent
+  reviewer, pooling forms from different packet versions, publishing reviewer
+  identities or raw forms, or rerunning the frozen provider arms.
+- **Why:** Both eligible reviewers judged the same 30-case synthetic packet,
+  returned forms on 2026-11-19, and reported no AI assistance. Decision and
+  handling agreement was 100%; evidence-label agreement was 85%, which
+  identifies remaining rubric interpretation variance without changing the
+  provider results.
+- **Costs if wrong:** The result may not transfer beyond this synthetic
+  packet, and reviewer self-reported provenance is not independently
+  verifiable. The public claim therefore remains calibration-only.
+- **Public boundary:** Publish counts and disagreement reason categories only.
+  Keep reviewer identities, contact information, completed forms, packet
+  contents, raw responses, and the answer key private.
+- **Next action:** Integrate this result into the paper's methods, results, and
+  limitations, then decide whether a larger or more diverse human calibration
+  sample is warranted.
+- **Decided by:** Julie Elkins, with Codex implementation support.

@@ -216,6 +216,32 @@ be reported separately from local-contract agreement. If fewer than two
 reviewers share the cases, the result will be labelled a one-reviewer
 calibration pilot rather than independent validation.
 
+## Phase 5 language-grounded reviewer calibration
+
+Two eligible human reviewers independently assessed the same 30-case
+synthetic Phase 5 packet, producing 60 response-level judgments. Both
+reviewers reported no AI assistance. This calibration result is separate from
+the version-2 review round and does not pool forms from other packet versions
+or an AI-generated diagnostic.
+
+| field | exact agreement |
+|---|---:|
+| Decision | 60/60 (100.0%) |
+| Evidence | 51/60 (85.0%) |
+| Handling | 60/60 (100.0%) |
+
+The adjudicated aggregate contains 60 correct decision judgments, 60
+appropriate-handling judgments, and evidence labels of 51 supported, 3
+partially supported, and 6 not applicable. The nine evidence disagreements
+were classified as six empty-evidence-label differences, two unsupported
+upper-bound differences, and one approval-versus-deployment paraphrase.
+
+This supports a narrower claim: the revised rubric was consistently applied
+on this synthetic packet for the decision and handling fields, while evidence
+labeling still had measurable interpretation variance. It does not establish
+production safety, model superiority, general rubric validity, or user-facing
+quality.
+
 ## Next test
 
 Complete the version-2 independent calibration round, then decide whether the

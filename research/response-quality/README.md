@@ -124,6 +124,30 @@ without publishing packet contents, reviewer identities, completed forms, or
 the answer key. The v2 human-reference result remains **not established** until
 eligible forms are privately reconciled and analyzed.
 
+### Phase 5 language-grounded calibration
+
+Phase 5 adds a separate human calibration of the language-grounded response
+rubric. Two eligible human reviewers independently judged the same 30-case
+synthetic packet, producing 60 response-level judgments. Both reviewers
+reported no AI assistance. This result is separate from the version-2
+calibration round above; artifacts from other packet versions and an
+AI-generated diagnostic form were not pooled.
+
+| field | exact agreement |
+|---|---:|
+| Decision | 60/60 (100.0%) |
+| Evidence | 51/60 (85.0%) |
+| Handling | 60/60 (100.0%) |
+
+After applying the pre-specified clarification rules, the aggregate evidence
+labels were 51 supported, 3 partially supported, and 6 not applicable. The
+nine evidence disagreements were attributable to empty-evidence labeling,
+unsupported upper-bound wording, and approval-versus-deployment paraphrasing.
+
+This is calibration evidence for a synthetic rubric. It does not establish
+production safety, model superiority, general rubric validity, or user-facing
+quality.
+
 ## Documents
 
 - [Protocol and planned replication](PROTOCOL.md)
