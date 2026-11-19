@@ -152,6 +152,7 @@ quality.
 
 - [Protocol and planned replication](PROTOCOL.md)
 - [Frozen results and analysis](RESULTS.md)
+- [Response-quality paper draft](paper.md)
 - [Research log](RESEARCH_LOG.md)
 - [Reporting checklist](RESEARCH_CHECKLIST.md)
 - [Related work and positioning](RELATED_WORK.md)

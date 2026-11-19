@@ -2,7 +2,8 @@
 
 ## Status
 
-**Pilot and answer-level grounding review complete; paper integration remains.**
+**Pilot, answer-level grounding review, and manuscript draft complete; venue-format
+and submission-readiness work remains.**
 
 This is a new, separately labelled phase. It does not alter the six frozen
 provider conditions already reported in this repository.
@@ -67,9 +68,9 @@ When the same language task, tools, model, budget, and stopping rules are used,
 does provider-enforced structured output improve usable evidence and language
 response quality compared with prompt instructions plus local validation?
 
-## Planned task families
+## Task families
 
-The task set should contain synthetic but natural-language cases across:
+The task set contains synthetic but natural-language cases across:
 
 1. evidence-grounded question answering;
 2. stale or conflicting source handling;
@@ -93,7 +94,7 @@ Raw prompts, responses, and private review packets remain local. Public
 artifacts contain only identifiers, counts, hashes, statuses, and aggregate
 results.
 
-## Planned design
+## Design
 
 ### Pilot matrix
 
@@ -123,7 +124,7 @@ claim by itself.
 
 ### Conditions
 
-The new phase will compare two conditions:
+The phase compared two conditions:
 
 | condition | description |
 |---|---|
