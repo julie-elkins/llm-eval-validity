@@ -2,7 +2,7 @@
 
 ## Status
 
-**Pilot complete; answer-level grounding review and paper analysis pending.**
+**Pilot and answer-level grounding review complete; paper integration remains.**
 
 This is a new, separately labelled phase. It does not alter the six frozen
 provider conditions already reported in this repository.
@@ -27,6 +27,25 @@ public artifact a copy of the evaluation set rather than an auditable protocol.
 
 The phase is intended to test ARR scope and strengthen the response-quality
 paper. It is not a production evaluation or a provider benchmark.
+
+## Completed human calibration
+
+Two eligible human reviewers independently judged the same 30-case synthetic
+packet, producing 60 response-level judgments. Both reviewers reported no AI
+assistance. The aggregate result was:
+
+- Decision agreement: 60/60 (100.0%);
+- Evidence-label agreement: 51/60 (85.0%);
+- Handling agreement: 60/60 (100.0%).
+
+After adjudication, the evidence labels were 51 supported, 3 partially
+supported, and 6 not applicable. The nine disagreements were retained as
+rubric diagnostics rather than silently forced into agreement.
+
+The result is calibration evidence for this synthetic rubric. It does not
+establish production safety, model superiority, general rubric validity, or
+user-facing quality. Forms from other packet versions and an AI-generated
+diagnostic were excluded from the aggregate.
 
 ## Construct and alignment boundary
 

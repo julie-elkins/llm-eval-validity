@@ -20,6 +20,7 @@ validation.
 | Larger scenario matrix | not started | Select the next matrix for coverage, not for a cleaner result. |
 | Cross-provider replication | complete | OpenAI baseline and structured-output arms are frozen and reported separately; the result remains configuration-specific. |
 | Human reviewer study | v1 complete; v2 recruitment and reconciliation in progress | Three v1 calibration reviews support the v2 rubric revision. V2 uses a private intake tracker and a public-safe adjudication plan; returned forms remain outside the aggregate result until packet version, completeness, and provenance are reconciled. |
+| Phase 5 language-grounded calibration | complete | Two eligible human reviewers judged the same 30-case synthetic packet: 60 judgments, 100% decision agreement, 85% evidence-label agreement, and 100% handling agreement. The result is calibration evidence only. |
 | Reviewer comparison analysis | prepared and executable, not run | The public repo contains a local-only packet generator and aggregate-safe analyzer. The analysis plan defines reviewer-to-reviewer agreement, local-contract comparison, `unclear` handling, disagreement reasons, and the two completion gates. |
 | Public/private boundary | complete for the planned review phase | The public repository contains only blank process templates and aggregate-safe documentation; identities, forms, raw case content, traces, and the answer key remain local. |
 | Production validation | not established | No production traces, user outcomes, or live business decision are measured. |
