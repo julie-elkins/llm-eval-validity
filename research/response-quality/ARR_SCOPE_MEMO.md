@@ -88,6 +88,12 @@ It must not claim:
 - that a deterministic harness result proves live-agent reliability; or
 - that reviewer agreement creates ground truth automatically.
 
+The paper should also state that evidence-grounded response quality is not a
+complete positive-alignment evaluation. It does not measure human flourishing,
+real-user autonomy, pluralistic value conflict, long-term user outcomes, or
+the full governance conditions required for those claims. These are future
+research surfaces rather than outcomes inferred from the frozen pilot.
+
 ## Submission-readiness gate
 
 Do not submit until all of these are true:

@@ -2,10 +2,15 @@
 
 ## Status
 
-**Protocol drafted; experiment not run.**
+**Pilot complete; answer-level grounding review and paper analysis pending.**
 
 This is a new, separately labelled phase. It does not alter the six frozen
 provider conditions already reported in this repository.
+
+The bounded pilot used the frozen 30-case matrix and the two conditions defined
+below. The public record remains metadata-only; raw responses, answer keys,
+and reviewer materials remain local. The pilot result does not change the
+protocol's claim boundary or establish a general provider effect.
 
 ## Purpose
 
@@ -22,6 +27,20 @@ public artifact a copy of the evaluation set rather than an auditable protocol.
 
 The phase is intended to test ARR scope and strengthen the response-quality
 paper. It is not a production evaluation or a provider benchmark.
+
+## Construct and alignment boundary
+
+This phase measures evidence-grounded response quality: whether a response
+answers the declared task, uses the approved evidence, handles uncertainty
+appropriately, and respects the declared refusal or escalation boundary.
+
+It does not measure **positive alignment**, meaning whether an AI system
+promotes human flourishing across broader social and value-sensitive settings.
+In particular, this phase does not measure long-term user outcomes, cultural
+pluralism, value conflict, or flourishing. Those are future research surfaces,
+not hidden claims of this pilot. See the related-work entry for
+[Positive Alignment: Artificial Intelligence for Human
+Flourishing](https://arxiv.org/abs/2605.10310).
 
 ## Research question
 
@@ -133,6 +152,21 @@ a strong claim that the rubric is independently validated.
 The existing version-2 review analysis and adjudication plan governs packet
 versioning, intake, disagreement handling, and public reporting.
 
+The current reviewer packet is designed for evidence grounding and task
+quality. A future alignment-focused packet may add:
+
+- uncertainty representation and appropriate clarification;
+- preservation of human decision authority;
+- recognition of conflicts between legitimate user or stakeholder values;
+- appropriate deference, refusal, or escalation when values are under-specified;
+  and
+- correction behavior when new evidence changes the decision.
+
+These questions must not be retrofitted into the frozen pilot after responses
+have been observed. Adding them would change the measured construct—what the
+study claims to measure—and invalidate a direct comparison with the existing
+packet.
+
 ## Outcomes
 
 Report each outcome separately:
@@ -175,6 +209,8 @@ The analysis must also report:
 
 The result remains a bounded study of the declared task set. It cannot establish
 general language ability, production safety, or provider-wide behavior.
+It also cannot establish positive alignment, human flourishing, autonomy
+preservation across real users, or value pluralism.
 
 ## Phase gates
 
