@@ -72,6 +72,18 @@ The study uses public synthetic tasks and, if the applicable ethics boundary is
 approved, a small adult volunteer pilot. It keeps independent transfer separate
 from AI-assisted performance and does not use private certification content.
 
+### Research extension: layered evidence for agent evaluation
+
+The next follow-on study tests whether layered evidence review reduces
+false-positive evaluation decisions compared with outcome-only grading:
+
+[From Plausible to Defensible: Layered Evidence Protocol](research/executable-validity/README.md)
+
+The protocol compares outcome-only review, evidence-aware review, executable
+verification, and blinded human adjudication on the same cases, tools, budget,
+and stopping rules. It is a protocol package only; no new provider run or
+confirmatory result has been claimed.
+
 The executable companion is the public
 [Agent Assurance Harness](https://github.com/julie-elkins/agent-assurance-harness).
 The harness demonstrates related evidence contracts, evaluator layers, negative
