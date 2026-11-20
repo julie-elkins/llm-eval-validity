@@ -23,9 +23,14 @@ Environments](https://link.springer.com/journal/40561)
 - [x] Abstract states the contribution to evidence-centered assessment.
 - [x] Keywords selected.
 - [x] Collection-fit statement drafted.
-- [ ] Confirm author name, affiliation, and contact details in the submission
+- [x] Confirm author name, affiliation, and contact details in the submission
   form.
-- [ ] Submit the abstract before the deadline.
+- [x] Submit the abstract before the deadline.
+
+## Submission record
+
+- Abstract submitted: **19 November 2026**.
+- Submission status: **Awaiting editorial decision or manuscript invitation**.
 
 ## Full-manuscript gate
 
