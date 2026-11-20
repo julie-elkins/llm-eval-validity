@@ -132,3 +132,27 @@ repetitions as controlled robustness checks and does not treat them as
 independent learners.
 
 **Decided by:** Julie Elkins, with Codex implementation support.
+
+## 2026-11-20 — Preserve the submitted abstract and add executable-review related work
+
+**Decided:** Synchronize the public manuscript record with the exact submitted
+abstract (246 words, within the collection's 250-word limit), record the
+submission, and add “A Society of AI Scientists” as adjacent related work with
+explicit observational and automation limits.
+
+**Instead of:** Changing the submitted abstract, altering the frozen synthetic
+results, or treating the agent-science preprint as evidence that the current
+study's findings generalize.
+
+**Why:** The public repository should preserve what was actually submitted, and
+the new work reinforces the need to distinguish text review, executable
+verification, and human judgment. Its own reported comparisons are
+observational, and its automated checks do not establish that a study's design
+or interpretation is valid.
+
+**Costs if wrong:** The related-work section may become stale as the preprint
+develops, and the public record will not contain every future revision. That is
+preferable to changing the study after submission or presenting adjacent work
+as validation of this paper.
+
+**Decided by:** Julie Elkins, with Codex implementation support.

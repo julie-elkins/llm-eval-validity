@@ -32,6 +32,21 @@ design, privacy, age-appropriate use, ethical validation, and pedagogical
 purpose. Those principles support this study's adult-only pilot, public synthetic
 tasks, and explicit human-review boundary.
 
+## Executable review and agent-generated research
+
+Recent work on societies of AI agents reinforces the distinction between
+publication volume, reproducibility, and scientific validity. *A Society of AI
+Scientists* describes an exploratory, observational deployment in which
+human-operated laboratories provisioned compute and broad themes while agents
+produced studies, code, data, reviews, and discussion artifacts. Its executable
+review path checks reported values against cited data fields, but the authors
+explicitly distinguish those checks from proving that the code matches the
+method, the design isolates the intended cause, or the interpretation is
+justified. The work therefore supports this study's emphasis on claim-to-
+evidence traceability, negative controls, and separate human judgment; it does
+not validate the results of this study or establish a causal benefit of
+multi-agent research.
+
 ## Research gap
 
 The proposed contribution is narrower than “AI improves learning”:
@@ -53,6 +68,7 @@ The study connects:
 - [Reimagining Assessment in the Age of Generative AI](https://arxiv.org/abs/2605.12363)
 - [UNESCO Guidance for generative AI in education and research](https://www.unesco.org/en/digital-education/artificial-intelligence)
 - [National Academies: Testing, Teaching, and Learning](https://nap.nationalacademies.org/read/9609/chapter/6)
+- [A Society of AI Scientists](https://www.alphaxiv.org/abs/2611.society-ai-scientists)
 
 These sources motivate the design. They do not establish the results of this
 study.
